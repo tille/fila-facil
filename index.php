@@ -12,13 +12,13 @@
       $password = "44422efc";
       $db = "heroku_4b016d38f7d5c5b";
 
-      $con = mysqli_connect($server, $username, $password, $db);
-      //mysql_select_db($db);
+      mysql_connect($server, $username, $password);
+      mysql_select_db($db);
       
       $name = 'Don reymon';
       $sql = "SELECT * FROM test WHERE name='$name'";
-      $result = mysqli_query($con,$sql);
-      $datos = mysqli_fetch_array($result);
+      $result = mysql_query($sql);
+      $datos = mysql_fetch_array($result, MYSQL_BOTH);
       echo $datos['name'];
       
   ?>
