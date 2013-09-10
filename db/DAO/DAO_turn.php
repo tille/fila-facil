@@ -14,9 +14,10 @@
 
     function DAO_update($mod, $num){
       $modules = array(
-        "warrant" => 1,
-        "payments" => 2,
-        "information" => 3,
+        "admisiones" => 1,
+        "caja" => 2,
+        "cartera" => 3,
+        "certificados" => 4,
       );
 
       if( isset($modules[$mod]) ){
