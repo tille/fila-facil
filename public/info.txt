@@ -29,6 +29,8 @@
   
   // DATABASE_URL: mysql://b251ba2fc71a0a:44422efc@us-cdbr-east-04.cleardb.com/heroku_4b016d38f7d5c5b?reconnect=true
   // mysql --host=us-cdbr-east-04.cleardb.com --user=b251ba2fc71a0a --password=44422efc --reconnect heroku_4b016d38f7d5c5b < test.sql
+  
+  // mysql --host=localhost --user=root --password=root --reconnect ff_database < 01addTableTurn.sql
 
   // $con = mysqli_connect("localhost","root","root","ff_database");
   // $name = 'Don reymon';
