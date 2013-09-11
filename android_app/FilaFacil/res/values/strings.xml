@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">FilaFácil</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="admisiones">Admisiones</string>
+    <string name="cartera">Cartera</string>
+    <string name="caja">Caja</string>
+    <string name="certificados">Certificados</string>
+    <string name="tomar_turno">Tomar turno</string>
+    <string name="su_turno">Su turno:</string>
+    <string name="sin_asignar">---</string>
+    <string name="titulo_alerta_pedir">Reserva de turno</string>
+    <string name="mensaje_alerta_pedir">Se reservará un turno en</string>
+    <string name="alerta_continuar">Continuar</string>
+    <string name="alerta_cancelar">Cancelar</string>
+    <string name="titulo_alerta_salir">Salir</string>
+    <string name="mensaje_alerta_salir">¿Seguro que desea salir?</string>
+    <string name="alerta_salir">Salir</string>
+    <string name="titulo_alerta_conexion">Sin conexión</string>
+    <string name="mensaje_alerta_conexion">Conéctese a la red e inténtelo nuevamente</string>
+    <string name="boton_alerta_conexion">Cerrar</string>
+    <string name="turno_reservado">Se ha reservado el turno</string>
+</resources>
