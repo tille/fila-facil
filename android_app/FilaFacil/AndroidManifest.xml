@@ -17,7 +17,7 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.Sherlock" >
         <activity
-            android:name="com.example.filafacil.controllers.MainActivity"
+            android:name="com.example.filafacil.view.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
             
