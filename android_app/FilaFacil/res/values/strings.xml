@@ -22,4 +22,5 @@
     <string name="mensaje_alerta_conexion">Conéctese a la red e inténtelo nuevamente</string>
     <string name="boton_alerta_conexion">Cerrar</string>
     <string name="turno_reservado">Se ha reservado el turno</string>
+    <string name="url">http://filafacil.herokuapp.com/</string>
 </resources>
