@@ -69,8 +69,12 @@ public class CertificadosFragment extends SherlockFragment {
 	    			ServiceConnection handler = new ServiceConnection();
 	    			handler.post(url, getThis());
 	    			disableButton();
+	    			getSherlockActivity()
+    					.setProgressBarIndeterminateVisibility(true);
     			} catch(Exception e){
     				System.out.println("Error");
+    				getSherlockActivity()
+    					.setProgressBarIndeterminateVisibility(false);
     				
     			}
 			}
@@ -100,6 +104,8 @@ public class CertificadosFragment extends SherlockFragment {
     	
     	Button pedir = (Button) getView().findViewById(R.id.boton_pedir_cert);
     	pedir.setEnabled(false);
+    	getSherlockActivity()
+			.setProgressBarIndeterminateVisibility(false);
     }
     
     public CertificadosFragment getThis() {

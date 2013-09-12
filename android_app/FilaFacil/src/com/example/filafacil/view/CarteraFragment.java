@@ -70,8 +70,12 @@ public class CarteraFragment extends SherlockFragment {
 	    			ServiceConnection handler = new ServiceConnection();
 	    			handler.post(url, getThis());
 	    			disableButton();
+	    			getSherlockActivity()
+	    				.setProgressBarIndeterminateVisibility(true);
     			} catch(Exception e){
     				System.out.println("Error");
+    				getSherlockActivity()
+    					.setProgressBarIndeterminateVisibility(false);
     				
     			}
 			}
@@ -100,6 +104,7 @@ public class CarteraFragment extends SherlockFragment {
     	
     	Button pedir = (Button) getView().findViewById(R.id.boton_pedir_cart);
     	pedir.setEnabled(false);
+    	getSherlockActivity().setProgressBarIndeterminateVisibility(false);
     }
     
     public CarteraFragment getThis() {

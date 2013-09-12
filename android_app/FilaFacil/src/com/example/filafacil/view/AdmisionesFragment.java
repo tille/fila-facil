@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
+import com.actionbarsherlock.view.Window;
 import com.example.filafacil.R;
 import com.example.filafacil.helpers.ServiceConnection;
 import com.example.filafacil.helpers.ValuesManager;
@@ -69,9 +70,12 @@ public class AdmisionesFragment extends SherlockFragment {
 	    			ServiceConnection handler = new ServiceConnection();
 	    			handler.post(url, getThis());
 	    			disableButton();
+	    			getSherlockActivity()
+	    				.setProgressBarIndeterminateVisibility(true);
     			} catch(Exception e){
     				System.out.println("Error");
-    				
+    				getSherlockActivity()
+    					.setProgressBarIndeterminateVisibility(false);
     			}
 			}
     	});
@@ -100,6 +104,7 @@ public class AdmisionesFragment extends SherlockFragment {
     	
     	Button pedir = (Button) getView().findViewById(R.id.boton_pedir_adm);
     	pedir.setEnabled(false);
+    	getSherlockActivity().setProgressBarIndeterminateVisibility(false);
     }
     
     public AdmisionesFragment getThis() {
