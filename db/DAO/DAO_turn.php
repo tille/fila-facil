@@ -4,7 +4,7 @@
   class DAO_turn {
 
     function DAO_read($mod){
-      $con = connect();
+      $con = connect();   // ¿Por qué llama la función directamente?
       $sql = "SELECT number FROM turn WHERE module='$mod'";
       $arr_res = mysql_query($sql);
       $result = mysql_fetch_array($arr_res);
@@ -12,6 +12,7 @@
       return $result[0];
     }
 
+   
     function DAO_update($mod, $num){
       $modules = array(
         "admisiones" => 1,
