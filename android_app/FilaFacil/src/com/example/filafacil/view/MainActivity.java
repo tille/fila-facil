@@ -1,4 +1,4 @@
-package com.example.filafacil;
+package com.example.filafacil.view;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -13,6 +13,9 @@ import android.view.View;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.Window;
+import com.example.filafacil.R;
+import com.example.filafacil.helpers.ValuesManager;
  
 public class MainActivity extends SherlockFragmentActivity {
  
@@ -30,9 +33,10 @@ public class MainActivity extends SherlockFragmentActivity {
  
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // Get the view from activity_main.xml
+    	super.onCreate(savedInstanceState);
+    	requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_main);
+        setProgressBarIndeterminateVisibility(false);
         
         valores = new ValuesManager(getApplicationContext());
         

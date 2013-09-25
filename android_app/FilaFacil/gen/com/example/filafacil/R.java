@@ -1075,6 +1075,7 @@ containing a value of this type.
         public static final int titulo_alerta_salir=0x7f09001b;
         public static final int tomar_turno=0x7f090014;
         public static final int turno_reservado=0x7f090021;
+        public static final int url=0x7f090022;
     }
     public static final class style {
         /** 

@@ -1,4 +1,6 @@
-package com.example.filafacil;
+package com.example.filafacil.view;
+
+import com.example.filafacil.helpers.ValuesManager;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

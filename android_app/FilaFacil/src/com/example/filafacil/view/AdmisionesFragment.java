@@ -1,4 +1,4 @@
-package com.example.filafacil;
+package com.example.filafacil.view;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -12,9 +12,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
- 
+import com.actionbarsherlock.view.Window;
+import com.example.filafacil.R;
+import com.example.filafacil.helpers.ServiceConnection;
+import com.example.filafacil.helpers.ValuesManager;
+
 public class AdmisionesFragment extends SherlockFragment {
-	
+
+	private static final String url = "http://filafacil.herokuapp.com/services.php?q=get_turn&params=admisiones";
 	private ValuesManager valorTurno;
 	
 	public AdmisionesFragment(ValuesManager valores) {
@@ -25,8 +30,6 @@ public class AdmisionesFragment extends SherlockFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
     	View view = inflater.inflate(R.layout.admisiones_fragment, null);
-        //valorTurno = new ValuesManager(getActivity().getApplicationContext());
-    	//valorTurno = new ValuesManager(view.getContext());
     	String numeroTurno = valorTurno.getTurnoAdmisiones();
     	if (numeroTurno.equals("---")) {
     		Log.d("CONSOLA", "OnCreateView sin turno guardado admisiones");
@@ -52,6 +55,7 @@ public class AdmisionesFragment extends SherlockFragment {
     		((MainActivity)getSherlockActivity()).alertarSinRed();
     		return;
         }
+
     	AlertDialog.Builder alert = new AlertDialog.Builder(getView()
     															.getContext());
     	alert.setTitle(getResources().getString(R.string.titulo_alerta_pedir));
@@ -60,12 +64,19 @@ public class AdmisionesFragment extends SherlockFragment {
     	alert.setPositiveButton(getResources().getString(
     		R.string.alerta_continuar), new DialogInterface.OnClickListener() {
     		public void onClick(DialogInterface dialog,int id) {
-    			Toast.makeText(getView().getContext(), getResources().getString(
-    					R.string.turno_reservado), Toast.LENGTH_LONG).show();
-    			
     			//Invocar la función de conexión con base de datos etc.
     			//Ejemplo:
-    			cambiarTurno("012");
+    			try{
+	    			ServiceConnection handler = new ServiceConnection();
+	    			handler.post(url, getThis());
+	    			disableButton();
+	    			getSherlockActivity()
+	    				.setProgressBarIndeterminateVisibility(true);
+    			} catch(Exception e){
+    				System.out.println("Error");
+    				getSherlockActivity()
+    					.setProgressBarIndeterminateVisibility(false);
+    			}
 			}
     	});
     	alert.setNegativeButton(getResources().getString(
@@ -76,15 +87,27 @@ public class AdmisionesFragment extends SherlockFragment {
 		});
     	AlertDialog alertDialog = alert.create();
 		alertDialog.show();
+    
     }
     
-    public void cambiarTurno(String turno) {
-    	TextView text = (TextView) getView().findViewById(
-    													R.id.numero_turno_adm);
-    	text.setText(turno);
-    	valorTurno.putTurnoAdmisiones(turno);
+    public void disableButton() {
+    	Button pedir = (Button) getView().findViewById(R.id.boton_pedir_adm);
+    	pedir.setEnabled(false);
+    }
+    
+    public void updateView(String numeroTurno) {
+    	Toast.makeText(getView().getContext(), getResources().getString(
+				R.string.turno_reservado), Toast.LENGTH_LONG).show();
+    	TextView text = (TextView) getView().findViewById(R.id.numero_turno_adm);
+    	text.setText(numeroTurno);
+    	valorTurno.putTurnoAdmisiones(numeroTurno);
     	
     	Button pedir = (Button) getView().findViewById(R.id.boton_pedir_adm);
     	pedir.setEnabled(false);
+    	getSherlockActivity().setProgressBarIndeterminateVisibility(false);
+    }
+    
+    public AdmisionesFragment getThis() {
+    	return this;
     }
 }

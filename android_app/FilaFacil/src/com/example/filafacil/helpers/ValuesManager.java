@@ -1,4 +1,6 @@
-package com.example.filafacil;
+package com.example.filafacil.helpers;
+
+import com.example.filafacil.R;
 
 import android.content.Context;
 import android.content.SharedPreferences;

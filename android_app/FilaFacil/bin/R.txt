@@ -370,6 +370,7 @@ int string titulo_alerta_pedir 0x7f090017
 int string titulo_alerta_salir 0x7f09001b
 int string tomar_turno 0x7f090014
 int string turno_reservado 0x7f090021
+int string url 0x7f090022
 int style AppBaseTheme 0x7f0a0059
 int style AppTheme 0x7f0a005a
 int style Sherlock___TextAppearance_Small 0x7f0a0046
