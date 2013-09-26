@@ -1,10 +1,11 @@
 <?php
   include 'app/controllers/turn_controller.php';
   include 'app/controllers/user_controller.php';
+  include 'db/environment.php';
 
   $routes = array(
     "get_turn" => 0,
-    "register_new_user" => 1,
+    "register" => 1,
     "login" => 2,
   );
 
@@ -16,26 +17,27 @@
     }
     
     if($id==1){
-        //$json = '{"identification":1037636955,"name":"Stiven","last_name":"Lopera",
-         // "email":"jlopera8@eafit.edu.co","password":"12345","EafitStudent":1,"rol":"usuario"}';
-     
+        //$json = '{"identification":1037636955,"name":"Stiven","last_name":"Lopera","email":"jlopera8@eafit.edu.co","password":"12345","EafitStudent":1,"rol":"usuario"}';
+
+      $json = stripslashes($json); 
       $params = json_decode($json);
+
       $identification = $params->{'identification'};
       $name = $params->{'name'};
       $last_name = $params->{'last_name'};
       $email = $params->{'email'};
       $password = $params->{'password'};
-      $EafitStudent = $params->{'EafitStudent'};
+      $Eafit_student = $params->{'Eafit_student'};
       $rol = $params->{'rol'};
+            
       // echo $identification;
       // echo $name;
       // echo $last_name;
       // echo $email;
       // echo $password;
-      // echo $EafitStudent;
+      // echo $Eafit_student;
       // echo $rol;
-      user_controller::register_new_user($identification, $name, $last_name, 
-                                         $email, $password, $EafitStudent, $rol);
+      return user_controller::register_new_user($identification, $name, $last_name, $email, $password, $Eafit_student, $rol);
     }
     /*if($id==2) {
         $identification = $params[0]; 
@@ -51,5 +53,4 @@
     }*/
     return "";
   }
-
    ?>
