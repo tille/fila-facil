@@ -27,15 +27,15 @@
       $password = $params->{'password'};
       $EafitStudent = $params->{'EafitStudent'};
       $rol = $params->{'rol'};
-      echo $identification;
-      echo $name;
-      echo $last_name;
-      echo $email;
-      echo $password;
-      echo $EafitStudent;
-      echo $rol;
+      // echo $identification;
+      // echo $name;
+      // echo $last_name;
+      // echo $email;
+      // echo $password;
+      // echo $EafitStudent;
+      // echo $rol;
       user_controller::register_new_user($identification, $name, $last_name, 
-           $email, $password, $EafitStudent, $rol);
+                                         $email, $password, $EafitStudent, $rol);
     }
     /*if($id==2) {
         $identification = $params[0]; 

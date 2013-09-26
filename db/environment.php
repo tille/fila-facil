@@ -7,7 +7,6 @@
   if( $env == 3 ) {}
 
   function connect(){
-      echo 'conectando...';
     global $server, $username, $password, $db;
     $con = mysql_connect($server, $username, $password);
     mysql_select_db($db);
