@@ -1,6 +1,4 @@
 <?php
-  include 'db/DAO/DAO_turn.php';
-
   class Turn {
     var $module, $number = null;
     

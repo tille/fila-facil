@@ -7,6 +7,7 @@
     "get_turn" => 0,
     "register" => 1,
     "login" => 2,
+    "board_status" => 3,
   );
 
   // NOTA: recordar validar en cada servicio cuando no le llegan la cantidad de parametros
@@ -33,13 +34,19 @@
       return user_controller::register_new_user($p1, $p2, $p3, $p4, $p5, $p6, $p7);
     }
     
+    // NOTA: recordar retornar json del usuario en lugar de un valor booleano
     if($id==2) {
       $params = explode(',',$json);
       $user_id = $params[0];
+      //$pwd = $params[1];
       $pwd = md5($params[1]);
       
       return user_controller::login($user_id, $pwd);
     }
+    
+    # NOTA: falta algoritmo para estimar tiempo
+    if($id==3)
+      return turn_controller::get_board();
 
     return "";
   }
