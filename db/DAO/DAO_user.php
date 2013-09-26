@@ -1,10 +1,6 @@
 <?php
-// include 'db/environment.php';
 
 class DAO_user{
-  // Consulta en la base de datos si existe el usuario que se desea registrar. 
-  // Returna 0 si el registro existe, de otro modo returna 1.
-
   // if user result == 0, mean that there are another user with the same nickname
   function DAO_user_exist($identification){
     $con = connect();
@@ -17,29 +13,25 @@ class DAO_user{
     return $result;
   }
 
-  function DAO_insert_register($identification, $name, $last_name, $email, $password, $EafitStudent, $rol){
+  function DAO_insert_register($p1, $p2, $p3, $p4, $p5, $p6, $p7){
     $con = connect();
-    $sql = "INSERT INTO users VALUES('$identification', '$name', '$last_name', '$email', '$password', '$EafitStudent', '$rol');";
+    $p5 = md5($p5);
+    $sql = "INSERT INTO users VALUES('$p1', '$p2', '$p3', '$p4', '$p5', '$p6', '$p7');";
     $arr_res = mysql_query($sql);
     mysql_close($con);
     return $arr_res;
   }
-  
-  function DAO_read_login($identification, $password){
-    $con = connect();   // ¿Por qué llama la función directamente?
-    $sql = "SELECT identification, password FROM person WHERE identification='$identification' AND password='$password' ";
+
+  function DAO_read_login($user_id, $pwd){
+    $con = connect();
+    $sql = "SELECT identification, password FROM users WHERE identification='$user_id' AND password='$pwd' ";
     $arr_res = mysql_query($sql) or die(mysql_error());
-    if(mysql_num_rows($arr_res) > 0){
-      // El usuario ya se encuentra registrado.
-      disconnect($con);
-      return $result = -1;
-    }else{
-      // El usuario no se encuentra registrado.
-      disconnect($con);
-      return 1;
-    }
 
-
+    $result = 0;
+    if(mysql_num_rows($arr_res) == 1) $result = 1;
+    disconnect($con);
+    return $result;
   }
 }
+
 ?>

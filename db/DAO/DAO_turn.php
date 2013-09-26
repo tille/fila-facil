@@ -1,5 +1,4 @@
 <?php
-// include 'db/environment.php';
 
 class DAO_turn {
 

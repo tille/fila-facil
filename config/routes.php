@@ -9,6 +9,8 @@
     "login" => 2,
   );
 
+  // NOTA: recordar validar en cada servicio cuando no le llegan la cantidad de parametros
+  // necesarios y validaciones para caracteres especiales y el orden en el que llegan lo parametros
   function calling($id, $json){
       
     if($id==0){ 
@@ -17,40 +19,28 @@
     }
     
     if($id==1){
-        //$json = '{"identification":1037636955,"name":"Stiven","last_name":"Lopera","email":"jlopera8@eafit.edu.co","password":"12345","EafitStudent":1,"rol":"usuario"}';
-
       $json = stripslashes($json); 
       $params = json_decode($json);
 
-      $identification = $params->{'identification'};
-      $name = $params->{'name'};
-      $last_name = $params->{'last_name'};
-      $email = $params->{'email'};
-      $password = $params->{'password'};
-      $Eafit_student = $params->{'Eafit_student'};
-      $rol = $params->{'rol'};
-            
-      // echo $identification;
-      // echo $name;
-      // echo $last_name;
-      // echo $email;
-      // echo $password;
-      // echo $Eafit_student;
-      // echo $rol;
-      return user_controller::register_new_user($identification, $name, $last_name, $email, $password, $Eafit_student, $rol);
-    }
-    /*if($id==2) {
-        $identification = $params[0]; 
-        $password = $params[1]; 
-        user_controller::login($identification, $password);
-        /*$identification = (isset($_GET["identification"]))?$_GET["identification"]:"";
-        $password = (isset($_GET["password"]))?$_GET["password"]:"";
-        echo '<h1> ident: '.$identification.' y pass: '.$password.'</h1>';
-        return calling2($routes[$_GET["q"]], $identification, $password);
-        //params = (isset($_GET["params"]))?$_GET["params"]:"";
-       // return calling($routes[$_GET["q"]], $params);
+      $p1 = $params->{'identification'};
+      $p2 = $params->{'name'};
+      $p3 = $params->{'last_name'};
+      $p4 = $params->{'email'};
+      $p5 = $params->{'password'};
+      $p6 = $params->{'Eafit_student'};
+      $p7 = $params->{'rol'};
         
-    }*/
+      return user_controller::register_new_user($p1, $p2, $p3, $p4, $p5, $p6, $p7);
+    }
+    
+    if($id==2) {
+      $params = explode(',',$json);
+      $user_id = $params[0];
+      $pwd = md5($params[1]);
+      
+      return user_controller::login($user_id, $pwd);
+    }
+
     return "";
   }
    ?>

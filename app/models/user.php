@@ -14,7 +14,6 @@
       $this->rol = $rol;
     }
     
-    
     /*function read(){
       $this->number = DAO_turn::DAO_read($this->module);
       return $this->number;

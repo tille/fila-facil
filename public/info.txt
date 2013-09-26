@@ -38,6 +38,9 @@
   // $result = mysqli_query($con,$sql);
   // $datos = mysqli_fetch_array($result);
   // echo $datos['name'];
+  
+  //$json = '{"identification":1037636955,"name":"Stiven","last_name":"Lopera","email":"jlopera8@eafit.edu.co","password":"12345","EafitStudent":1,"rol":"usuario"}';
+  
   ?>
   
 </body>
