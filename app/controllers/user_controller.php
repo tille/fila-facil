@@ -1,5 +1,6 @@
 <?php
   include 'app/models/user.php';
+ include 'db/DAO/DAO_user.php';
  
   class user_controller {
       
