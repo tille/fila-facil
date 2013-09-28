@@ -34,7 +34,6 @@
       return user_controller::register_new_user($p1, $p2, $p3, $p4, $p5, $p6, $p7);
     }
     
-    // NOTA: recordar retornar json del usuario en lugar de un valor booleano
     if($id==2) {
       $params = explode(',',$json);
       $user_id = $params[0];
