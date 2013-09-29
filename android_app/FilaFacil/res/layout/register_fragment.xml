@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/AppBaseTheme"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <ScrollView
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:background="@color/white" >
+	        
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:background="@color/white"
+	        android:gravity="center_horizontal"
+	        android:orientation="vertical" >
+			
+	        <ImageView
+	          android:contentDescription="@string/descr_logo"
+	          android:layout_width="wrap_content"
+	          android:layout_height="wrap_content"
+	          android:src="@drawable/img_logo"
+	          android:paddingTop="30dp"
+	          android:paddingBottom="20dp" />
+	       
+	       <TextView
+		      android:layout_width="wrap_content"
+			  android:layout_height="wrap_content"
+			  android:text="@string/register"
+		      android:textSize="25sp"
+			  android:textColor="@color/dark_blue" >
+			  <requestFocus/>
+		   </TextView>
+
+	       <TextView
+	           android:layout_width="match_parent"
+	           android:layout_height="wrap_content"
+	           android:text="@string/apellidos"
+	           android:layout_marginLeft="10dp"
+	           android:textSize="15sp"
+	           android:textColor="@color/dark_blue" />
+        
+	       <EditText
+	           android:id="@+id/apellido"
+	           android:layout_width="match_parent"
+	           android:layout_height="wrap_content"
+	           android:layout_marginLeft="10dp"
+	           android:layout_marginRight="10dp"
+	           android:padding="10dp"
+	           android:textColor="@color/black"
+	           android:background="@color/light_gray"
+	           android:singleLine="true"
+	           android:inputType="textCapWords" />
+	       
+	       <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="@string/nombres"
+               android:layout_marginLeft="10dp"
+               android:textSize="15sp"
+               android:textColor="@color/dark_blue" />
+	       
+	       <EditText
+               android:id="@+id/nombre"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="10dp"
+               android:layout_marginRight="10dp"
+               android:padding="10dp"
+               android:textColor="@color/black"
+               android:background="@color/light_gray"
+               android:singleLine="true"
+               android:inputType="textCapWords" />
+	       
+	       <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="@string/no_documento"
+               android:layout_marginLeft="10dp"
+               android:textSize="15sp"
+               android:textColor="@color/dark_blue" />
+           
+           <EditText
+               android:id="@+id/documento"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="10dp"
+               android:layout_marginRight="10dp"
+               android:padding="10dp"
+               android:textColor="@color/black"
+               android:background="@color/light_gray"
+               android:inputType="number"
+               android:singleLine="true" />
+           
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="@string/correo"
+               android:layout_marginLeft="10dp"
+               android:textSize="15sp"
+               android:textColor="@color/dark_blue" />
+           
+           <AutoCompleteTextView
+               android:id="@+id/correo"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="10dp"
+               android:layout_marginRight="10dp"
+               android:padding="10dp"
+               android:textColor="@color/black"
+               android:background="@color/light_gray"
+               android:singleLine="true" />
+	       
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="@string/contrasena"
+               android:layout_marginLeft="10dp"
+               android:textSize="15sp"
+               android:textColor="@color/dark_blue" />
+           
+          <EditText
+               android:id="@+id/contrasena"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="10dp"
+               android:layout_marginRight="10dp"
+               android:padding="10dp"
+               android:textColor="@color/black"
+               android:background="@color/light_gray"
+               android:singleLine="true"
+               android:inputType="textPassword" >
+           </EditText>
+           
+          <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="@string/confirm_contrasena"
+               android:layout_marginLeft="10dp"
+               android:textSize="15sp"
+               android:textColor="@color/dark_blue" />
+           
+          <EditText
+               android:id="@+id/confirm_contrasena"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:textColor="@color/black"
+               android:background="@color/light_gray"
+               android:layout_marginLeft="10dp"
+               android:layout_marginRight="10dp"
+               android:padding="10dp"
+               android:singleLine="true"
+               android:inputType="textPassword" >
+           </EditText>
+           
+           <CheckBox
+               android:id="@+id/estudiante_eafit"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_margin="10dp"
+               android:textColor="@color/black"
+               android:checked="true"
+               android:text="@string/estudiante_eafit" />
+                      
+           <Button 
+               android:id="@+id/boton_registro"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:textColor="@color/black"
+               android:text="@string/register"
+               android:layout_marginBottom="20dp" 
+               android:onClick="onClickRegistro" />
+           
+        </LinearLayout>
+	</ScrollView>
+</LinearLayout>

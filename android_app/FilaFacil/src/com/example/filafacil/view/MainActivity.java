@@ -20,9 +20,9 @@ import com.example.filafacil.helpers.ValuesManager;
 public class MainActivity extends SherlockFragmentActivity {
  
     // Declare Variables
-    ActionBar mActionBar;
-    ViewPager mPager;
-    Tab tab;
+    private ActionBar mActionBar;
+    private ViewPager mPager;
+    private Tab tab;
     
     private ValuesManager valores;
     
@@ -35,7 +35,7 @@ public class MainActivity extends SherlockFragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
     	requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_activity);
         setProgressBarIndeterminateVisibility(false);
         
         valores = new ValuesManager(getApplicationContext());
@@ -128,6 +128,11 @@ public class MainActivity extends SherlockFragmentActivity {
     									new DialogInterface.OnClickListener() {
     		public void onClick(DialogInterface dialog,int id) {
     			finish();
+    			//Intent intent = new Intent(getApplicationContext(),
+    					//WelcomeActivity.class);
+    			//intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+    			//intent.putExtra("EXIT", true);
+    			//startActivity(intent);
 			}
     	});
     	alert.setNegativeButton(getResources().getString(

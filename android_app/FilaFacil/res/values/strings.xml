@@ -23,4 +23,15 @@
     <string name="boton_alerta_conexion">Cerrar</string>
     <string name="turno_reservado">Se ha reservado el turno</string>
     <string name="url">http://filafacil.herokuapp.com/</string>
+    <string name="login">Identificación</string>
+    <string name="register">Registro</string>
+    <string name="descr_logo">Logo home</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="nombres">Nombres</string>
+    <string name="no_documento">No. de identificación</string>
+    <string name="correo">Correo electrónico</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="confirm_contrasena">Confirmar contraseña</string>
+    <string name="estudiante_eafit">Soy estudiante de EAFIT</string>
+    
 </resources>

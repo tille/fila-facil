@@ -12,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
-import com.actionbarsherlock.view.Window;
 import com.example.filafacil.R;
 import com.example.filafacil.helpers.ServiceConnection;
 import com.example.filafacil.helpers.ValuesManager;
