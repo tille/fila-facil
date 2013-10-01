@@ -12,8 +12,12 @@ public class InputDataControl {
 	private String password;
 	private String passwordConfirm;
 	private boolean eafitStudent;
-	private static final String EMAIL_EXPR = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-"+
+	public static final String EMAIL_EXPR = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-"+
 			"z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+	public static final String PASS_EXPR = "^[a-zA-Z0-9]+$";
+	public static final int CORRECT = 0;
+	public static final int NO_EQUALS = 1;
+	public static final int ILEGAL_CHAR = 2;
 	
 	public InputDataControl(String lastName, String name,
 			String identification, String email, String password,
@@ -40,8 +44,14 @@ public class InputDataControl {
 		return matcher.matches();
 	}
 	
-	public boolean validarPassword() {
-		return (password.equals(passwordConfirm));
+	public int validarPassword() {
+		Pattern pattern = Pattern.compile(PASS_EXPR);
+		Matcher matcher = pattern.matcher(password);
+		if (matcher.matches()) {
+			if (password.equals(passwordConfirm)) return CORRECT;
+			else return NO_EQUALS;
+		}
+		else return ILEGAL_CHAR;
 	}
 
 	public String getLastName() {

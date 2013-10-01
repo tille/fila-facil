@@ -3,18 +3,28 @@ package com.example.filafacil.view;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.Toast;
+
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.Window;
 import com.example.filafacil.R;
+import com.example.filafacil.controllers.LoginControl;
+import com.example.filafacil.controllers.RegisterControl;
 import com.example.filafacil.helpers.ValuesManager;
  
 public class HomeActivity extends SherlockFragmentActivity {
@@ -102,6 +112,28 @@ public class HomeActivity extends SherlockFragmentActivity {
     }
     
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+    	super.onCreateOptionsMenu(menu);
+    	menu.add(1, 1, Menu.FIRST, getResources().getString(R.string.limpiar));
+    	menu.add(1, 2, Menu.FIRST+1, getResources()
+    			.getString(R.string.alerta_salir));
+    	return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+    	switch(item.getItemId()) {
+    		case 1:
+    			valores.limpiar();
+    			return true;
+    		case 2:
+    			onBackPressed();
+    			return true;
+    	}
+    	return super.onOptionsItemSelected(item);
+    }
+    
+    @Override
     public void onBackPressed() {
     	AlertDialog.Builder alert = new AlertDialog.Builder(this);
     	alert.setTitle(getResources().getString(R.string.titulo_alerta_salir));
@@ -160,6 +192,51 @@ public class HomeActivity extends SherlockFragmentActivity {
     	LoginFragment login = (LoginFragment)pPager
     			.getItem(ITEM_LOGIN);
     	login.onClickLogin();
+    }
+    
+    public void responderLogin(String answer) {
+    	if (answer.equals(LoginControl.USER_NOT_FOUND)) {
+    		Toast toast = Toast.makeText(getApplicationContext(),
+					getResources().getString(R.string.invalid_login),
+					Toast.LENGTH_LONG);
+			toast.setGravity(Gravity.CENTER, 0, 0);
+			toast.show();
+			
+			Button button = ((Button) findViewById(R.id.boton_login));
+			setProgressBarIndeterminateVisibility(false);
+			button.setEnabled(true);
+    	}
+    	else {
+    		Intent intent = new Intent(this, MainActivity.class);
+    		startActivity(intent);
+    		finish();
+    	}
+    }
+    
+    public void responderRegister(String answer) {
+    	Log.d("CONSOLA", "Llego a acá");
+    	if (answer.equals(RegisterControl.USER_REGISTERED)) {
+    		Toast toast = Toast.makeText(getApplicationContext(),
+					getResources().getString(R.string.user_registered),
+					Toast.LENGTH_LONG);
+			toast.setGravity(Gravity.CENTER, 0, 0);
+			toast.show();
+			setProgressBarIndeterminateVisibility(false);
+			Intent intent = new Intent(this, MainActivity.class);
+    		startActivity(intent);
+    		finish();
+    	}
+    	else {
+    		Toast toast = Toast.makeText(getApplicationContext(),
+					getResources().getString(R.string.invalid_register),
+					Toast.LENGTH_LONG);
+			toast.setGravity(Gravity.CENTER, 0, 0);
+			toast.show();
+			
+			Button button = ((Button) findViewById(R.id.boton_registro));
+			setProgressBarIndeterminateVisibility(false);
+			button.setEnabled(true);
+    	}
     }
     
     public ValuesManager getValores() {

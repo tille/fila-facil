@@ -54,6 +54,7 @@
 	           android:textColor="@color/black"
 	           android:background="@color/light_gray"
 	           android:singleLine="true"
+	           android:maxLength="@integer/max_char_lastname"
 	           android:inputType="textCapWords" />
 	       
 	       <TextView
@@ -74,6 +75,7 @@
                android:textColor="@color/black"
                android:background="@color/light_gray"
                android:singleLine="true"
+               android:maxLength="@integer/max_char_name"
                android:inputType="textCapWords" />
 	       
 	       <TextView
@@ -94,6 +96,7 @@
                android:textColor="@color/black"
                android:background="@color/light_gray"
                android:inputType="number"
+               android:maxLength="@integer/max_char_ident"
                android:singleLine="true" />
            
            <TextView
@@ -113,6 +116,7 @@
                android:padding="10dp"
                android:textColor="@color/black"
                android:background="@color/light_gray"
+               android:maxLength="@integer/max_char_email"
                android:singleLine="true" />
 	       
            <TextView
@@ -133,6 +137,7 @@
                android:textColor="@color/black"
                android:background="@color/light_gray"
                android:singleLine="true"
+               android:maxLength="@integer/max_char_password"
                android:inputType="textPassword" >
            </EditText>
            
@@ -154,6 +159,7 @@
                android:layout_marginRight="10dp"
                android:padding="10dp"
                android:singleLine="true"
+               android:maxLength="@integer/max_char_password"
                android:inputType="textPassword" >
            </EditText>
            
@@ -171,7 +177,7 @@
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:textColor="@color/black"
-               android:text="@string/register"
+               android:text="@string/register_boton"
                android:layout_marginBottom="20dp" 
                android:onClick="onClickRegistro" />
            

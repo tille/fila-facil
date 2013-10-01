@@ -20,12 +20,20 @@ public class ValuesManager {
 		spEditor = sp.edit();
 		
 		//Borrar todas las preferencias:
-		//Log.d("CONSOLA", "He borrado las preferencias");
-		//spEditor.clear();
-		//spEditor.commit();
+		//limpiar();
 	}
 	
-	public void putTurnoAdmisiones(String turnoAdmisiones) {
+	public void limpiar() {
+		spEditor.clear();
+		spEditor.commit();
+	}
+	
+	public void putTurno(String dependencia, String turno) {
+		spEditor.putString(dependencia, turno);
+		spEditor.commit();
+	}
+	
+	/*public void putTurnoAdmisiones(String turnoAdmisiones) {
 		spEditor.putString("admisiones", turnoAdmisiones);
 		spEditor.commit();
 	}
@@ -43,9 +51,14 @@ public class ValuesManager {
 	public void putTurnoCertificados(String turnoCertificados) {
 		spEditor.putString("certificados", turnoCertificados);
 		spEditor.commit();
+	}*/
+	
+	public String getTurno(String dependencia) {
+		return sp.getString(dependencia, context.getResources()
+				.getString(R.string.sin_asignar));
 	}
 	
-	public String getTurnoAdmisiones() {
+	/*public String getTurnoAdmisiones() {
 		return sp.getString("admisiones", context.getResources().getString(
 														R.string.sin_asignar));
 	}
@@ -63,7 +76,7 @@ public class ValuesManager {
 	public String getTurnoCertificados() {
 		return sp.getString("certificados", context.getResources().getString(
 														R.string.sin_asignar));
-	}
+	}*/
 	
 	//Empiezo el perfil
 	

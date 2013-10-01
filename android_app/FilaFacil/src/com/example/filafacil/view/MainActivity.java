@@ -4,17 +4,22 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.net.ConnectivityManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
-
+import android.widget.Toast;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Window;
 import com.example.filafacil.R;
+import com.example.filafacil.controllers.BoardControl;
 import com.example.filafacil.helpers.ValuesManager;
  
 public class MainActivity extends SherlockFragmentActivity {
@@ -30,6 +35,9 @@ public class MainActivity extends SherlockFragmentActivity {
     public static final int ITEM_CARTERA = 1;
     public static final int ITEM_CAJA = 2;
     public static final int ITEM_CERTIFICADOS = 3;
+    
+    private BoardControl boardControl;
+    private AsyncTaskRunnable async;
  
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +47,9 @@ public class MainActivity extends SherlockFragmentActivity {
         setProgressBarIndeterminateVisibility(false);
         
         valores = new ValuesManager(getApplicationContext());
+        
+        boardControl = new BoardControl();
+        
         
         // Activate Navigation Mode Tabs
         mActionBar = getSupportActionBar();
@@ -63,7 +74,7 @@ public class MainActivity extends SherlockFragmentActivity {
  
         mPager.setOnPageChangeListener(ViewPagerListener);
         // Locate the adapter class called ViewPagerAdapter.java
-        ViewPagerAdapter viewpageradapter = new ViewPagerAdapter(fm, valores);
+        ViewPagerAdapter viewpageradapter = new ViewPagerAdapter(fm);
         // Set the View Pager Adapter into ViewPager
         mPager.setAdapter(viewpageradapter);
         //mPager.setCurrentItem(1);
@@ -108,36 +119,75 @@ public class MainActivity extends SherlockFragmentActivity {
         tab = mActionBar.newTab().setText(name).setTabListener(tabListener);
         mActionBar.addTab(tab);
         
-        /*if (isOnline()) {
-        	Toast.makeText(getApplicationContext(), "Online",Toast.LENGTH_LONG)
-        																.show();
+        //Corro la parte de actualizar el board
+        async = new AsyncTaskRunnable();
+        async.execute();
+    }
+    
+    @Override
+	public void onDestroy() {
+	    super.onDestroy();
+	    async.cancel(true);
+	    async = null;
+	    Log.d("CONSOLA", "OnDestroy de MainActivity");
+	}
+    
+    class AsyncTaskRunnable extends AsyncTask<String, Float, Integer>{
+		protected synchronized Integer doInBackground(String...urls) {
+			try{
+				//Thread.sleep(5000);
+				boardControl.post(getThis());
+				return 1;
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+				return 0;
+			}
+		}
+		
+		protected void onPostExecute(Integer bytes) {
+			async = new AsyncTaskRunnable();
+			async.execute();
         }
-        else {
-        	Toast.makeText(getApplicationContext(), "Offline",Toast.LENGTH_LONG)
-        																.show();
-        }*/
+	}
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+    	super.onCreateOptionsMenu(menu);
+    	menu.add(1, 1, Menu.FIRST, getResources().getString(R.string.limpiar));
+    	menu.add(1, 2, Menu.FIRST+1, getResources()
+    			.getString(R.string.alerta_salir));
+    	return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+    	switch(item.getItemId()) {
+    		case 1:
+    			valores.limpiar();
+    			return true;
+    		case 2:
+    			onBackPressed();
+    			return true;
+    	}
+    	return super.onOptionsItemSelected(item);
     }
     
     @Override
     public void onBackPressed() {
     	AlertDialog.Builder alert = new AlertDialog.Builder(this);
     	alert.setTitle(getResources().getString(R.string.titulo_alerta_salir));
-    	alert.setMessage(getResources().getString(
-    											R.string.mensaje_alerta_salir));
-    	alert.setPositiveButton(getResources().getString(R.string.alerta_salir),
-    									new DialogInterface.OnClickListener() {
+    	alert.setMessage(getResources()
+    			.getString(R.string.mensaje_alerta_salir));
+    	alert.setPositiveButton(getResources().getString(R.string.alerta_salir), 
+    			new DialogInterface.OnClickListener() {
     		public void onClick(DialogInterface dialog,int id) {
     			finish();
-    			//Intent intent = new Intent(getApplicationContext(),
-    					//WelcomeActivity.class);
-    			//intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-    			//intent.putExtra("EXIT", true);
-    			//startActivity(intent);
 			}
     	});
-    	alert.setNegativeButton(getResources().getString(
-    												R.string.alerta_cancelar),
-    							new DialogInterface.OnClickListener() {
+    	alert.setNegativeButton(getResources()
+    			.getString(R.string.alerta_cancelar), 
+    			new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog,int id) {
 				dialog.cancel();
 			}
@@ -149,33 +199,33 @@ public class MainActivity extends SherlockFragmentActivity {
     public boolean isOnline() {
         ConnectivityManager cm =
             (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        return cm.getActiveNetworkInfo() != null && 
-           cm.getActiveNetworkInfo().isConnectedOrConnecting();
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo()
+        		.isConnectedOrConnecting();
     }
     
     public void alertarSinRed() {
     	new AlertDialog.Builder(this)
     		.setTitle(getResources().getString(R.string.titulo_alerta_conexion))
-    		.setMessage(getResources().getString(
-    										  R.string.mensaje_alerta_conexion))
-    		.setNeutralButton(getResources().getString(
-    									  R.string.boton_alerta_conexion), null)
+    		.setMessage(getResources()
+    				.getString(R.string.mensaje_alerta_conexion))
+    		.setNeutralButton(getResources()
+    				.getString(R.string.boton_alerta_conexion), null)
     		.show();
     }
     
     public void onClickPedirAdm(View v)
     {
     	ViewPagerAdapter viewPager = (ViewPagerAdapter)mPager.getAdapter();
-    	AdmisionesFragment admisiones = (AdmisionesFragment)viewPager.getItem(
-    														ITEM_ADMISIONES);
+    	AdmisionesFragment admisiones = (AdmisionesFragment)viewPager
+    			.getItem(ITEM_ADMISIONES);
     	admisiones.onClickPedir();
     }
     
     public void onClickPedirCart(View v)
     {
     	ViewPagerAdapter viewPager = (ViewPagerAdapter)mPager.getAdapter();
-    	CarteraFragment cartera = (CarteraFragment)viewPager.getItem(
-    															 ITEM_CARTERA);
+    	CarteraFragment cartera = (CarteraFragment)viewPager
+    			.getItem(ITEM_CARTERA);
     	cartera.onClickPedir();
     }
     
@@ -189,9 +239,26 @@ public class MainActivity extends SherlockFragmentActivity {
     public void onClickPedirCert(View v)
     {
     	ViewPagerAdapter viewPager = (ViewPagerAdapter)mPager.getAdapter();
-    	CertificadosFragment certificados = (CertificadosFragment)viewPager.
-    												getItem(ITEM_CERTIFICADOS);
+    	CertificadosFragment certificados = (CertificadosFragment)viewPager
+    			.getItem(ITEM_CERTIFICADOS);
     	certificados.onClickPedir();
     }
- 
+    
+    public void informarTurnoReservado() {
+    	setProgressBarIndeterminateVisibility(false);
+		Toast.makeText(getApplicationContext(), getResources()
+				.getString(R.string.turno_reservado), Toast.LENGTH_LONG).show();
+    }
+
+	public ValuesManager getValores() {
+		return valores;
+	}
+
+	public BoardControl getBoardControl() {
+		return boardControl;
+	}
+	
+	public MainActivity getThis() {
+		return this;
+	}
 }

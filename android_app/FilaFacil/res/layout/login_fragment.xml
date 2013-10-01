@@ -52,6 +52,7 @@
                android:textColor="@color/black"
                android:background="@color/light_gray"
                android:inputType="number"
+               android:maxLength="@integer/max_char_ident"
                android:singleLine="true" />
            
            <TextView
@@ -72,6 +73,7 @@
                android:textColor="@color/black"
                android:background="@color/light_gray"
                android:singleLine="true"
+               android:maxLength="@integer/max_char_password"
                android:inputType="textPassword" />
 
            
@@ -80,7 +82,7 @@
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:textColor="@color/black"
-               android:text="@string/login"
+               android:text="@string/login_boton"
                android:layout_margin="20dp"
                android:onClick="onClickLogin" />
 

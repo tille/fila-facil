@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="max_char_ident">15</integer>
+    <integer name="max_char_name">40</integer>
+    <integer name="max_char_lastname">40</integer>
+    <integer name="max_char_email">60</integer>
+    <integer name="max_char_password">40</integer>
+</resources>
