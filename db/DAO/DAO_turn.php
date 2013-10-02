@@ -59,6 +59,14 @@ class DAO_turn {
     mysql_close($con);
   }
   
+  function DAO_delete_expected_turn($mod, $turn){
+    $con = connect();
+    $sql = "DELETE FROM expected_turn WHERE expected_turn='$turn' AND module='$mod'";
+    $arr_res = mysql_query($sql) or die(mysql_error());
+    disconnect($con);
+    return $arr_res;
+  }
+  
   function DAO_update_actual_turn($mod, $num){
     $modules = array(
       "admisiones" => 1,
@@ -72,6 +80,7 @@ class DAO_turn {
     $sql = "UPDATE turn SET number='$num' WHERE id='$id_mod'";
     $arr_res = mysql_query($sql);
     mysql_close($con);
+    return $num;
   }
 }
 ?>

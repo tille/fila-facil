@@ -55,9 +55,8 @@
     if($id==3)
       return turn_controller::get_board();
       
-    if($id==4){
-      
-    }
+    if($id==4)
+      return turn_controller::next_turn($json);
 
     return "";
   }

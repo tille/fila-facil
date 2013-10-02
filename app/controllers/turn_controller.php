@@ -6,7 +6,8 @@
     
     function next_turn($mod){
       $actual = DAO_turn::DAO_read_actual_turn($mod);
-      
+      $deleted = DAO_turn::DAO_delete_expected_turn($mod, $actual);
+      return DAO_turn::DAO_update_actual_turn($mod,$actual+1);
     }
     
     function get_board() {
@@ -23,7 +24,7 @@
       if($mod != "admisiones" && $mod != "caja" && $mod != "cartera" && $mod != "certificados" ) return "";
       $existence_of_request_turn = DAO_turn::DAO_existence_turn($user, $mod);
 
-      // NOTA: limpiar esto que esta feo
+      // NOTA: reducir estas 4 lineas que estan feas
       $json_valid_user = user_controller::login($user, $pwd);
       $json_valid_user = stripslashes($json_valid_user);
       $valid_user = json_decode($json_valid_user);
