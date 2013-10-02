@@ -35,7 +35,7 @@ class DAO_turn {
   // returns 0 if there is not a combination of user/module in expected_turn 
   function DAO_existence_turn( $user, $mod ){
     $con = connect();
-    $sql = "SELECT user_id FROM expected_turn WHERE user_id='$user'";
+    $sql = "SELECT user_id FROM expected_turn WHERE user_id='$user' AND module='$mod' ";
     $arr_res = mysql_query($sql) or die(mysql_error());
 
     $result = 0;
