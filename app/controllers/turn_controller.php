@@ -3,13 +3,10 @@
   include 'db/DAO/DAO_turn.php';
   
   class turn_controller {
-    function get_turn($mod){
-      if($mod != "admisiones" && $mod != "caja" && $mod != "cartera" && $mod != "certificados" ) return "";
-      $turn = new Turn($mod);
-      $turn->read();
-      $turn->number++;
-      if($turn->update()) return $turn->number;
-      else return "";
+    
+    function next_turn($mod){
+      $actual = DAO_turn::DAO_read_actual_turn($mod);
+      
     }
     
     function get_board() {
@@ -20,6 +17,22 @@
         $board[$modules[$i]] = DAO_turn::DAO_read($modules[$i]);
       
       return json_encode($board);
+    }
+    
+    function get_turn( $user, $pwd, $mod ){
+      if($mod != "admisiones" && $mod != "caja" && $mod != "cartera" && $mod != "certificados" ) return "";
+      $existence_of_request_turn = DAO_turn::DAO_existence_turn($user, $mod);
+
+      // NOTA: limpiar esto que esta feo
+      $json_valid_user = user_controller::login($user, $pwd);
+      $json_valid_user = stripslashes($json_valid_user);
+      $valid_user = json_decode($json_valid_user);
+      $user_id = $valid_user->{'identification'};
+      
+      if( $existence_of_request_turn == 0 && $user_id != -1 )
+        return DAO_turn::DAO_new_expected_turn( $mod, $user_id );
+
+      return "";
     }
   }
 ?>

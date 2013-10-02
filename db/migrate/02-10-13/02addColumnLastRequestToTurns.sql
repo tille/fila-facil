@@ -1,0 +1,1 @@
+ALTER TABLE  `turn` ADD  `last_request` INT( 10 ) NOT NULL

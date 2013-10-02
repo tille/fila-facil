@@ -8,6 +8,7 @@
     "register" => 1,
     "login" => 2,
     "board_status" => 3,
+    "next_turn" => 4,
   );
 
   // NOTA: recordar validar en cada servicio cuando no le llegan la cantidad de parametros
@@ -15,8 +16,15 @@
   function calling($id, $json){
       
     if($id==0){ 
-      $params = explode(',',$json);
-      return turn_controller::get_turn($params[0]);
+      $json = stripslashes($json);
+      $params = json_decode($json);
+
+      echo $json;
+      $user = $params->{'user'};
+      $pwd  = md5( $params->{'pwd'} );
+      $mod = $params->{'mod'};
+      
+      return turn_controller::get_turn($user,$pwd,$mod);
     }
     
     if($id==1){
@@ -46,6 +54,10 @@
     # NOTA: falta algoritmo para estimar tiempo
     if($id==3)
       return turn_controller::get_board();
+      
+    if($id==4){
+      
+    }
 
     return "";
   }
