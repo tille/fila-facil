@@ -15,7 +15,7 @@
       $board = array('admisiones' => 0, 'caja' => 0, 'cartera' => 0, 'certificados' => 0);
       
       for ( $i=0 ; $i<4 ; $i++)
-        $board[$modules[$i]] = DAO_turn::DAO_read($modules[$i]);
+        $board[$modules[$i]] = DAO_turn::DAO_read_actual_turn($modules[$i]);
       
       return json_encode($board);
     }
