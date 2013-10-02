@@ -19,7 +19,6 @@
       $json = stripslashes($json);
       $params = json_decode($json);
 
-      echo $json;
       $user = $params->{'user'};
       $pwd  = md5( $params->{'pwd'} );
       $mod = $params->{'mod'};
