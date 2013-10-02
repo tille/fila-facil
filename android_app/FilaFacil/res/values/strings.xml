@@ -9,7 +9,8 @@
     <string name="caja">Caja</string>
     <string name="certificados">Certificados</string>
     <string name="tomar_turno">Tomar turno</string>
-    <string name="su_turno">Su turno:</string>
+    <string name="turno_actual">Turno actual</string>
+    <string name="su_turno">Su turno</string>
     <string name="sin_asignar">---</string>
     <string name="titulo_alerta_pedir">Reserva de turno</string>
     <string name="mensaje_alerta_pedir">Se reservará un turno en</string>
@@ -23,4 +24,37 @@
     <string name="boton_alerta_conexion">Cerrar</string>
     <string name="turno_reservado">Se ha reservado el turno</string>
     <string name="url">http://filafacil.herokuapp.com/</string>
+    <string name="login">Identificación</string>
+    <string name="register">Registro</string>
+    <string name="login_boton">Identificarse</string>
+    <string name="register_boton">Registrarse</string>
+    <string name="descr_logo">Logo home</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="nombres">Nombres</string>
+    <string name="no_documento">No. de identificación</string>
+    <string name="correo">Correo electrónico</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="confirm_contrasena">Confirmar contraseña</string>
+    <string name="estudiante_eafit">Soy estudiante de EAFIT</string>
+    <string name="limpiar">Limpiar datos</string>
+    <string name="long_identification">La identificación debe tener máximo 15 números</string>
+    <string name="pass_no_equal">Los campos de contraseña no coinciden</string>
+    <string name="ilegal_char">Sólo caracteres a&#8211;Z y 0&#8211;9</string>
+    <string name="ilegal_email">No es una dirección de correo válida</string>
+    <string name="incomplete_fields">Por favor, llene todos los campos</string>
+    <string name="invalid_login">Identificación o contraseña inválidos</string>
+    <string name="invalid_register">La identificación ya está en uso</string>
+    <string name="user_registered">El registro se ha completado satisfactoriamente</string>
+    <string name="param_identification">identification</string>
+    <string name="param_name">name</string>
+    <string name="param_lastname">last_name</string>
+    <string name="param_email">email</string>
+    <string name="param_eafit_student">Eafit_student</string>
+    <string name="json_identification">identification</string>
+    <string name="json_name">name</string>
+    <string name="json_lastname">last_name</string>
+    <string name="json_email">email</string>
+    <string name="json_password">password</string>
+    <string name="json_eafitStudent">EafitStudent</string>
+    <string name="json_rol" formatted="false">%22rol%22:%22usuario%22</string>
 </resources>
