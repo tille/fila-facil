@@ -2,7 +2,7 @@
 <head>
   <link href="app/assets/stylesheets/bootstrap.min.css" rel="stylesheet" media="screen">
   <script src="app/assets/js/jquery.min.js"></script>
-  <script src="app/assets/js/temp2.js"></script>
+  <script src="app/assets/js/temp.js"></script>
 </head>
 <body><br>
 
