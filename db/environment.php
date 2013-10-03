@@ -1,6 +1,6 @@
 <?php
   // Environment... 1) development, 2) production, 3) test
-  $env = 2;
+  $env = 1;
 
   if( $env == 1 ) include 'development.php';
   if( $env == 2 ) include 'production.php';

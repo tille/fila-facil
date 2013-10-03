@@ -1,2 +1,12 @@
-"I don’t like PHP. In more words, every time I see PHP code I want to maniacally run into the kitchen to grab a fork and repeatedly stab myself in the eyes. Then, after my eyeballs are out, I want to add some hydrochloric acid into the mix so I’m sure my eyes will never hurt as much again. Nothing personal.
-I will happily find the time to help you on Ruby-related stuff though, for when I read Ruby code I can feel the tender caress of flowers that start falling from the clear blue skies, and hear the imaginary wind of happiness that gently tickles my neck and makes me laugh in ecstasy.", by Andres Mejia.
+http://filafacil.herokuapp.com/services.php?q=board_status
+
+http://filafacil.herokuapp.com/services.php?q=next_turn&params={"user":1,"pwd":123,"mod":"caja"}
+http://localhost:8888/ff/services.php?q=next_turn&params={"user":1,"pwd":123,"mod":"caja"}
+
+http://filafacil.herokuapp.com/services.php?q=get_turn&params={"user":1,"pwd":123,"mod":"caja"}
+
+http://filafacil.herokuapp.com/services.php?q=register&params={"identification":2,"name":"manolo2","surname":"cardona2","email":"manolo@eafit.edu.co","password":"123","EafitStudent":1,"rol":"usuario"}
+
+http://filafacil.herokuapp.com/services.php?q=login&params=1,123
+
+http://localhost:8888/ff/services.php?q=remaining_turns

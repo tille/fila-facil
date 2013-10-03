@@ -9,6 +9,7 @@
     "login" => 2,
     "board_status" => 3,
     "next_turn" => 4,
+    "remaining_turns" => 5,
   );
 
   // NOTA: recordar validar en cada servicio cuando no le llegan la cantidad de parametros
@@ -54,9 +55,20 @@
     if($id==3)
       return turn_controller::get_board();
       
-    if($id==4)
-      return turn_controller::next_turn($json);
+    if($id==4){
+      $json = stripslashes($json);
+      $params = json_decode($json);
 
+      $user = $params->{'user'};
+      $pwd  = md5( $params->{'pwd'} );
+      $mod = $params->{'mod'};
+            
+      return turn_controller::next_turn($user,$pwd,$mod);
+    }
+
+    if($id==5)
+      return turn_controller::remaining_turns();
+      
     return "";
   }
    ?>

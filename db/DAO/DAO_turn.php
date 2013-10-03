@@ -32,6 +32,14 @@ class DAO_turn {
     return $result[0];    
   }
   
+  function DAO_count_module_queue($mod){
+    $con = connect();
+    $sql = "SELECT COUNT( * ) AS id FROM expected_turn WHERE module='$mod'";
+    $arr_res = mysql_query($sql) or die(mysql_error());
+    $result = mysql_fetch_array($arr_res);
+    return $result['id'];
+  }
+  
   // returns 0 if there is not a combination of user/module in expected_turn 
   function DAO_existence_turn( $user, $mod ){
     $con = connect();
