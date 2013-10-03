@@ -2,7 +2,7 @@
 <head>
   <link href="app/assets/stylesheets/bootstrap.min.css" rel="stylesheet" media="screen">
   <script src="app/assets/js/jquery.min.js"></script>
-  <script src="app/assets/js/temp.js"></script>
+  <script src="app/assets/js/temp2.js"></script>
 </head>
 <body><br>
 
@@ -11,7 +11,6 @@
   include 'db/environment.php';
   $board = turn_controller::get_board(); 
   $params = json_decode($board);
-  $url = 'http://localhost:8888/ff/services.php?q=next_turn&params={"user":1,"pwd":123,"mod":"admisiones"}'; 
 ?>
 
   
