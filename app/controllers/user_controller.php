@@ -1,6 +1,7 @@
 <?php
 include 'app/models/user.php';
 include 'db/DAO/DAO_user.php';
+ob_start();
 
 class user_controller {
 
@@ -26,6 +27,45 @@ class user_controller {
   function login($user_id, $pwd){
     $user = DAO_user::DAO_read_login($user_id, $pwd);
     return $user;
+  }
+  
+  /* didn't return nothing, is always redirecting to 
+     views/user/admin.php or views/user/operator.php if the params are valid
+     else is redirecting to views/user/login.php with param invalid-login */
+  function login_and_redirect($user_id, $pwd){
+    $user_json = user_controller::login($user_id, $pwd);
+    $params = json_decode($user_json);
+    
+    $p1 = $params->{'identification'};
+    
+    if($p1 != -1){
+      $p2 = $params->{'name'};
+      $p3 = $params->{'last_name'};
+      $p4 = $params->{'email'};
+      $p7 = $params->{'rol'};
+      
+      user_controller::fill_sessions($p1, $p2, $p3, $p4, $p7);
+      
+      if($_SESSION['rol'] == "admin"){
+        header('Location: '."http://localhost:8888/ff/app/views/user/admin.php");
+      }else if($_SESSION['rol'] == "operario"){
+        header('Location: '."http://localhost:8888/ff/app/views/user/operator.php");
+      }else{
+        header('Location: '."http://localhost:8888/ff/app/views/user/login.php?q=login-invalid");
+      }
+    }else{
+      header('Location: '."http://localhost:8888/ff/app/views/user/login.php?q=login-invalid");
+    }
+  }
+  
+  function fill_sessions($id, $name, $surname, $email, $rol){
+    session_start();
+    session_destroy();
+    $_SESSION['id']=$id;
+    $_SESSION['name']=$name;
+    $_SESSION['surname']=$surname;
+    $_SESSION['email']=$email;
+    $_SESSION['rol']=$rol;
   }
   
 }

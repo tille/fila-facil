@@ -19,11 +19,9 @@ p{
 }
 
 a{
-
 }
 
 a:hover{
-
 }
 
 a:hover,a:active,a:focus {
@@ -31,7 +29,15 @@ a:hover,a:active,a:focus {
 }
 
 hr{
+}
 
+.pwd-login-box {
+  margin-bottom: 27px;
+}
+
+.manual-alert{
+  text-align: center;
+  background-color: rgba(252, 220, 220, 0.43);
 }
 
 :focus {

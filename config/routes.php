@@ -10,7 +10,7 @@
     "board_status" => 3,
     "next_turn" => 4,
     "remaining_turns" => 5,
-    "redirect_to" => 6,
+    "login_and_redirect" => 6,
   );
 
   // NOTA: recordar validar en cada servicio cuando no le llegan la cantidad de parametros
@@ -71,7 +71,11 @@
       return turn_controller::remaining_turns();
       
     if($id==6){
-      return "blablabla";
+      $params = explode(',',$json);
+      $user_id = $params[0];
+      $pwd = md5($params[1]);
+      
+      return user_controller::login_and_redirect($user_id, $pwd);
     }
     
     return "";
