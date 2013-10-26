@@ -115,7 +115,9 @@
               <address>
                 <strong>Quien se puede loguear?</strong><br><br>
                 Nuestro portal solo se encuentra habilitado para permitir el inicio de session
-                para operarios y administrador
+                para operarios y administradores.<br><br>
+                Recuerda que para iniciar session como operario un administrador debe haber habilitado tu cuenta.
+                
               </address>
             </fieldset>
 
