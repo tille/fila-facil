@@ -1,70 +1,19 @@
-<?php ob_start(); ?>
+<?php 
+  ob_start();
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
-  <!-- Title here -->
-  <title>FilaF&aacute;cil</title>
-  <!-- Description, Keywords and Author -->
-  <meta name="description" content="Login page to filafacil.com">
-  <meta name="keywords" content="filafacil,login,signin,signup">
-  <meta name="author" content="filafacil developers">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Lobster+Two' rel='stylesheet' type='text/css'>
-  
-  <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,400italic' rel='stylesheet' type='text/css'>
-  
-  <!-- Styles -->
-  <!-- Bootstrap CSS -->
-  <link href="../../assets/stylesheets/bootstrap.min.css" rel="stylesheet">
-  <!-- Font awesome CSS -->
-  <link href="../../assets/stylesheets/font-awesome.min.css" rel="stylesheet">		
-  <!-- Custom CSS -->
-  <link href="../../assets/stylesheets/style.css" rel="stylesheet">
-  
-  <!-- Favicon -->
-  <link rel="shortcut icon" href="#">
+  <?php require_once "../template/pipeline.php" ?>
 </head>
 
 <body>
   
   <!-- Top Starts -->
   <div class="top">
-    
-    <!-- Header Starts -->
-    <header>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="logo">
-              <h1><a href="#">FilaF&aacute;cil <span class="tblue">.</span></a></h1>
-            </div>
-          </div>
-          <div class="navigation pull-right">
-            <a href="../../../index.html">Inicio</a>
-            <a href="about.html">Informaci&oacute;n</a>
-            <a href="app/views/user/login.php">Iniciar session</a>
-          </div>
-        </div>
-      </div>
-    </header>
-    <!-- Header Ends -->
-    
-    <!-- Hero starts -->
-    <div class="hero inner-page">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="intro">
-              <br><br><br>
-              <!-- <h2>operarios / administradores <span class="tblue">.</span></h2> -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Hero ends -->
+    <?php require_once "../template/header.php" ?>
   </div>
   <!-- Top Ends -->
   
@@ -131,80 +80,18 @@
                 Nuestro portal solo se encuentra habilitado para permitir el inicio de session
                 para operarios y administradores.<br><br>
                 Recuerda que para iniciar session como operario un administrador debe haber habilitado tu cuenta.
-                
               </address>
             </fieldset>
             
           </div>
         </div>
+        
       </div>
     </div>
   </div><br><br>
   <!-- contact ends -->
   
-  <!-- Footer starts -->
-  <footer>
-    <div class="container">
-      
-      <div class="row">
-        <div class="col-md-3 col-xs-6">
-          <div class="footer-link">
-            <h5>Phasellus</h5>
-            <a href="#">Nullam pharetra nec</a><br>
-            <a href="#">Vulputate vitae</a><br>
-            <a href="#">Phasellus</a>
-          </div>
-        </div>
-        <div class="col-md-3 col-xs-6">
-          <div class="footer-link">
-            <h5>Pulvinar</h5>
-            <a href="#">Aliquam nec</a><br>
-            <a href="#">Nam pulvinar massa</a><br>
-            <a href="#">Maecenas fringilla nec</a>
-          </div>
-        </div>
-        <div class="col-md-3 col-xs-6">
-          <div class="footer-link">
-            <h5>Commodo</h5>
-            <a href="#">Consectetur adipiscing elit</a><br>
-            <a href="#">Commodo a fermentum vel</a><br>
-            <a href="#">Eleifend neque</a>
-          </div>
-        </div>
-        <div class="col-md-3 col-xs-6">
-          <div class="footer-link">
-            <h5>Start</h5>
-            <a href="#">Pellentesque</a><br>
-            <a href="#">Startups</a><br>
-            <a href="#">Habitasse platea dictumst</a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="row">
-        <div class="col-md-12">
-          <hr>
-          <div class="copy text-center">
-            &copy; 2013 <a href="#">Fasi</a> - Designed by 
-            <a href="http://responsivewebinc.com/bootstrap-themes">Bootstrap Themes</a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </footer>
-  <!-- Footer Ends -->
-
-  <!-- Javascript files -->
-  <!-- jQuery -->
-  <script src="../../assets/js/jquery.js"></script>
-  <!-- Bootstrap JS -->
-  <script src="../../assets/js/bootstrap.min.js"></script>
-  <!-- Respond JS for IE8 -->
-  <script src="../../assets/js/respond.min.js"></script>
-  <!-- HTML5 Support for IE -->
-  <script src="../../assets/js/html5shiv.js"></script>
-  <!-- Custom JS -->
-  <script src="../../assets/js/custom.js"></script>
+  <?php require_once "../template/footer.php" ?>
+  
 </body>	
 </html>

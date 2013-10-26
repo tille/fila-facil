@@ -59,8 +59,8 @@ class user_controller {
   }
   
   function fill_sessions($id, $name, $surname, $email, $rol){
-    session_start();
     session_destroy();
+    session_start();
     $_SESSION['id']=$id;
     $_SESSION['name']=$name;
     $_SESSION['surname']=$surname;
