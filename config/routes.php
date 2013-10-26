@@ -10,6 +10,7 @@
     "board_status" => 3,
     "next_turn" => 4,
     "remaining_turns" => 5,
+    "redirect_to" => 6,
   );
 
   // NOTA: recordar validar en cada servicio cuando no le llegan la cantidad de parametros
@@ -69,6 +70,10 @@
     if($id==5)
       return turn_controller::remaining_turns();
       
+    if($id==6){
+      return "blablabla";
+    }
+    
     return "";
   }
    ?>
