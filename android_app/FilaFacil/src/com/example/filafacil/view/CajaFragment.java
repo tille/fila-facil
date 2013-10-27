@@ -17,17 +17,18 @@ import com.example.filafacil.controllers.TurnControl;
 import com.example.filafacil.helpers.ValuesManager;
  
 public class CajaFragment extends SherlockFragment {
-	
-	public static final String url = "http://filafacil.herokuapp.com/services.php?q=get_turn&params=caja";
+
 	private ValuesManager valorTurno;
 	private AsyncTaskRunnable async;
 	private String myTurn;
 	private String actualTurn;
+	private String inQueue;
+	private boolean wasAttended = false;
 
 	@Override
 	public void onDestroyView() {
 	    super.onDestroyView();
-	    async.cancel(true);
+	    if (async != null) async.cancel(true);
 	    valorTurno = null;
 	    async = null;
 	    Log.d("CONSOLA", "OnDestroyView caja");
@@ -39,6 +40,16 @@ public class CajaFragment extends SherlockFragment {
         View view = inflater.inflate(R.layout.caja_fragment, null);
 
         valorTurno = ((MainActivity) getSherlockActivity()).getValores();
+        
+        String key = getSherlockActivity().getResources()
+				.getString(R.string.caja).toLowerCase();
+		myTurn = valorTurno.getTurno(key);
+		actualTurn = valorTurno.getTurno(BoardControl.ACTUAL_KEY +
+				key);
+		inQueue = valorTurno.getTurno(BoardControl.QUEUE_KEY +
+				key.toLowerCase());
+		
+		updateBoard(myTurn, actualTurn, inQueue);
     	
     	async = new AsyncTaskRunnable();
     	async.execute();
@@ -54,17 +65,16 @@ public class CajaFragment extends SherlockFragment {
     class AsyncTaskRunnable extends AsyncTask<String, Float, Integer>{
 		protected synchronized Integer doInBackground(String...urls) {
 			try{
-				//Log.d("CONSOLA", "Entro al cosito caja");
 				String key = getSherlockActivity().getResources()
-						.getString(R.string.caja);
+						.getString(R.string.caja).toLowerCase();
 				myTurn = valorTurno.getTurno(key);
-				actualTurn = valorTurno.getTurno(BoardControl.ADD_KEY + 
+				actualTurn = valorTurno.getTurno(BoardControl.ACTUAL_KEY + 
+						key);
+				inQueue = valorTurno.getTurno(BoardControl.QUEUE_KEY +
 						key.toLowerCase());
 				return 1;
 			}
 			catch(Exception e) {
-				//Log.e("Error", e.getMessage());
-				//Log.d("CONSOLA", "Error en el async: " + e.getMessage());
 				e.printStackTrace();
 				return 0;
 			}
@@ -72,7 +82,7 @@ public class CajaFragment extends SherlockFragment {
 		
 		protected void onPostExecute(Integer bytes) {
 			//Log.d("CONSOLA", "Updateo board caja");
-			updateBoard(myTurn, actualTurn);
+			updateBoard(myTurn, actualTurn, inQueue);
 			async = new AsyncTaskRunnable();
 			async.execute();
         }
@@ -96,9 +106,12 @@ public class CajaFragment extends SherlockFragment {
     			new DialogInterface.OnClickListener() {
     		public void onClick(DialogInterface dialog,int id) {
     			try{
+    				MainActivity main = (MainActivity) getSherlockActivity();
+    				String user = main.getValores().getIdentification();
+    				String pass = main.getValores().getPassword();
 	    			TurnControl handler = new TurnControl();
-	    			handler.post(url, (MainActivity) getSherlockActivity(),
-	    					MainActivity.ITEM_CAJA);
+	    			handler.post((MainActivity) getSherlockActivity(),
+	    					MainActivity.ITEM_CAJA, user, pass);
 	    			//disableButton();
 	    			getSherlockActivity()
 	    				.setProgressBarIndeterminateVisibility(true);
@@ -131,7 +144,7 @@ public class CajaFragment extends SherlockFragment {
     	pedir.setEnabled(true);
     }
     
-    public void updateBoard(String myTurn, String actualTurn) {
+    /*public void updateBoard(String myTurn, String actualTurn) {
     	if (this.isVisible()) {
         	if (myTurn != null && actualTurn != null) {
         		TextView myView = (TextView) getView()
@@ -144,6 +157,52 @@ public class CajaFragment extends SherlockFragment {
         	}
         	if (!myTurn.equals(getResources().getString(R.string.sin_asignar)))
         		disableButton();
+    	}
+    }*/
+    public void updateBoard(String myTurn, String actualTurn, String inQueue) {
+    	if (this.isVisible()) {
+        	if (myTurn != null && actualTurn != null && inQueue != null) {
+        		TextView titleView = (TextView) getView()
+        				.findViewById(R.id.turno_actual_caja);
+            	TextView myView = (TextView) getView()
+        				.findViewById(R.id.numero_turno_caja);
+            	TextView actualView = (TextView) getView()
+        				.findViewById(R.id.numero_actual_caja);
+            	
+            	if (myTurn.equals(getResources().getString(R.string.sin_asignar))){
+            		titleView.setText(getView().getResources()
+            				.getString(R.string.en_cola));
+            		actualView.setText(inQueue);
+            		enableButton();
+            	}
+            	else {
+            		titleView.setText(getView().getResources()
+            				.getString(R.string.turno_actual));
+            		if (actualTurn.equals("-1")) actualView
+            		.setText(getResources().getString(R.string.sin_asignar));
+            		else actualView.setText(actualTurn);
+            		disableButton();
+            		int myInt = Integer.parseInt(myTurn);
+            		int actualInt = Integer.parseInt(actualTurn);
+            		String key = getSherlockActivity().getResources()
+    						.getString(R.string.caja).toLowerCase();
+            		if (actualInt == myInt) {
+            			if (!wasAttended) { 
+            				((MainActivity) getSherlockActivity())
+            					.isMyTurnAlert(key);
+            			}
+            			wasAttended = true;
+            		}
+            		if ((actualInt == -1 || actualInt > myInt) && wasAttended) {
+            			
+            			((MainActivity) getSherlockActivity()).getValores()
+            				.limpiar(key);
+            			wasAttended = false;
+            		}
+            	}
+            	myView.setText(myTurn);
+        	}
+        	
     	}
     }
 

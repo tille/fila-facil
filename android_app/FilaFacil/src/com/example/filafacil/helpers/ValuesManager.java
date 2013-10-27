@@ -1,5 +1,6 @@
 package com.example.filafacil.helpers;
 
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.example.filafacil.R;
 import com.example.filafacil.controllers.InputDataControl;
 
@@ -12,19 +13,25 @@ public class ValuesManager {
 	private SharedPreferences sp;
 	private SharedPreferences.Editor spEditor;
 	private static final String TABLE_NAME = "values";
+	public static final String DEVICE_KEY_TAG = "dev_key";
 	
-	public ValuesManager(Context c) {
-		this.context = c;
-		
+	public ValuesManager(Context context) {
+		this.context = context;
+		Context c = context;
 		sp = c.getSharedPreferences(TABLE_NAME, Context.MODE_PRIVATE);
 		spEditor = sp.edit();
 		
 		//Borrar todas las preferencias:
 		//limpiar();
 	}
-	
+
 	public void limpiar() {
 		spEditor.clear();
+		spEditor.commit();
+	}
+	
+	public void limpiar(String key) {
+		spEditor.remove(key);
 		spEditor.commit();
 	}
 	
@@ -33,51 +40,20 @@ public class ValuesManager {
 		spEditor.commit();
 	}
 	
-	/*public void putTurnoAdmisiones(String turnoAdmisiones) {
-		spEditor.putString("admisiones", turnoAdmisiones);
+	public void putString(String key, String value) {
+		spEditor.putString(key, value);
 		spEditor.commit();
 	}
-	
-	public void putTurnoCaja(String turnoCaja) {
-		spEditor.putString("caja", turnoCaja);
-		spEditor.commit();
-	}
-	
-	public void putTurnoCartera(String turnoCartera) {
-		spEditor.putString("cartera", turnoCartera);
-		spEditor.commit();
-	}
-	
-	public void putTurnoCertificados(String turnoCertificados) {
-		spEditor.putString("certificados", turnoCertificados);
-		spEditor.commit();
-	}*/
 	
 	public String getTurno(String dependencia) {
 		return sp.getString(dependencia, context.getResources()
 				.getString(R.string.sin_asignar));
 	}
 	
-	/*public String getTurnoAdmisiones() {
-		return sp.getString("admisiones", context.getResources().getString(
-														R.string.sin_asignar));
+	public String getString(String key) {
+		return sp.getString(key, null);
 	}
-	
-	public String getTurnoCartera() {
-		return sp.getString("cartera", context.getResources().getString(
-														R.string.sin_asignar));
-	}
-	
-	public String getTurnoCaja() {
-		return sp.getString("caja", context.getResources().getString(
-														R.string.sin_asignar));
-	}
-	
-	public String getTurnoCertificados() {
-		return sp.getString("certificados", context.getResources().getString(
-														R.string.sin_asignar));
-	}*/
-	
+
 	//Empiezo el perfil
 	
 	public void putPerfil(InputDataControl data) {

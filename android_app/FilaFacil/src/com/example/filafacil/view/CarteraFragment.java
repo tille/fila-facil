@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,16 +17,18 @@ import com.example.filafacil.controllers.TurnControl;
 import com.example.filafacil.helpers.ValuesManager;
  
 public class CarteraFragment extends SherlockFragment {
-	public String url = "http://filafacil.herokuapp.com/services.php?q=get_turn&params=cartera";
+	
 	private ValuesManager valorTurno;
 	private AsyncTaskRunnable async;
 	private String myTurn;
 	private String actualTurn;
+	private String inQueue;
+	private boolean wasAttended = false;
 	
 	@Override
 	public void onDestroyView() {
 	    super.onDestroyView();
-	    async.cancel(true);
+	    if (async != null) async.cancel(true);
 	    valorTurno = null;
 	    async = null;
 	}
@@ -37,6 +40,16 @@ public class CarteraFragment extends SherlockFragment {
     	
     	valorTurno = ((MainActivity) getSherlockActivity()).getValores();
     	
+    	String key = getSherlockActivity().getResources()
+				.getString(R.string.cartera).toLowerCase();
+		myTurn = valorTurno.getTurno(key);
+		actualTurn = valorTurno.getTurno(BoardControl.ACTUAL_KEY +
+				key);
+		inQueue = valorTurno.getTurno(BoardControl.QUEUE_KEY +
+				key.toLowerCase());
+		
+		updateBoard(myTurn, actualTurn, inQueue);
+		
     	async = new AsyncTaskRunnable();
     	async.execute();
 	
@@ -51,17 +64,16 @@ public class CarteraFragment extends SherlockFragment {
 	class AsyncTaskRunnable extends AsyncTask<String, Float, Integer>{
 		protected synchronized Integer doInBackground(String...urls) {
 			try{
-				//Log.d("CONSOLA", "Entro al cosito cartera");
 				String key = getSherlockActivity().getResources()
-						.getString(R.string.cartera);
+						.getString(R.string.cartera).toLowerCase();
 				myTurn = valorTurno.getTurno(key);
-				actualTurn = valorTurno.getTurno(BoardControl.ADD_KEY +
+				actualTurn = valorTurno.getTurno(BoardControl.ACTUAL_KEY +
+						key);
+				inQueue = valorTurno.getTurno(BoardControl.QUEUE_KEY +
 						key.toLowerCase());
 				return 1;
 			}
 			catch(Exception e) {
-				//Log.e("Error", e.getMessage());
-				//Log.d("CONSOLA", "Error en el async: " + e.getMessage());
 				e.printStackTrace();
 				return 0;
 			}
@@ -69,7 +81,7 @@ public class CarteraFragment extends SherlockFragment {
 		
 		protected void onPostExecute(Integer bytes) {
 			//Log.d("CONSOLA", "Updateo board cartera");
-			updateBoard(myTurn, actualTurn);
+			updateBoard(myTurn, actualTurn, inQueue);
 			async = new AsyncTaskRunnable();
 			async.execute();
         }
@@ -93,9 +105,12 @@ public class CarteraFragment extends SherlockFragment {
     			new DialogInterface.OnClickListener() {
     		public void onClick(DialogInterface dialog,int id) {
     			try{
+    				MainActivity main = (MainActivity) getSherlockActivity();
+    				String user = main.getValores().getIdentification();
+    				String pass = main.getValores().getPassword();
 	    			TurnControl handler = new TurnControl();
-	    			handler.post(url, (MainActivity) getSherlockActivity(),
-	    					MainActivity.ITEM_CARTERA);
+	    			handler.post((MainActivity) getSherlockActivity(),
+	    					MainActivity.ITEM_CARTERA, user, pass);
 	    			//disableButton();
 	    			getSherlockActivity()
 	    				.setProgressBarIndeterminateVisibility(true);
@@ -128,7 +143,7 @@ public class CarteraFragment extends SherlockFragment {
     	pedir.setEnabled(true);
     }
     
-    public void updateBoard(String myTurn, String actualTurn) {
+    /*public void updateBoard(String myTurn, String actualTurn) {
     	if (this.isVisible()) {
         	if (myTurn != null && actualTurn != null) {
         		TextView myView = (TextView) getView()
@@ -141,6 +156,54 @@ public class CarteraFragment extends SherlockFragment {
         	}
         	if (!myTurn.equals(getResources().getString(R.string.sin_asignar)))
         		disableButton();
+    	}
+    }*/
+    
+    public void updateBoard(String myTurn, String actualTurn, String inQueue) {
+    	if (this.isVisible()) {
+        	if (myTurn != null && actualTurn != null && inQueue != null) {
+        		TextView titleView = (TextView) getView()
+        				.findViewById(R.id.turno_actual_cartera);
+            	TextView myView = (TextView) getView()
+        				.findViewById(R.id.numero_turno_cart);
+            	TextView actualView = (TextView) getView()
+        				.findViewById(R.id.numero_actual_cartera);
+            	
+            	if (myTurn.equals(getResources().getString(R.string.sin_asignar))){
+            		titleView.setText(getView().getResources()
+            				.getString(R.string.en_cola));
+            		actualView.setText(inQueue);
+            		enableButton();
+            	}
+            	else {
+            		titleView.setText(getView().getResources()
+            				.getString(R.string.turno_actual));
+            		if (actualTurn.equals("-1")) actualView
+            		.setText(getResources().getString(R.string.sin_asignar));
+            		else actualView.setText(actualTurn);
+            		disableButton();
+            		int myInt = Integer.parseInt(myTurn);
+            		int actualInt = Integer.parseInt(actualTurn);
+            		Log.d("CONSOLA", "myInt: " + myInt + " actInt: " + actualInt + " wasAttended: " + wasAttended);
+            		String key = getSherlockActivity().getResources()
+    						.getString(R.string.cartera).toLowerCase();
+            		if (actualInt == myInt) {
+            			if (!wasAttended) { 
+            				((MainActivity) getSherlockActivity())
+            					.isMyTurnAlert(key);
+            			}
+            			wasAttended = true;
+            		}
+            		if ((actualInt == -1 || actualInt > myInt) && wasAttended) {
+            			
+            			((MainActivity) getSherlockActivity()).getValores()
+            				.limpiar(key);
+            			wasAttended = false;
+            		}
+            	}
+            	myView.setText(myTurn);
+        	}
+        	
     	}
     }
 }

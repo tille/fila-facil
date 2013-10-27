@@ -1,13 +1,31 @@
 package com.example.filafacil.controllers;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.example.filafacil.R;
+import com.example.filafacil.helpers.Converter;
+import com.example.filafacil.helpers.ValuesManager;
 import com.example.filafacil.view.HomeActivity;
+
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -23,10 +41,12 @@ public class RegisterControl {
 	private String password;
 	private boolean eafitStudent;
 	private String answer;
+	private boolean device;
 
 	public String post(HomeActivity homeActivity, String lastName, String name,
 			String identification, String email, String password,
 			boolean eafitStudent) {
+		this.device = false; //No estoy registrando llave de dispositivo
 		
 		this.homeActivity = homeActivity;
 		this.lastName = lastName;
@@ -36,36 +56,62 @@ public class RegisterControl {
 		this.password = password;
 		this.eafitStudent = eafitStudent;
 		
-		String quotes = "%22";
-		String openBrace = "%7B";
-		String closeBrace = "%7D";
-		String mQuotes = quotes + ":" + quotes;
+		JSONObject jsonRegister = new JSONObject();
+		  
+        try {
+	        jsonRegister.put(homeActivity.getResources()
+	        		.getString(R.string.param_identification), identification);
+	        jsonRegister.put(homeActivity.getResources()
+					.getString(R.string.param_lastname), lastName);
+	        jsonRegister.put(homeActivity.getResources()
+					.getString(R.string.param_name), name);
+	        jsonRegister.put(homeActivity.getResources()
+					.getString(R.string.param_password), password);
+	        jsonRegister.put(homeActivity.getResources()
+					.getString(R.string.param_eafit_student), eafitStudent);
+	        jsonRegister.put(homeActivity.getResources()
+					.getString(R.string.param_rol), homeActivity.getResources()
+					.getString(R.string.param_usuario));
+	        jsonRegister.put(homeActivity.getResources()
+					.getString(R.string.param_email), email);
+        } catch (JSONException e) {
+        	e.printStackTrace();
+        }
+        String url = homeActivity.getResources().getString(R.string.url);
+		url += PARAMS + jsonRegister.toString();
+		try {
+			url = Converter.toUri(url);
+		}
+		catch (Exception ex) {
+			Log.d("Error", "Error: " + ex.getMessage());
+		}
+		new AsyncTaskRunnable().execute(url);
+		return null;
+	}
+	
+	public String post (String regId, Context c) {
+		this.device = true;
 		
-		String paramIdentification = quotes + homeActivity.getResources()
-				.getString(R.string.json_identification) + quotes + ":" +
-				identification;
-		String paramName = quotes + homeActivity.getResources()
-				.getString(R.string.json_name) + mQuotes + name + quotes;
-		String paramLastName = quotes + homeActivity.getResources()
-				.getString(R.string.json_lastname) + mQuotes + lastName + quotes;
-		String paramEmail = quotes + homeActivity.getResources()
-				.getString(R.string.json_email) + mQuotes + email + quotes;
-		String paramPassword = quotes + homeActivity.getResources()
-				.getString(R.string.json_password) + mQuotes + password + quotes;
-		String paramEafitStudent = quotes + homeActivity.getResources()
-				.getString(R.string.json_eafitStudent) + quotes + ":";
-		paramEafitStudent += (eafitStudent) ? "1" : "0";
-		String paramRol = homeActivity.getResources()
-				.getString(R.string.json_rol);
-		String paramJSON = PARAMS + openBrace + paramIdentification + "," + 
-				paramName + "," + paramLastName + "," + paramEmail + "," +
-				paramPassword + "," + paramEafitStudent + "," + paramRol +
-				closeBrace;
-		
-		String url = homeActivity.getResources().getString(R.string.url);
-		url += paramJSON;
-		Log.d("CONSOLA", paramJSON);
-		Log.d("CONSOLA", url);
+		ValuesManager values = new ValuesManager(c);
+		values.putString(ValuesManager.DEVICE_KEY_TAG, regId);
+		String identification = values.getIdentification();
+		String url = "http://10.0.2.2/fila-facil/services.php?q=register_device";
+		url += "&params=";
+		JSONObject jSON = new JSONObject();
+		try {
+			jSON.put("identification", identification);
+			jSON.put("regId", regId);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		url += jSON.toString();
+        Log.d("CONSOLA", "Posteando: " + url);
+        try {
+			url = Converter.toUri(url);
+		}
+		catch (Exception ex) {
+			Log.d("Error", "Error: " + ex.getMessage());
+		}
 		new AsyncTaskRunnable().execute(url);
 		return null;
 	}
@@ -82,22 +128,23 @@ public class RegisterControl {
 			
 			}
 			catch(Exception e) {
-				Log.d("CONSOLA", "Error: " + e.getMessage());
+				Log.d("CONSOLA", "Error AsyncTask: " + e.getMessage());
 				e.printStackTrace();
 				return 0;
 			}
 		}
 		
 		protected void onPostExecute(Integer bytes) {
-			if (answer.equals(USER_REGISTERED)) {
-				InputDataControl input = new InputDataControl(lastName, 
-						name, identification, email, password, password, 
-						eafitStudent);
-				
-				homeActivity.getValores().putPerfil(input);
+			if (!device) {
+				if (answer != null && answer.equals(USER_REGISTERED)) {
+					InputDataControl input = new InputDataControl(lastName, 
+							name, identification, email, password, password, 
+							eafitStudent);
+					
+					homeActivity.getValores().putPerfil(input);
+				}
+				homeActivity.responderRegister(answer);
 			}
-			homeActivity.responderRegister(answer);
 		}
 	}
-	
 }

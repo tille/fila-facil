@@ -52,7 +52,7 @@ class DAO_user{
   function DAO_insert_register($p1, $p2, $p3, $p4, $p5, $p6, $p7){
     $con = connect();
     $p5 = md5($p5);
-    $sql = "INSERT INTO users VALUES('$p1', '$p2', '$p3', '$p4', '$p5', '$p6', '$p7');";
+    $sql = "INSERT INTO users VALUES('$p1', '$p2', '$p3', '$p4', '$p5', '$p6', '$p7', null);";
     $arr_res = mysql_query($sql);
     mysql_close($con);
     return $arr_res;

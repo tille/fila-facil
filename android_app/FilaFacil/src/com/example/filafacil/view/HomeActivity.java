@@ -114,7 +114,7 @@ public class HomeActivity extends SherlockFragmentActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
     	super.onCreateOptionsMenu(menu);
-    	menu.add(1, 1, Menu.FIRST, getResources().getString(R.string.limpiar));
+    	//menu.add(1, 1, Menu.FIRST, getResources().getString(R.string.limpiar));
     	menu.add(1, 2, Menu.FIRST+1, getResources()
     			.getString(R.string.alerta_salir));
     	return true;

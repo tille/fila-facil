@@ -46,6 +46,7 @@
         android:layout_height="wrap_content"
         android:text="@string/tomar_turno"
         android:textColor="@color/black"
+        android:enabled="false"
         android:onClick="onClickPedirCert" />
     
 </LinearLayout>

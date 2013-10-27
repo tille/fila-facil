@@ -11,11 +11,15 @@
     <string name="tomar_turno">Tomar turno</string>
     <string name="turno_actual">Turno actual</string>
     <string name="su_turno">Su turno</string>
+    <string name="en_cola">Turnos en cola</string>
     <string name="sin_asignar">---</string>
     <string name="titulo_alerta_pedir">Reserva de turno</string>
+    <string name="alerta_es_mi_turno">Es su turno</string>
     <string name="mensaje_alerta_pedir">Se reservará un turno en</string>
     <string name="alerta_continuar">Continuar</string>
     <string name="alerta_cancelar">Cancelar</string>
+    <string name="mensaje_alerta_miturno">Diríjase a la taquilla</string>
+    <string name="alerta_ok">OK</string>
     <string name="titulo_alerta_salir">Salir</string>
     <string name="mensaje_alerta_salir">¿Seguro que desea salir?</string>
     <string name="alerta_salir">Salir</string>
@@ -23,7 +27,7 @@
     <string name="mensaje_alerta_conexion">Conéctese a la red e inténtelo nuevamente</string>
     <string name="boton_alerta_conexion">Cerrar</string>
     <string name="turno_reservado">Se ha reservado el turno</string>
-    <string name="url">http://filafacil.herokuapp.com/</string>
+    <string name="url">http://10.0.2.2/fila-facil/</string>
     <string name="login">Identificación</string>
     <string name="register">Registro</string>
     <string name="login_boton">Identificarse</string>
@@ -50,11 +54,7 @@
     <string name="param_lastname">last_name</string>
     <string name="param_email">email</string>
     <string name="param_eafit_student">Eafit_student</string>
-    <string name="json_identification">identification</string>
-    <string name="json_name">name</string>
-    <string name="json_lastname">last_name</string>
-    <string name="json_email">email</string>
-    <string name="json_password">password</string>
-    <string name="json_eafitStudent">EafitStudent</string>
-    <string name="json_rol" formatted="false">%22rol%22:%22usuario%22</string>
+    <string name="param_password">password</string>
+    <string name="param_rol">rol</string>
+    <string name="param_usuario">usuario</string>
 </resources>

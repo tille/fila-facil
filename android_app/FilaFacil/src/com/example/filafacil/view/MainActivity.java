@@ -20,6 +20,7 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Window;
 import com.example.filafacil.R;
 import com.example.filafacil.controllers.BoardControl;
+import com.example.filafacil.helpers.GCMMain;
 import com.example.filafacil.helpers.ValuesManager;
  
 public class MainActivity extends SherlockFragmentActivity {
@@ -28,6 +29,7 @@ public class MainActivity extends SherlockFragmentActivity {
     private ActionBar mActionBar;
     private ViewPager mPager;
     private Tab tab;
+    private ViewPagerAdapter viewpageradapter;
     
     private ValuesManager valores;
     
@@ -37,7 +39,6 @@ public class MainActivity extends SherlockFragmentActivity {
     public static final int ITEM_CERTIFICADOS = 3;
     
     private BoardControl boardControl;
-    private AsyncTaskRunnable async;
  
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +49,7 @@ public class MainActivity extends SherlockFragmentActivity {
         
         valores = new ValuesManager(getApplicationContext());
         
-        boardControl = new BoardControl();
-        
+        boardControl = new BoardControl(getApplicationContext());
         
         // Activate Navigation Mode Tabs
         mActionBar = getSupportActionBar();
@@ -74,7 +74,8 @@ public class MainActivity extends SherlockFragmentActivity {
  
         mPager.setOnPageChangeListener(ViewPagerListener);
         // Locate the adapter class called ViewPagerAdapter.java
-        ViewPagerAdapter viewpageradapter = new ViewPagerAdapter(fm);
+         
+        viewpageradapter = new ViewPagerAdapter(fm);
         // Set the View Pager Adapter into ViewPager
         mPager.setAdapter(viewpageradapter);
         //mPager.setCurrentItem(1);
@@ -119,20 +120,29 @@ public class MainActivity extends SherlockFragmentActivity {
         tab = mActionBar.newTab().setText(name).setTabListener(tabListener);
         mActionBar.addTab(tab);
         
+        
+        //Registro mi dispositivo en el GMC server
+        GCMMain gcm = new GCMMain(MainActivity.this);
+        gcm.comprobar();
+        gcm.registrar();
+        
+        //Pido que me pusheen la información
+        boardControl.post(this, valores.getString(ValuesManager.DEVICE_KEY_TAG),
+        		"all");
+        
         //Corro la parte de actualizar el board
-        async = new AsyncTaskRunnable();
-        async.execute();
+        //boardControl.post(getThis());
     }
     
     @Override
 	public void onDestroy() {
 	    super.onDestroy();
-	    async.cancel(true);
-	    async = null;
+	    /*if (async != null) async.cancel(true);
+	    async = null;*/
 	    Log.d("CONSOLA", "OnDestroy de MainActivity");
 	}
     
-    class AsyncTaskRunnable extends AsyncTask<String, Float, Integer>{
+    /*class AsyncTaskRunnable extends AsyncTask<String, Float, Integer>{
 		protected synchronized Integer doInBackground(String...urls) {
 			try{
 				//Thread.sleep(5000);
@@ -146,10 +156,10 @@ public class MainActivity extends SherlockFragmentActivity {
 		}
 		
 		protected void onPostExecute(Integer bytes) {
-			async = new AsyncTaskRunnable();
-			async.execute();
+			//async = new AsyncTaskRunnable();
+			//async.execute();
         }
-	}
+	}*/
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -257,6 +267,21 @@ public class MainActivity extends SherlockFragmentActivity {
 	public BoardControl getBoardControl() {
 		return boardControl;
 	}
+	
+	public void isMyTurnAlert(String dep) {
+    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    	builder.setMessage(getResources().getString(R.string.mensaje_alerta_miturno) + " en " + dep)
+    	        .setTitle(getResources().getString(R.string.alerta_es_mi_turno))
+    	        .setCancelable(false)
+    	        .setNeutralButton(getResources().getString(R.string.alerta_ok),
+    	                new DialogInterface.OnClickListener() {
+    	                    public void onClick(DialogInterface dialog, int id) {
+    	                        dialog.cancel();
+    	                    }
+    	                });
+    	AlertDialog alert = builder.create();
+    	alert.show();
+    }
 	
 	public MainActivity getThis() {
 		return this;
