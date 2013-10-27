@@ -12,14 +12,14 @@
   <meta name="description" content="Login page to filafacil.com">
   <meta name="keywords" content="filafacil,login,signin,signup">
   <meta name="author" content="filafacil developers">
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Lobster+Two' rel='stylesheet' type='text/css'>
-
+  
   <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,400italic' rel='stylesheet' type='text/css'>
-
-
+  
+  
   <!-- Styles -->
   <!-- Bootstrap CSS -->
   <link href="app/assets/stylesheets/bootstrap.min.css" rel="stylesheet">
@@ -27,7 +27,7 @@
   <link href="app/assets/stylesheets/font-awesome.min.css" rel="stylesheet">		
   <!-- Custom CSS -->
   <link href="app/assets/stylesheets/style.css" rel="stylesheet">
-
+  
   <!-- Favicon -->
   <link rel="shortcut icon" href="#">
 </head>
@@ -68,7 +68,7 @@
       </div>
     </header>
     <!-- Header Ends -->
-
+    
     <!-- Hero starts -->
     <div class="hero">
       <div class="container">
@@ -77,12 +77,16 @@
             <div class="intro">
               <h2>haz de tu espera un placer <span class="tblue">.</span></h2>
               <p>Reproduce el video que creamos para ti y enterate de lo que filaf&aacute;cil puede hacer por ti. </p><br />
-              <a href="#" class="download"><i class="icon-cloud-download"></i> Reproducir</a> <strong></strong>
+              <a href="#" class="download">
+                <i class="icon-play"></i> Reproducir
+              </a>
+              
               <div class="applinks">
                 <a href="#"><i class="icon-facebook"></i></a>
                 <a href="#"><i class="icon-youtube"></i></a>
                 <a href="#"><i class="icon-twitter"></i></a>
               </div>
+              
             </div>
           </div>
           <div class="col-md-4">
@@ -96,7 +100,7 @@
     <!-- Hero ends -->
   </div>
   <!-- Top Ends -->
-
+  
   <!-- Feature Starts -->
   <div class="features">
     <div class="container">
@@ -108,10 +112,10 @@
           </div>
         </div>
       </div>
-
+      
       <hr>
-
-
+      
+      
       <div class="row">
         <div class="col-md-3  col-xs-6">
           <div class="feat">
@@ -144,9 +148,9 @@
       </div>
     </div>
   </div>
-
+  
   <!-- Feature Ends -->
-
+  
   <!-- Shots starts -->
   <div class="shots">
     <div class="container">
@@ -162,7 +166,7 @@
             <h3>Praesent Tincidunt <span class="text-muted"> Tellus Augue</span></h3>
             <p class="shot-para">Dapibus vitae velit. Pellentesque vel venenatis leo, vel egestas velit.In ullamcorper dolor ut odio facilisis tempus. Duis id erat erat. </p> 
             <hr>
-
+            
             <div class="row">
               <div class="col-md-6 col-xs-6">
                 <div class="shot-content-body">
@@ -181,11 +185,11 @@
             <a href="#" class="download"><i class="icon-cloud-download"></i> Download</a>
           </div>
         </div>
-
+        
       </div>
       <hr>
       <!-- shot1 ends -->
-
+      
       <!-- shot2 -->
       <div class="row">
         <div class="col-md-8">
@@ -193,7 +197,7 @@
             <h3>Vivamus Sed <span class="text-muted">Fringilla Tellus Tellus</span></h3>
             <p class="shot-para">Dapibus vitae velit. Pellentesque vel venenatis leo, vel egestas velit.In ullamcorper dolor ut odio facilisis tempus. Duis id erat erat. </p> 
             <hr>
-
+            
             <div class="row">
               <div class="col-md-6 col-xs-6">
                 <div class="shot-content-body">
@@ -220,7 +224,7 @@
       </div>
       <hr>
       <!-- shot2 ends -->
-
+      
       <!-- shot3 -->
       <div class="row">
         <div class="col-md-4">
