@@ -24,6 +24,7 @@ public class CajaFragment extends SherlockFragment {
 	private String actualTurn;
 	private String inQueue;
 	private boolean wasAttended = false;
+	private boolean requestingTurn = false;
 
 	@Override
 	public void onDestroyView() {
@@ -90,9 +91,11 @@ public class CajaFragment extends SherlockFragment {
     
     public void onClickPedir() {
     	disableButton();
+    	requestingTurn = true;
     	if (!((MainActivity)getSherlockActivity()).isOnline()) {
     		((MainActivity)getSherlockActivity()).alertarSinRed();
     		enableButton();
+    		requestingTurn = false;
     		return;
         }
 
@@ -106,6 +109,7 @@ public class CajaFragment extends SherlockFragment {
     			new DialogInterface.OnClickListener() {
     		public void onClick(DialogInterface dialog,int id) {
     			try{
+    				requestingTurn = true;
     				MainActivity main = (MainActivity) getSherlockActivity();
     				String user = main.getValores().getIdentification();
     				String pass = main.getValores().getPassword();
@@ -126,6 +130,7 @@ public class CajaFragment extends SherlockFragment {
     		R.string.alerta_cancelar), new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog,int id) {
 				enableButton();
+				requestingTurn = false;
 				dialog.cancel();
 			}
 		});
@@ -144,21 +149,6 @@ public class CajaFragment extends SherlockFragment {
     	pedir.setEnabled(true);
     }
     
-    /*public void updateBoard(String myTurn, String actualTurn) {
-    	if (this.isVisible()) {
-        	if (myTurn != null && actualTurn != null) {
-        		TextView myView = (TextView) getView()
-        				.findViewById(R.id.numero_turno_caja);
-        		myView.setText(myTurn);
-        		
-        		TextView actualView = (TextView) getView()
-        				.findViewById(R.id.numero_actual_caja);
-        		actualView.setText(actualTurn);
-        	}
-        	if (!myTurn.equals(getResources().getString(R.string.sin_asignar)))
-        		disableButton();
-    	}
-    }*/
     public void updateBoard(String myTurn, String actualTurn, String inQueue) {
     	if (this.isVisible()) {
         	if (myTurn != null && actualTurn != null && inQueue != null) {
@@ -173,9 +163,10 @@ public class CajaFragment extends SherlockFragment {
             		titleView.setText(getView().getResources()
             				.getString(R.string.en_cola));
             		actualView.setText(inQueue);
-            		enableButton();
+            		if (!requestingTurn) enableButton();
             	}
             	else {
+            		requestingTurn = false;
             		titleView.setText(getView().getResources()
             				.getString(R.string.turno_actual));
             		if (actualTurn.equals("-1")) actualView
