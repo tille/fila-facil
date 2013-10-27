@@ -1,28 +1,32 @@
 <?php
-//require_once ''; // cargar un dao para gcm
+require_once 'config/gcm.php';
+require_once 'db/DAO/DAO_gcm.php';
 
 class gcm_controller {
   
-  function send_movil_message($message, $tag){
-    $registation_ids = ClaseDAO::metodo_jalar_reg_ids(); // se necesita parsear con explode
-    
+  function send_mobile_message($message, $tag){
+    $ids = DAO_gcm::DAO_get_devices();
+    $registration_ids = explode(",", $ids);
+	
     //ACÁ ES DONDE SE PUEDEN MANDAR MUCHOS MENSAJES EN EL ARREGLO
     $message = array($tag => $message);
     
-    $result = gcm_controller::send_notification($registatoin_ids, $message);
+    $result = gcm_controller::send_notification($registration_ids, $message);
     return $result;
   }
   
-  /**
-  * Sending Push Notification
-  */
-  function send_notification($registatoin_ids, $message) {
+  function send_specific_mobile_message($regId, $requested) {
+	if ($requested == "all") {
+		$remaining = turn_controller::remaining_turns();
+		$actual = turn_controller::get_board();
+		$message = array('remaining' => $remaining, 
+						 'actual' => $actual);
+		return gcm_controller::send_notification(array($regId), $message);
+	}
+	return "";
+  }
   
-    // include config
-    // arriba y con require once
-    include_once './config/gcm.php';
-    
-    // Set POST variables
+  function send_notification($registatoin_ids, $message) {
     $url = 'https://android.googleapis.com/gcm/send';
     
     $fields = array(
@@ -35,17 +39,14 @@ class gcm_controller {
       'Content-Type: application/json'
     );
     
-    // Open connection
     $ch = curl_init();
-    
-    
-    // Set the url, number of POST vars, POST data
+	
     curl_setopt($ch, CURLOPT_URL, $url);
     
     curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
+	
     // Disabling SSL Certificate support temporarly
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     
@@ -59,7 +60,7 @@ class gcm_controller {
     
     // Close connection
     curl_close($ch);
-    echo $result;
+    return $result;
   }
 }
 ?>

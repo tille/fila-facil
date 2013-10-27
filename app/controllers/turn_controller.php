@@ -14,9 +14,18 @@
       $actual = DAO_turn::DAO_read_actual_turn($mod);
       $deleted = DAO_turn::DAO_delete_expected_turn($mod, $actual);
       if( $actual+1 > DAO_turn::DAO_read($mod) ){
+		$actual = turn_controller::get_board();
+		$remaining = $remaining = turn_controller::remaining_turns();
+		gcm_controller::send_mobile_message($actual, 'actual');
+		gcm_controller::send_mobile_message($remaining, 'remaining');
         return -1;
       }else{
-        return DAO_turn::DAO_update_actual_turn($mod,$actual+1);
+        $result = DAO_turn::DAO_update_actual_turn($mod,$actual+1);
+		$actual = turn_controller::get_board();
+		$remaining = turn_controller::remaining_turns();
+		gcm_controller::send_mobile_message($actual, 'actual');
+		gcm_controller::send_mobile_message($remaining, 'remaining');
+		return $result;
       }
     }
     
@@ -59,12 +68,12 @@
       
       if( $existence_of_request_turn == 0 && $user_id != -1 ){
         $response = DAO_turn::DAO_new_expected_turn( $mod, $user_id );
-        //  json_board_needed = turn_controller::remaining_turns();
-        //  gcm_controller::send_movil_message($params);
-        return $response;
+        $queue = turn_controller::remaining_turns();
+        gcm_controller::send_mobile_message($queue, 'remaining');
+		return $response;
       }
       
-      return "";
+      return -1;
     }
   }
 ?>

@@ -15,7 +15,7 @@
     "register_operator" => 7,
     "register_device" => 8,
     "get_operators" => 9,
-    "send_movil_message" => 10,
+    "device_message" => 10,
   );
 
   // NOTA: recordar validar en cada servicio cuando no le llegan la cantidad de parametros
@@ -113,10 +113,10 @@
       $json = stripslashes($json); 
       $params = json_decode($json);
       
-      $message = $params->{'message'};
-      $tag = $params->{'tag'};
+      $regId = $params->{'regId'};
+      $requested = $params->{'requested'};
       
-      return gcm_controller::send_movil_message($message, $tag);
+      return gcm_controller::send_specific_mobile_message($regId, $requested);
     }
     
     return "";
