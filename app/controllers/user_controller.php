@@ -10,7 +10,7 @@ class user_controller {
      the method return 1 when the registration proccess finish done */
   function register_new_user($p1, $p2, $p3, $p4, $p5, $p6, $p7){   
     $user_exists = DAO_user::DAO_user_exist($p1);
-
+    
     $ans ='0';
     if( $user_exists == 1 ){
       $registered = DAO_user::DAO_insert_register($p1, $p2, $p3, $p4, $p5, $p6, $p7);
@@ -20,10 +20,10 @@ class user_controller {
     
     return $ans;
   }
-    
+  
   function set_user_device($identification, $gcm_regid) {
-	$res = DAO_user::DAO_set_device($identification, $gcm_regid);
-	return $res;
+    $res = DAO_user::DAO_set_device($identification, $gcm_regid);
+    return $res;
   }
   /* if $valid_user == 1 login is correct
      return a Json filled with the info of the selected user
@@ -73,7 +73,7 @@ class user_controller {
   }
   
   function register_operator($id, $name, $surname, $email, $pwd, $module){
-    $valid = user_controller::DAO_module_operator_exist($module);
+    $valid = DAO_user::DAO_module_operator_exist($module);
     if($valid != 1) return 0;
     $success = user_controller::register_new_user($id, $name, $surname, $email, $pwd, 0, "operario");
     $success_active = DAO_user::DAO_new_active_operator($id, $module);

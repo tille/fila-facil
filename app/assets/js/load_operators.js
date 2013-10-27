@@ -18,12 +18,12 @@ $(document).ready(function () {
       
       for( var i=0; i<l1; i++ ){
         var info = online[i].split(":");
-        var id = info[0];
+        var name = info[0];
         var mod = info[1];
         
         get_turn(mod, function( data ) {
           if(data==-1) data = "--";
-          $(".active-operators").append("<li><b>"+id+"</b> - "+mod+"<br> Turno actual&nbsp;&nbsp;"+data+"</li>");
+          $(".active-operators").append("<li><b>"+name+"</b> - "+mod+"<br> Turno actual&nbsp;&nbsp;"+data+"</li>");
         });
       }
       
