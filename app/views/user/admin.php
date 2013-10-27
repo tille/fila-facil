@@ -63,7 +63,7 @@
               <h3>Operarios inactivos</h3>
               <ul class="inactive-operators">
               </ul>
-            </div><br>
+            </div>
             
           </div>
         </div>
