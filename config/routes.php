@@ -105,7 +105,7 @@
 
     if($id==9) 
       return user_controller::get_operators();
-    
+
     return "";
   }
    ?>
