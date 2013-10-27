@@ -1,7 +1,12 @@
 <?php 
   ob_start(); 
   session_start();
+  
+  if( !isset($_SESSION['rol']) || (isset($_SESSION['rol']) && $_SESSION['rol'] == "operario") ){
+    header('Location: '."http://localhost:8888/ff/index.php");
+  }
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
