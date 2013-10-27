@@ -13,6 +13,34 @@ class DAO_user{
     return $result;
   }
   
+  function DAO_set_device($identification, $gcm_regid) {
+	$con = connect();
+	$sql = "UPDATE users SET gcm_key = '$gcm_regid' WHERE identification = '$identification'";
+	$result = mysql_query($sql) or die(mysql_error());
+	disconnect($con);
+	return $result;
+  }
+  
+  function DAO_user_module($user){
+    $con = connect();
+    $sql = "SELECT module FROM active_operators WHERE user_id='$user'";
+    $arr_res = mysql_query($sql) or die(mysql_error());
+    $arr_res = mysql_fetch_array($arr_res);
+    disconnect($con);
+    return $arr_res['module'];
+  }
+  
+  function DAO_module_operator_exist($mod){
+    $con = connect();
+    $sql = "SELECT user_id FROM active_operators WHERE module='$mod'";
+    $arr_res = mysql_query($sql) or die(mysql_error());
+    
+    $res = 1;
+    if( mysql_num_rows($arr_res) == 1 ) $result = 0;    
+    disconnect($con);
+    return $res;
+  }
+  
   function DAO_new_active_operator($user_id, $module){
     $con = connect();
     $sql = "INSERT INTO active_operators VALUES(0, '$user_id', '$module');";
@@ -22,9 +50,9 @@ class DAO_user{
   }
   
   function DAO_insert_register($p1, $p2, $p3, $p4, $p5, $p6, $p7){
-    $con = connect();
+	$con = connect();
     $p5 = md5($p5);
-    $sql = "INSERT INTO users VALUES('$p1', '$p2', '$p3', '$p4', '$p5', '$p6', '$p7');";
+    $sql = "INSERT INTO users VALUES('$p1', '$p2', '$p3', '$p4', '$p5', '$p6', '$p7', null);";
     $arr_res = mysql_query($sql);
     mysql_close($con);
     return $arr_res;
@@ -56,6 +84,40 @@ class DAO_user{
       disconnect($con);
       return $json_user;
     }
+  }
+
+  function DAO_read_active_operators($state){
+    $con = connect();
+    $result="";
+    $cont = 0;
+
+    if($state == "active"){
+      $sql = "SELECT user_id,module FROM active_operators WHERE active = 1";
+      $arr_res = mysql_query($sql);
+    
+      if(mysql_num_rows($arr_res) >= 1){
+        while ($arr_res1 = mysql_fetch_array($arr_res)){
+          if($cont!=0) $result=$result.",";
+          $result = $result.$arr_res1['user_id'].":".$arr_res1['module'];
+          $cont +=1;
+        } 
+      }
+    }
+
+    if($state == "inactive"){
+      $sql = "SELECT user_id,module FROM active_operators WHERE active = 0";
+      $arr_res = mysql_query($sql);
+
+      if(mysql_num_rows($arr_res) >= 1){
+        while ($arr_res1 = mysql_fetch_array($arr_res)){ 
+          if($cont!=0) $result=$result.",";
+          $result = $result.$arr_res1['user_id'].":".$arr_res1['module'];
+          $cont +=1;
+        }
+      }
+    }
+    disconnect($con);
+    return $result;
   }
   
 }

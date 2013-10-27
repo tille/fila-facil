@@ -2,6 +2,13 @@
   ob_start(); 
   session_start();
   
+  // // NOTA: llamar un dao desde una vista?, severo machetazo. (corregir)
+  if( !isset($_SESSION['module']) ){
+    require_once '../../../db/environment.php';
+    require_once '../../../db/DAO/DAO_user.php';
+    $mod = DAO_user::DAO_user_module($_SESSION['id']);
+  }
+  
   if( !isset($_SESSION['rol']) || (isset($_SESSION['rol']) && $_SESSION['rol'] == "admin") ){
     header('Location: '."http://localhost:8888/ff/index.php");
   }
@@ -29,7 +36,9 @@
         <div class="col-md-7 col-sm-7">
           <div class="posts">
             
-            <h3><a href="#">Agregar operarios</a></h3>
+            <h3 style="margin-top: 13px; font-size: 34px;"> Manuelito jacobin<h3>
+            <h4 style="margin-top: -5px;"><?php echo $mod; ?></h4>
+            
             <div class="post-content">
               
               <div class='alert alert-success alert-admin'>
@@ -41,9 +50,17 @@
                 <b><center>El usuario ha sido registrado correctamente!</center></b>
               </div>
               
-              <?php require_once "form_admin.php" ?>
-              
             </div><hr>
+            
+            <h4 class="actual-turn-module">Turno actual: 65</h4>
+            
+            <div class="info-module info-module-first"><strong>Nombre:</strong>&nbsp;&nbsp;fapencio garcia</div>
+            <div class="info-module"><strong>email:</strong>&nbsp;&nbsp;fapencito@gmail.com</div>
+            <div class="info-module"><strong>Documento de identidad:</strong>&nbsp;&nbsp;1017344878</div>
+            <div class="info-module"><strong>&iquest;Es estudiante de Eafit?</strong>&nbsp;&nbsp;No</div>
+            <div class="info-module"><strong>Tramite:</strong>&nbsp;&nbsp;Informacion acerca del tramite</div><br>
+            <button type="button" class="btn btn-danger" id="register-admin">El usuario no se presento</button>&nbsp;
+            <button type="button" class="btn btn-primary" id="register-admin">Siguiente</button>
             
           </div>
         </div>
@@ -51,22 +68,15 @@
         <div class="col-md-5 col-sm-5 col-xs-5">
           <div class="sidebar well">
             <div class="widget">
-              <h3>Operarios activos</h3>
+              <h3>Proximos usuarios a ser atendidos</h3>
               <ul>
-                <li><b>Fulanito Perez</b> - Admisiones<br> Turno actual: 65</li>
-                <li><b>Joaquin Alonso</b> - Caja<br> Turno actual: 34</li>
-                <li><b>Simelomon tolomeo</b> - Certificados<br> Turno actual: 02</li>
-              </ul>
-            </div><br>
-            
-            <div class="widget" style="">
-              <h3>Operarios inactivos</h3>
-              <ul>
-                <li><b>tales alberto</b> - admisiones</li>
-                <li><b>bajaj mamaj</b> - caja</li>
-                <li><b>bartomeleo cadavid</b> - cartera</li>
-                <li><b>Otro mansito</b> - Certificados</li>
-                <li><b>El precoz</b> - Caja</li>
+                <li><b>Fulanito Perez</b><br>
+                  <b>Turno:</b> 66<br>
+                  <b>Identification:</b> 1017347869<br>
+                  <b>Email:</b> pp@eafit.edu.co<br>
+                  Estudiante Eafitense<br><br>
+                  <b>Tramite:</b><br> mi seleccion de horario no se esta mostrando en la plataforma de Ulises, tambien quisiera saber si el certificado que pedi la semana pasada ya esta listo, y de paso el nombre de la monita que atiende en la taquilla 4.
+                </li>
               </ul>
             </div><br>
             

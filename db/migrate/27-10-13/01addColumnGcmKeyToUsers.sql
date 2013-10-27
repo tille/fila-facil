@@ -1,0 +1,1 @@
+ALTER TABLE  `users` ADD  `gcm_key` text

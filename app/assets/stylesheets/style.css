@@ -28,6 +28,19 @@ p{
   display: none;
 }
 
+.info-module{
+  font-size: 13px; 
+  margin-bottom: 5px;
+}
+
+.actual-turn-module{
+  margin-top: 30px;
+}
+
+.info-module-first{
+  margin-top: 30px;
+}
+
 a{
 }
 
