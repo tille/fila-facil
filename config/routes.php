@@ -85,16 +85,8 @@
       session_start();
       
       if( isset($_SESSION['rol']) && $_SESSION['rol'] == "admin" ){
-        $json = stripslashes($json); 
-        $params = json_decode($json);
-        $p1 = $params->{'identification'};
-        $p2 = $params->{'name'};
-        $p3 = $params->{'surname'};
-        $p4 = $params->{'email'};
-        $p5 = $params->{'password'};
-        $p6 = $params->{'module'};
-
-        return user_controller::register_operator($p1, $p2, $p3, $p4, $p5,$p6);
+        $p = explode(',',$json);
+        return user_controller::register_operator($p[0], $p[1], $p[2], $p[3], md5($p[4]), $p[5]);
       }
     }
     

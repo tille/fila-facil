@@ -1,4 +1,7 @@
-<?php ob_start(); ?>
+<?php 
+  ob_start(); 
+  session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,6 +26,15 @@
             
             <h3><a href="#">Agregar operarios</a></h3>
             <div class="post-content">
+              
+              <div class='alert alert-success alert-admin'>
+                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                <b><center>El usuario ha sido registrado correctamente!</center></b>
+              </div>
+              <div class='alert alert-error manual-alert hidden-admin-error'>
+                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                <b><center>El usuario ha sido registrado correctamente!</center></b>
+              </div>
               
               <?php require_once "form_admin.php" ?>
               

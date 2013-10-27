@@ -8,9 +8,13 @@
         </div>
       </div>
       <div class="navigation pull-right">
-        <a href="../../../index.html">Inicio</a>
-        <a href="about.html">Informaci&oacute;n</a>
-        <a href="app/views/user/login.php">Iniciar session</a>
+        <a href="../../../index.php">Inicio</a>
+        <a href="#">Informaci&oacute;n</a>
+        <?php if(isset($_SESSION['id'])){ ?>
+          <a href="logout.php">Cerrar session</a>
+        <?php }else{ ?>
+          <a href="login.php">Iniciar session</a>
+        <?php } ?>
       </div>
     </div>
   </div>

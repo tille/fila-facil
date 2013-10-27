@@ -1,4 +1,14 @@
 $(document).ready(function () {
+
+  function clean(){
+    $("#form-admin-id").val("");
+    $("#form-admin-name").val("");
+    $("#form-admin-surname").val("");
+    $("#form-admin-email").val("");
+    $("#form-admin-pwd").val("");
+    $("#form-admin-module").val("");
+  }
+  
   $("#register-admin").click(function(){
     var id   = $("#form-admin-id").val();
     var name = $("#form-admin-name").val();
@@ -7,15 +17,22 @@ $(document).ready(function () {
     var pwd = $("#form-admin-pwd").val();
     var mod = $("#form-admin-module").val();
     
-    // http://localhost:8888/ff/services.php?q=register_operator&params={"identification":0,"name":"manolo2","surname":"cardona2","email":"manolo@eafit.edu.co","password":"123","module":admisiones}
+    var uri = "http://localhost:8888/ff/services.php?q=register_operator&params="+id+","+name+","+surn+","+email+","+pwd+","+mod;
     
-    alert("identification:"+id+"name"+name+"surname"+surn+"email"+email+"password"+pwd+"module"+mod);
-    // $.ajax({
-    //   type: "GET",
-    //   url: 'http://localhost:8888/ff/services.php?q=register&params={"user":1,"pwd":123,"mod":"admisiones"}',
-    // }).done(function( data ) {
-    //   if(data=="-1") $("#admisiones").html("-");
-    //   else $("#admisiones").html(data);
-    // });
+    $.ajax({
+      type: "GET",
+      url: uri,
+    }).done(function( data ) {
+      if(data=="1"){
+        $(".alert-admin").show();
+        clean();
+      }else{ 
+        $(".hidden-admin-error").show();
+      }
+    });
+  });
+  
+  $("#admin-clean").click(function(){
+    clean();
   });
 });

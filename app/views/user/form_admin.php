@@ -1,3 +1,4 @@
+<!-- NOTA: validar id debe ser entero -->
 <form class="form-horizontal" role="form" action="./login.php" method="post"><br><br>
   <fieldset>
     
@@ -25,7 +26,7 @@
     <div class="form-group pwd-login-box">
       <label for="inputComment" class="col-lg-3 control-label">Correo</label>
       <div class="col-lg-9">
-        <input type="name" class="form-control field-admin-form" name="correo" id="form-admin-correo" placeholder="Correo Electr&oacute;nico">
+        <input type="name" class="form-control field-admin-form" name="correo" id="form-admin-email" placeholder="Correo Electr&oacute;nico">
       </div>
     </div>
     
@@ -51,7 +52,7 @@
     <div class="form-group">
       <div class="col-lg-offset-3 col-lg-9">
         <button type="button" class="btn btn-primary" id="register-admin">Registrar Operario</button>
-        <button type="submit" class="btn btn-default">Limpiar</button>
+        <button type="button" class="btn btn-default" id="admin-clean">Limpiar</button>
       </div>
     </div>
   </fieldset>
