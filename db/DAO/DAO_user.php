@@ -13,6 +13,14 @@ class DAO_user{
     return $result;
   }
   
+  function DAO_set_device($identification, $gcm_regid) {
+	$con = connect();
+	$sql = "UPDATE users SET gcm_key = '$gcm_regid' WHERE identification = '$identification'";
+	$result = mysql_query($sql) or die(mysql_error());
+	disconnect($con);
+	return $result;
+  }
+  
   function DAO_user_module($user){
     $con = connect();
     $sql = "SELECT module FROM active_operators WHERE user_id='$user'";
@@ -42,9 +50,9 @@ class DAO_user{
   }
   
   function DAO_insert_register($p1, $p2, $p3, $p4, $p5, $p6, $p7){
-    $con = connect();
+	$con = connect();
     $p5 = md5($p5);
-    $sql = "INSERT INTO users VALUES('$p1', '$p2', '$p3', '$p4', '$p5', '$p6', '$p7');";
+    $sql = "INSERT INTO users VALUES('$p1', '$p2', '$p3', '$p4', '$p5', '$p6', '$p7', null);";
     $arr_res = mysql_query($sql);
     mysql_close($con);
     return $arr_res;

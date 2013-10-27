@@ -12,6 +12,7 @@
     "remaining_turns" => 5,
     "login_and_redirect" => 6,
     "register_operator" => 7,
+	"register_device" => 8,
   );
 
   // NOTA: recordar validar en cada servicio cuando no le llegan la cantidad de parametros
@@ -89,6 +90,16 @@
         return user_controller::register_operator($p[0], $p[1], $p[2], $p[3], $p[4], $p[5]);
       }
     }
+	
+	if ($id==8) {
+		$json = stripslashes($json); 
+		$params = json_decode($json);
+
+		$identification = $params->{'identification'};
+		$gcm_regid = $params->{'regId'};
+		
+		return user_controller::set_user_device($identification, $gcm_regid);
+	}
     
     return "";
   }

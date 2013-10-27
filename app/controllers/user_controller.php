@@ -13,7 +13,7 @@ class user_controller {
 
     $ans ='0';
     if( $user_exists == 1 ){
-      $registered = DAO_user::DAO_insert_register($p1, $p2, $p3, $p4, $p5, $p6, $p7 );
+      $registered = DAO_user::DAO_insert_register($p1, $p2, $p3, $p4, $p5, $p6, $p7);
       if( $registered == 1 )
         $ans = '1';
     }
@@ -21,6 +21,10 @@ class user_controller {
     return $ans;
   }
     
+  function set_user_device($identification, $gcm_regid) {
+	$res = DAO_user::DAO_set_device($identification, $gcm_regid);
+	return $res;
+  }
   /* if $valid_user == 1 login is correct
      return a Json filled with the info of the selected user
      return {"identification":-1} if the info doesn't match */
