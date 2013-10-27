@@ -7,7 +7,7 @@ class gcm_controller {
   function send_mobile_message($message, $tag){
     $ids = DAO_gcm::DAO_get_devices();
     $registration_ids = explode(",", $ids);
-	
+
     //ACÁ ES DONDE SE PUEDEN MANDAR MUCHOS MENSAJES EN EL ARREGLO
     $message = array($tag => $message);
     
@@ -16,14 +16,13 @@ class gcm_controller {
   }
   
   function send_specific_mobile_message($regId, $requested) {
-	if ($requested == "all") {
-		$remaining = turn_controller::remaining_turns();
-		$actual = turn_controller::get_board();
-		$message = array('remaining' => $remaining, 
-						 'actual' => $actual);
-		return gcm_controller::send_notification(array($regId), $message);
-	}
-	return "";
+    if ($requested == "all") {
+      $remaining = turn_controller::remaining_turns();
+      $actual = turn_controller::get_board();
+      $message = array('remaining' => $remaining, 'actual' => $actual);
+      return gcm_controller::send_notification(array($regId), $message);
+    }
+    return "";
   }
   
   function send_notification($registatoin_ids, $message) {
@@ -40,13 +39,13 @@ class gcm_controller {
     );
     
     $ch = curl_init();
-	
+    
     curl_setopt($ch, CURLOPT_URL, $url);
     
     curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	
+    
     // Disabling SSL Certificate support temporarly
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     

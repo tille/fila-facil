@@ -14,18 +14,24 @@
       $actual = DAO_turn::DAO_read_actual_turn($mod);
       $deleted = DAO_turn::DAO_delete_expected_turn($mod, $actual);
       if( $actual+1 > DAO_turn::DAO_read($mod) ){
-		$actual = turn_controller::get_board();
-		$remaining = $remaining = turn_controller::remaining_turns();
-		gcm_controller::send_mobile_message($actual, 'actual');
-		gcm_controller::send_mobile_message($remaining, 'remaining');
+        
+        // devices board notification
+        $actual = turn_controller::get_board();
+        $remaining = $remaining = turn_controller::remaining_turns();
+        gcm_controller::send_mobile_message($actual, 'actual');
+        gcm_controller::send_mobile_message($remaining, 'remaining');
+        
         return -1;
       }else{
         $result = DAO_turn::DAO_update_actual_turn($mod,$actual+1);
-		$actual = turn_controller::get_board();
-		$remaining = turn_controller::remaining_turns();
-		gcm_controller::send_mobile_message($actual, 'actual');
-		gcm_controller::send_mobile_message($remaining, 'remaining');
-		return $result;
+        
+        // devices board notification
+        $actual = turn_controller::get_board();
+        $remaining = turn_controller::remaining_turns();
+        gcm_controller::send_mobile_message($actual, 'actual');
+        gcm_controller::send_mobile_message($remaining, 'remaining');
+        
+        return $result;
       }
     }
     
