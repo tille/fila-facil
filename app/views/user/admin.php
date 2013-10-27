@@ -50,25 +50,18 @@
           </div>
         </div>
         
+        <!-- http://localhost:8888/ff/services.php?q=get_operators -->
         <div class="col-md-5 col-sm-5 col-xs-5">
           <div class="sidebar well">
             <div class="widget">
               <h3>Operarios activos</h3>
-              <ul>
-                <li><b>Fulanito Perez</b> - Admisiones<br> Turno actual: 65</li>
-                <li><b>Joaquin Alonso</b> - Caja<br> Turno actual: 34</li>
-                <li><b>Simelomon tolomeo</b> - Certificados<br> Turno actual: 02</li>
+              <ul class="active-operators">
               </ul>
-            </div><br>
+            </div>
             
-            <div class="widget" style="">
+            <div class="widget">
               <h3>Operarios inactivos</h3>
-              <ul>
-                <li><b>tales alberto</b> - admisiones</li>
-                <li><b>bajaj mamaj</b> - caja</li>
-                <li><b>bartomeleo cadavid</b> - cartera</li>
-                <li><b>Otro mansito</b> - Certificados</li>
-                <li><b>El precoz</b> - Caja</li>
+              <ul class="inactive-operators">
               </ul>
             </div><br>
             
@@ -80,6 +73,7 @@
   <!-- Blog ends -->
   
   <?php require_once "../template/footer.php" ?>
+  <script src="../../assets/js/load_operators.js"></script>
   
 </body>	
 </html>

@@ -1,5 +1,5 @@
 <?php
-require_once ''; // cargar un dao para gcm
+//require_once ''; // cargar un dao para gcm
 
 class gcm_controller {
   

@@ -2,5 +2,5 @@
   $server = "localhost";
   $username = "root";
   $password = "root";
-  $db = "gcm";
+  $db = "ff_database";
 ?>

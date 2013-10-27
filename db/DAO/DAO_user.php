@@ -14,11 +14,11 @@ class DAO_user{
   }
   
   function DAO_set_device($identification, $gcm_regid) {
-	$con = connect();
-	$sql = "UPDATE users SET gcm_key = '$gcm_regid' WHERE identification = '$identification'";
-	$result = mysql_query($sql) or die(mysql_error());
-	disconnect($con);
-	return $result;
+    $con = connect();
+    $sql = "UPDATE users SET gcm_key = '$gcm_regid' WHERE identification = '$identification'";
+    $result = mysql_query($sql) or die(mysql_error());
+    disconnect($con);
+    return $result;
   }
   
   function DAO_user_module($user){
@@ -90,11 +90,11 @@ class DAO_user{
     $con = connect();
     $result="";
     $cont = 0;
-
+    
     if($state == "active"){
       $sql = "SELECT user_id,module FROM active_operators WHERE active = 1";
       $arr_res = mysql_query($sql);
-    
+      
       if(mysql_num_rows($arr_res) >= 1){
         while ($arr_res1 = mysql_fetch_array($arr_res)){
           if($cont!=0) $result=$result.",";
@@ -103,11 +103,11 @@ class DAO_user{
         } 
       }
     }
-
+    
     if($state == "inactive"){
       $sql = "SELECT user_id,module FROM active_operators WHERE active = 0";
       $arr_res = mysql_query($sql);
-
+      
       if(mysql_num_rows($arr_res) >= 1){
         while ($arr_res1 = mysql_fetch_array($arr_res)){ 
           if($cont!=0) $result=$result.",";
