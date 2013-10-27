@@ -86,7 +86,7 @@
       
       if( isset($_SESSION['rol']) && $_SESSION['rol'] == "admin" ){
         $p = explode(',',$json);
-        return user_controller::register_operator($p[0], $p[1], $p[2], $p[3], md5($p[4]), $p[5]);
+        return user_controller::register_operator($p[0], $p[1], $p[2], $p[3], $p[4], $p[5]);
       }
     }
     
