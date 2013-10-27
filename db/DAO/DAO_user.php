@@ -13,9 +13,9 @@ class DAO_user{
     return $result;
   }
   
-  function DAO_new_active_operator($user_id){
+  function DAO_new_active_operator($user_id, $module){
     $con = connect();
-    $sql = "INSERT INTO active_operators VALUES(0, '$user_id');";
+    $sql = "INSERT INTO active_operators VALUES(0, '$user_id', '$module');";
     $res = mysql_query($sql);
     mysql_close($con);
     return $res;

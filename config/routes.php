@@ -92,7 +92,9 @@
         $p3 = $params->{'surname'};
         $p4 = $params->{'email'};
         $p5 = $params->{'password'};
-        return user_controller::register_operator($p1, $p2, $p3, $p4, $p5);
+        $p6 = $params->{'module'};
+
+        return user_controller::register_operator($p1, $p2, $p3, $p4, $p5,$p6);
       }
     }
     

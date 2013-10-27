@@ -68,9 +68,9 @@ class user_controller {
     $_SESSION['rol']=$rol;
   }
   
-  function register_operator($id, $name, $surname, $email, $pwd){
+  function register_operator($id, $name, $surname, $email, $pwd, $module){
     $success = user_controller::register_new_user($id, $name, $surname, $email, $pwd, 0, "operario");
-    $success_active = DAO_user::DAO_new_active_operator($id);
+    $success_active = DAO_user::DAO_new_active_operator($id, $module);
     return ($success=="1" && $success_active =="1");
   }
   
