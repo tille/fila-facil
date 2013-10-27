@@ -24,7 +24,7 @@
   
   <!-- Top Starts -->
   <div class="top">
-    <?php require_once "../template/header.php" ?>
+    <?php require_once "../template/header.php"; ?>
   </div>
   <!-- Top Ends -->
   
@@ -36,20 +36,12 @@
         <div class="col-md-7 col-sm-7">
           <div class="posts">
             
-            <h3 style="margin-top: 13px; font-size: 34px;"> Manuelito jacobin<h3>
+            <h3 style="margin-top: 13px; font-size: 34px;">
+              <?php echo $_SESSION['name']." ".$_SESSION['surname'] ?>
+            <h3>
             <h4 style="margin-top: -5px;"><?php echo $mod; ?></h4>
             
             <div class="post-content">
-              
-              <div class='alert alert-success alert-admin'>
-                <button type='button' class='close' data-dismiss='alert'>&times;</button>
-                <b><center>El usuario ha sido registrado correctamente!</center></b>
-              </div>
-              <div class='alert alert-error manual-alert hidden-admin-error'>
-                <button type='button' class='close' data-dismiss='alert'>&times;</button>
-                <b><center>El usuario ha sido registrado correctamente!</center></b>
-              </div>
-              
             </div><hr>
             
             <h4 class="actual-turn-module">Turno actual: 65</h4>

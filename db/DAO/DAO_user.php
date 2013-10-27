@@ -123,17 +123,13 @@ class DAO_user{
   }
   
   function DAO_change_state($identification, $state) {
-		$con = connect();
-		$sql = "UPDATE active_operators SET active = '$state' WHERE user_id = '$identification'";
-		$res = mysql_query($sql);
-		if($res > 0) {
-			disconnect($con);
-			return "Success";
-		}else{
-			disconnect($con);
-			return "Changing operator status failed";
-		}
-	} 
+    $con = connect();
+    $sql = "UPDATE active_operators SET active = '$state' WHERE user_id = '$identification'";
+    $res = mysql_query($sql);
+    disconnect($con);
+    if($res > 0) return "Success";
+    return "Changing operator status failed";
+  } 
 }
 
 ?>

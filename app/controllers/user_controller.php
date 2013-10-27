@@ -79,7 +79,7 @@ class user_controller {
     $success_active = DAO_user::DAO_new_active_operator($id, $module);
     return ($success=="1" && $success_active =="1");
   }
-
+  
   function get_operators(){
     $operators_active = DAO_user::DAO_read_active_operators("active");
     $operators_inactive = DAO_user::DAO_read_active_operators("inactive");
@@ -87,10 +87,9 @@ class user_controller {
   }
   
   function change_operator_state($user_id, $active){
-	$success = DAO_user::DAO_change_state($user_id, $active);
-	return $success;
+    $success = DAO_user::DAO_change_state($user_id, $active);
+    return $success;
   }
-  
 }
 
 ?>

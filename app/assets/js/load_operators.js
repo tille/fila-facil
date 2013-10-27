@@ -23,6 +23,7 @@ $(document).ready(function () {
         
         get_turn(mod2, function( data ) {
           if(data==-1) data = "--";
+          data = data.replace(/"/g, "");
           $(".active-operators").append("<li><b>"+name+"</b> - "+mod2+"<br> Turno actual&nbsp;&nbsp;"+data+"</li>");
         });
       }
