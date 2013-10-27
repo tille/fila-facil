@@ -85,41 +85,7 @@ class DAO_user{
       return $json_user;
     }
   }
-
-  // function DAO_read_active_operators($state){
-  //   $con = connect();
-  //   $result="";
-  //   $cont = 0;
-  //   
-  //   if($state == "active"){
-  //     $sql = "SELECT user_id,module FROM active_operators WHERE active = 1";
-  //     $arr_res = mysql_query($sql);
-  //     
-  //     if(mysql_num_rows($arr_res) >= 1){
-  //       while ($arr_res1 = mysql_fetch_array($arr_res)){
-  //         if($cont!=0) $result=$result.",";
-  //         $result = $result.$arr_res1['user_id'].":".$arr_res1['module'];
-  //         $cont +=1;
-  //       } 
-  //     }
-  //   }
-  //   
-  //   if($state == "inactive"){
-  //     $sql = "SELECT user_id,module FROM active_operators WHERE active = 0";
-  //     $arr_res = mysql_query($sql);
-  //     
-  //     if(mysql_num_rows($arr_res) >= 1){
-  //       while ($arr_res1 = mysql_fetch_array($arr_res)){ 
-  //         if($cont!=0) $result=$result.",";
-  //         $result = $result.$arr_res1['user_id'].":".$arr_res1['module'];
-  //         $cont +=1;
-  //       }
-  //     }
-  //   }
-  //   disconnect($con);
-  //   return $result;
-  // }
-  // 
+  
   function DAO_read_active_operators($state){
     $con = connect();
     $result="";
@@ -140,7 +106,6 @@ class DAO_user{
     }
     
     if($state == "inactive"){
-      //$sql = "SELECT user_id,module FROM active_operators WHERE active = 0";
       $sql = "SELECT users.name, users.last_name, users.identification, active_operators.module FROM users 
       INNER JOIN active_operators ON users.identification=active_operators.user_id AND active_operators.active=0";
       
@@ -149,7 +114,6 @@ class DAO_user{
       if(mysql_num_rows($arr_res) >= 1){
         while ($arr_res1 = mysql_fetch_array($arr_res)){ 
           if($cont!=0) $result=$result.",";
-          //$result = $result.$arr_res1['user_id'].":".$arr_res1['module'];
           $result = $result.$arr_res1['name']." ".$arr_res1['last_name'].":".$arr_res1['module'];
           $cont +=1;
         }

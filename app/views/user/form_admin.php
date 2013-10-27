@@ -45,7 +45,7 @@
           <option value="caja">Caja</option>
           <option value="certificados">Certificados</option>
           <option value="cartera">Cartera</option>
-        </select>        
+        </select>
       </div>
     </div>
     
