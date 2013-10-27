@@ -1,6 +1,7 @@
 <?php
   include 'app/controllers/turn_controller.php';
   include 'app/controllers/user_controller.php';
+  include 'app/controllers/gcm_controller.php';
   include 'db/environment.php';
 
   $routes = array(
@@ -14,7 +15,7 @@
     "register_operator" => 7,
     "register_device" => 8,
     "get_operators" => 9,
-	
+    "send_movil_message" => 10,
   );
 
   // NOTA: recordar validar en cada servicio cuando no le llegan la cantidad de parametros
@@ -72,9 +73,10 @@
       return turn_controller::next_turn($user,$pwd,$mod);
     }
 
-    if($id==5)
+    if($id==5){
       return turn_controller::remaining_turns();
-      
+    }
+    
     if($id==6){
       $params = explode(',',$json);
       $user_id = $params[0];
@@ -92,20 +94,31 @@
         return user_controller::register_operator($p[0], $p[1], $p[2], $p[3], $p[4], $p[5]);
       }
     }
-
-  	if ($id==8) {
-  		$json = stripslashes($json); 
-  		$params = json_decode($json);
-
-  		$identification = $params->{'identification'};
-  		$gcm_regid = $params->{'regId'};
-  		
-  		return user_controller::set_user_device($identification, $gcm_regid);
-  	}
-
-    if($id==9) 
+    
+    if ($id==8) {
+      $json = stripslashes($json); 
+      $params = json_decode($json);
+      
+      $identification = $params->{'identification'};
+      $gcm_regid = $params->{'regId'};
+      
+      return user_controller::set_user_device($identification, $gcm_regid);
+    }
+    
+    if($id==9){
       return user_controller::get_operators();
-
+    }
+    
+    if($id==10){
+      $json = stripslashes($json); 
+      $params = json_decode($json);
+      
+      $message = $params->{'message'};
+      $tag = $params->{'tag'};
+      
+      return gcm_controller::send_movil_message($message, $tag);
+    }
+    
     return "";
   }
    ?>

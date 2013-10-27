@@ -57,9 +57,13 @@
       $valid_user = json_decode($json_valid_user);
       $user_id = $valid_user->{'identification'};
       
-      if( $existence_of_request_turn == 0 && $user_id != -1 )
-        return DAO_turn::DAO_new_expected_turn( $mod, $user_id );
-
+      if( $existence_of_request_turn == 0 && $user_id != -1 ){
+        $response = DAO_turn::DAO_new_expected_turn( $mod, $user_id );
+        //  json_board_needed = turn_controller::remaining_turns();
+        //  gcm_controller::send_movil_message($params);
+        return $response;
+      }
+      
       return "";
     }
   }
