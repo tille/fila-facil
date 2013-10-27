@@ -1,0 +1,1 @@
+ALTER TABLE  `active_operators` ADD  `module` VARCHAR( 20 ) NOT NULL

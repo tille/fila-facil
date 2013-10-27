@@ -24,31 +24,7 @@
             <h3><a href="#">Agregar operarios</a></h3>
             <div class="post-content">
               
-              <form class="form-horizontal" role="form" action="./login.php" method="post"><br><br>
-                <fieldset>
-
-                  <div class="form-group">
-                    <label for="inputName" class="col-lg-3 control-label">Identificaci&oacute;n</label>
-                    <div class="col-lg-9">
-                      <input type="name" class="form-control" name="cc" id="inputName" placeholder="Identificaci&oacute;n">
-                    </div>
-                  </div>
-
-                  <div class="form-group pwd-login-box">
-                    <label for="inputComment" class="col-lg-3 control-label">Contrase&ntilde;a</label>
-                    <div class="col-lg-9">
-                      <input type="password" class="form-control" name="pwd" id="inputName" placeholder="Contrase&ntilde;a">                
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <div class="col-lg-offset-3 col-lg-9">
-                      <button type="submit" class="btn btn-primary">Iniciar</button>
-                      <button type="submit" class="btn btn-default">Limpiar</button>
-                    </div>
-                  </div>
-                </fieldset>
-              </form>
+              <?php require_once "form_admin.php" ?>
               
             </div><hr>
             
@@ -72,6 +48,8 @@
                 <li><b>tales alberto</b> - admisiones</li>
                 <li><b>bajaj mamaj</b> - caja</li>
                 <li><b>bartomeleo cadavid</b> - cartera</li>
+                <li><b>Otro mansito</b> - Certificados</li>
+                <li><b>El precoz</b> - Caja</li>
               </ul>
             </div><br>
             

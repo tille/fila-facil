@@ -62,3 +62,5 @@
 <script src="../../assets/js/html5shiv.js"></script>
 <!-- Custom JS -->
 <script src="../../assets/js/custom.js"></script>
+<!-- Admin JS -->
+<script src="../../assets/js/admin_register.js"></script>

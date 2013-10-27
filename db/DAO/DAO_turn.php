@@ -13,7 +13,7 @@ class DAO_turn {
     $updating_last_request = DAO_turn::DAO_update($mod, $request);
     return $request;
   }
-
+  
   function DAO_read($mod){
     $con = connect();
     $sql = "SELECT last_request FROM turn WHERE module='$mod'";

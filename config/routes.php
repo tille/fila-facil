@@ -11,6 +11,7 @@
     "next_turn" => 4,
     "remaining_turns" => 5,
     "login_and_redirect" => 6,
+    "register_operator" => 7,
   );
 
   // NOTA: recordar validar en cada servicio cuando no le llegan la cantidad de parametros
@@ -28,6 +29,7 @@
       return turn_controller::get_turn($user,$pwd,$mod);
     }
     
+    // NOTA: validar que atraves de este servicio no se puedan agregar operarios ni administradores
     if($id==1){
       $json = stripslashes($json); 
       $params = json_decode($json);
@@ -76,6 +78,22 @@
       $pwd = md5($params[1]);
       
       return user_controller::login_and_redirect($user_id, $pwd);
+    }
+    
+    // NOTA: validar que lleguen los parametros necesarios en el json
+    if($id==7){
+      session_start();
+      
+      if( isset($_SESSION['rol']) && $_SESSION['rol'] == "admin" ){
+        $json = stripslashes($json); 
+        $params = json_decode($json);
+        $p1 = $params->{'identification'};
+        $p2 = $params->{'name'};
+        $p3 = $params->{'surname'};
+        $p4 = $params->{'email'};
+        $p5 = $params->{'password'};
+        return user_controller::register_operator($p1, $p2, $p3, $p4, $p5);
+      }
     }
     
     return "";

@@ -12,3 +12,7 @@ http://localhost:8888/ff/services.php?q=register&params={"identification":2,"nam
 http://filafacil.herokuapp.com/services.php?q=login&params=1,123
 
 http://localhost:8888/ff/services.php?q=remaining_turns
+
+http://localhost:8888/ff/services.php?q=register_operator&params={"identification":0,"name":"manolo2","surname":"cardona2","email":"manolo@eafit.edu.co","password":"123"}
+
+http://localhost:8888/ff/services.php?q=login_and_redirect&params=nombre,contrasena"

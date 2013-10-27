@@ -12,7 +12,15 @@ class DAO_user{
     disconnect($con);
     return $result;
   }
-
+  
+  function DAO_new_active_operator($user_id){
+    $con = connect();
+    $sql = "INSERT INTO active_operators VALUES(0, '$user_id');";
+    $res = mysql_query($sql);
+    mysql_close($con);
+    return $res;
+  }
+  
   function DAO_insert_register($p1, $p2, $p3, $p4, $p5, $p6, $p7){
     $con = connect();
     $p5 = md5($p5);

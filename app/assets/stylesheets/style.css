@@ -13,6 +13,10 @@ h1,h2,h3,h4,h5,h6{
 
 }
 
+.field-admin-form{
+  width: 270px;
+}
+
 p{
   margin:0;
   padding:0;
