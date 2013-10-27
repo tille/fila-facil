@@ -11,6 +11,8 @@
 <html>
 <head>
   <?php require_once "../template/pipeline.php" ?>
+  <!-- Refresh every 1.30 minutes -->
+  <meta http-equiv="refresh" content="90"> 
 </head>
 
 <body>
@@ -38,7 +40,7 @@
               </div>
               <div class='alert alert-error manual-alert hidden-admin-error'>
                 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-                <b><center>El usuario ha sido registrado correctamente!</center></b>
+                <b><center>El usuario no pudo ser registrado.<br> verifica la identificaci&oacute;n y/o dependencia</center></b>
               </div>
               
               <?php require_once "form_admin.php" ?>

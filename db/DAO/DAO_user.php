@@ -13,6 +13,17 @@ class DAO_user{
     return $result;
   }
   
+  function DAO_module_operator_exist($mod){
+    $con = connect();
+    $sql = "SELECT user_id FROM active_operators WHERE module='$mod'";
+    $arr_res = mysql_query($sql) or die(mysql_error());
+    
+    $res = 1;
+    if( mysql_num_rows($arr_res) == 1 ) $result = 0;    
+    disconnect($con);
+    return $res;
+  }
+  
   function DAO_new_active_operator($user_id, $module){
     $con = connect();
     $sql = "INSERT INTO active_operators VALUES(0, '$user_id', '$module');";

@@ -47,7 +47,16 @@
             </div>
           </div>
           <div class="navigation pull-right">
-            <a href="index.html">Inicio</a>
+            <?php if(isset($_SESSION['id'])){ ?>
+              <?php if( $_SESSION['rol'] == "admin" ){ ?>
+                <a href="app/views/user/admin.php">Mi cuenta</a>
+              <?php }else{ ?>
+                <a href="app/views/user/operator.php">Mi cuenta</a>
+              <?php } ?>
+            <?php }else{ ?>
+              <a href="app/views/user/login.php">Inicio</a>
+            <?php } ?>
+            
             <a href="about.html">Informaci&oacute;n</a>
             <?php if(isset($_SESSION['id'])){ ?>
               <a href="app/views/user/logout.php">Cerrar session</a>

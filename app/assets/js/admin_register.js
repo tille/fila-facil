@@ -28,6 +28,7 @@ $(document).ready(function () {
         clean();
       }else{ 
         $(".hidden-admin-error").show();
+        $("#form-admin-pwd").val("");
       }
     });
   });
