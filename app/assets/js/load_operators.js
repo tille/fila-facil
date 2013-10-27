@@ -9,13 +9,13 @@ $(document).ready(function () {
       alert("no habia nada");
     }else{
       var operators = data.split("?");
-      var online = operators[0].split(",");
-      var offline = operators[1].split(",");
+      var online = operators[1].split(",");
+      var offline = operators[0].split(",");
       
       var l1 = online.length;
-      if(operators[0]=="") l1 = 0;
+      if(operators[1]=="") l1 = 0;
       var l2 = offline.length;
-      if(operators[1]=="") l2 = 0;
+      if(operators[0]=="") l2 = 0;
       
       for( var i=0; i<l1; i++ ){
         var info = online[i].split(":");
