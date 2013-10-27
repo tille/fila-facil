@@ -61,10 +61,8 @@ class DAO_user{
   function DAO_read_login($user_id, $pwd){
     $con = connect();
     $sql = "SELECT * FROM users WHERE identification='$user_id' AND password='$pwd'";
-    
     // $sql = "SELECT * FROM users WHERE identification='1' AND password='202cb962ac59075b964b07152d234b70'";
     $arr_res = mysql_query($sql);
-  
     if(mysql_num_rows($arr_res) == 1){
       $arr_res = mysql_fetch_array($arr_res);
       
@@ -84,6 +82,7 @@ class DAO_user{
       disconnect($con);
       return $json_user;
     }
+	return "";
   }
   
   function DAO_read_active_operators($state){
@@ -122,6 +121,19 @@ class DAO_user{
     disconnect($con);
     return $result;
   }
+  
+  function DAO_change_state($identification, $state) {
+		$con = connect();
+		$sql = "UPDATE active_operators SET active = '$state' WHERE user_id = '$identification'";
+		$res = mysql_query($sql);
+		if($res > 0) {
+			disconnect($con);
+			return "Success";
+		}else{
+			disconnect($con);
+			return "Changing operator status failed";
+		}
+	} 
 }
 
 ?>

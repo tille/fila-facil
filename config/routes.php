@@ -16,6 +16,7 @@
     "register_device" => 8,
     "get_operators" => 9,
     "device_message" => 10,
+	"change_operator_state" => 11,
   );
 
   // NOTA: recordar validar en cada servicio cuando no le llegan la cantidad de parametros
@@ -118,6 +119,11 @@
       
       return gcm_controller::send_specific_mobile_message($regId, $requested);
     }
+	
+	if($id==11){
+		$p = explode(',',$json);
+		return user_controller::change_operator_state($p[0], $p[1]);
+	}
     
     return "";
   }

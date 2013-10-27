@@ -86,6 +86,11 @@ class user_controller {
     return $operators_inactive."?".$operators_active;
   }
   
+  function change_operator_state($user_id, $active){
+	$success = DAO_user::DAO_change_state($user_id, $active);
+	return $success;
+  }
+  
 }
 
 ?>
