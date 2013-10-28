@@ -62,10 +62,15 @@
       return json_encode($board);
     }
     
+    function get_user_by_turn($turn, $module){
+      $user = DAO_turn::DAO_get_user_by_turn($turn, $module);
+      return $user;
+    }
+    
     function get_turn( $user, $pwd, $mod ){
       if($mod != "admisiones" && $mod != "caja" && $mod != "cartera" && $mod != "certificados" ) return "";
       $existence_of_request_turn = DAO_turn::DAO_existence_turn($user, $mod);
-
+      
       // NOTA: reducir estas 4 lineas que estan feas
       $json_valid_user = user_controller::login($user, $pwd);
       $json_valid_user = stripslashes($json_valid_user);
@@ -76,7 +81,7 @@
         $response = DAO_turn::DAO_new_expected_turn( $mod, $user_id );
         $queue = turn_controller::remaining_turns();
         gcm_controller::send_mobile_message($queue, 'remaining');
-		return $response;
+        return $response;
       }
       
       return -1;

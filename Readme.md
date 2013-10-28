@@ -16,3 +16,5 @@ http://localhost:8888/ff/services.php?q=remaining_turns
 http://localhost:8888/ff/services.php?q=register_operator&params=0,manolo2,cardona2,manolo@eafit.edu.co,123,admisiones
 
 http://localhost:8888/ff/services.php?q=login_and_redirect&params=nombre,contrasena"
+
+http://localhost:8888/ff/services.php?q=get_user&params=turno,modulo"

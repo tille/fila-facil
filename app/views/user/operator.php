@@ -39,18 +39,33 @@
             <h3 style="margin-top: 13px; font-size: 34px;">
               <?php echo $_SESSION['name']." ".$_SESSION['surname'] ?>
             <h3>
-            <h4 style="margin-top: -5px;"><?php echo $mod; ?></h4>
+            <h4 style="margin-top: -5px;" id="mod_operator"><?php echo $mod; ?></h4>
             
             <div class="post-content">
             </div><hr>
             
             <h4 class="actual-turn-module">Turno actual: 65</h4>
             
-            <div class="info-module info-module-first"><strong>Nombre:</strong>&nbsp;&nbsp;fapencio garcia</div>
-            <div class="info-module"><strong>email:</strong>&nbsp;&nbsp;fapencito@gmail.com</div>
-            <div class="info-module"><strong>Documento de identidad:</strong>&nbsp;&nbsp;1017344878</div>
-            <div class="info-module"><strong>&iquest;Es estudiante de Eafit?</strong>&nbsp;&nbsp;No</div>
-            <div class="info-module"><strong>Tramite:</strong>&nbsp;&nbsp;Informacion acerca del tramite</div><br>
+            <div class="info-module info-module-first name-actual">
+              <strong>Nombre:</strong>&nbsp;&nbsp;fapencio garcia
+            </div>
+            
+            <div class="info-module email-actual">
+              <strong>Email:</strong>&nbsp;&nbsp;fapencito@gmail.com
+            </div>
+            
+            <div class="info-module id-actual">
+              <strong>Documento de identidad:</strong>&nbsp;&nbsp;1017344878
+            </div>
+            
+            <div class="info-module student-actual">
+              <strong>&iquest;Es estudiante de Eafit?</strong>&nbsp;&nbsp;No
+            </div>
+            
+            <div class="info-module request-actual">
+              <strong>Tramite:</strong>&nbsp;&nbsp;Informacion acerca del tramite
+            </div><br>
+            
             <button type="button" class="btn btn-danger" id="register-admin">El usuario no se presento</button>&nbsp;
             <button type="button" class="btn btn-primary" id="register-admin">Siguiente</button>
             
@@ -80,6 +95,7 @@
   <!-- Blog ends -->
   
   <?php require_once "../template/footer.php" ?>
+  <script src="../../assets/js/operator.js"></script>
   
 </body>	
 </html>

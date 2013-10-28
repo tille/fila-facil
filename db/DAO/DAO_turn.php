@@ -14,6 +14,21 @@ class DAO_turn {
     return $request;
   }
   
+  function DAO_get_user_by_turn($turn, $mod){
+    $con = connect();
+    $sql = "SELECT users.name, users.last_name, users.email, users.identification, users.Eafit_student FROM users INNER JOIN expected_turn ON users.identification=expected_turn.user_id AND expected_turn.module='$mod' AND expected_turn.expected_turn='$turn'";
+    
+    $arr_res = mysql_query($sql);
+    if(mysql_num_rows($arr_res) == 0) return "";
+    
+    $arr_res1 = mysql_fetch_array($arr_res);
+    $res = $arr_res1['name']." ".$arr_res1['last_name'].":".$arr_res1['email'].":"
+    .$arr_res1['identification'].":".$arr_res1['Eafit_student'];
+    
+    disconnect($con);
+    return $res;
+  }
+  
   function DAO_read($mod){
     $con = connect();
     $sql = "SELECT last_request FROM turn WHERE module='$mod'";

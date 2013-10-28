@@ -17,6 +17,7 @@
     "get_operators" => 9,
     "device_message" => 10,
     "change_operator_state" => 11,
+    "get_user" => 12,
   );
 
   // NOTA: recordar validar en cada servicio cuando no le llegan la cantidad de parametros
@@ -123,6 +124,11 @@
     if($id==11){
       $p = explode(',',$json);
       return user_controller::change_operator_state($p[0], $p[1]);
+    }
+    
+    if($id==12){
+      $params = explode(',',$json);
+      return turn_controller::get_user_by_turn($params[0], $params[1]);
     }
     
     return "";
