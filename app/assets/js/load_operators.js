@@ -21,10 +21,10 @@ $(document).ready(function () {
         var name = info[0];
         var mod2 = info[1];
         
-        get_turn(mod2, function( data ) {
+        get_turn(mod2, name, function( data, name_r, mod_r ) {
           if(data==-1) data = "--";
           data = data.replace(/"/g, "");
-          $(".active-operators").append("<li><b>"+name+"</b> - "+mod2+"<br> Turno actual&nbsp;&nbsp;"+data+"</li>");
+          $(".active-operators").append("<li><b>"+name_r+"</b> - "+mod_r+"<br> Turno actual&nbsp;&nbsp;"+data+"</li>");
         });
       }
       
@@ -37,7 +37,7 @@ $(document).ready(function () {
     }
   });
   
-  function get_turn(mod, callback){
+  function get_turn(mod, name_p, callback){
     var board_uri="http://localhost:8888/ff/services.php?q=board_status";
     
     $.ajax({
@@ -52,7 +52,7 @@ $(document).ready(function () {
       for( var i=0; i<4; i++ ){
         var temp = modules[i].split(":");
         name = temp[0].substr(1,temp[0].length-2);
-        if(name==mod) callback(temp[1]);
+        if(name==mod) callback(temp[1], name_p, mod);
       }
     });
   }
