@@ -122,13 +122,24 @@ class DAO_user{
     return $result;
   }
   
-  function DAO_change_state($identification, $state) {
+  function DAO_change_state($identification, $state, $pwd) {
     $con = connect();
-    $sql = "UPDATE active_operators SET active = '$state' WHERE user_id = '$identification'";
-    $res = mysql_query($sql);
-    disconnect($con);
-    if($res > 0) return "Success";
-    return "Changing operator status failed";
+		$sql = "SELECT * FROM users WHERE identification='$identification' AND password='$pwd'";
+		$arr_res = mysql_query($sql);
+		if(mysql_num_rows($arr_res) == 1){
+		  $sql = "UPDATE active_operators SET active = '$state' WHERE user_id = '$identification'";
+		  $res = mysql_query($sql);
+		  if($res > 0) {
+			disconnect($con);
+			return "Success";
+		  }else{
+			disconnect($con);
+			return "Changing operator status failed";
+		  } 
+		}else{
+		  disconnect($con);
+		  return "Changing operator status failed";
+		}
   } 
 }
 

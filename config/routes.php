@@ -123,7 +123,8 @@
 
     if($id==11){
       $p = explode(',',$json);
-      return user_controller::change_operator_state($p[0], $p[1]);
+	  header('Location: '."http://localhost:8888/ff/index.php");
+	  return user_controller::change_operator_state($p[0], $p[1], $p[2]);
     }
     
     if($id==12){

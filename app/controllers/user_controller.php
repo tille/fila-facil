@@ -47,12 +47,15 @@ class user_controller {
       $p3 = $params->{'last_name'};
       $p4 = $params->{'email'};
       $p7 = $params->{'rol'};
+	  $p8 = $pwd;
       
-      user_controller::fill_sessions($p1, $p2, $p3, $p4, $p7);
+      user_controller::fill_sessions($p1, $p2, $p3, $p4, $p7, $p8);
       
       if($_SESSION['rol'] == "admin"){
+	    user_controller::change_operator_state($p1,1,$p8);
         header('Location: '."http://localhost:8888/ff/app/views/user/admin.php");
       }else if($_SESSION['rol'] == "operario"){
+	    user_controller::change_operator_state($p1,1,$p8);
         header('Location: '."http://localhost:8888/ff/app/views/user/operator.php");
       }else{
         header('Location: '."http://localhost:8888/ff/app/views/user/login.php?q=login-invalid");
@@ -62,7 +65,7 @@ class user_controller {
     }
   }
   
-  function fill_sessions($id, $name, $surname, $email, $rol){
+  function fill_sessions($id, $name, $surname, $email, $rol, $password){
     session_destroy();
     session_start();
     $_SESSION['id']=$id;
@@ -70,6 +73,7 @@ class user_controller {
     $_SESSION['surname']=$surname;
     $_SESSION['email']=$email;
     $_SESSION['rol']=$rol;
+	$_SESSION['password']=$password;
   }
   
   function register_operator($id, $name, $surname, $email, $pwd, $module){
@@ -86,8 +90,8 @@ class user_controller {
     return $operators_inactive."?".$operators_active;
   }
   
-  function change_operator_state($user_id, $active){
-    $success = DAO_user::DAO_change_state($user_id, $active);
+  function change_operator_state($user_id, $active, $pwd){
+    $success = DAO_user::DAO_change_state($user_id, $active, $pwd);
     return $success;
   }
 }
