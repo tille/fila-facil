@@ -120,11 +120,11 @@
       
       return gcm_controller::send_specific_mobile_message($regId, $requested);
     }
-
+    
     if($id==11){
       $p = explode(',',$json);
-	  header('Location: '."http://localhost:8888/ff/index.php");
-	  return user_controller::change_operator_state($p[0], $p[1], $p[2]);
+  header('Location: '."http://localhost:8888/ff/index.php");
+  return user_controller::change_operator_state($p[0], $p[1], $p[2]);
     }
     
     if($id==12){
