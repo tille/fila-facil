@@ -88,6 +88,7 @@ class user_controller {
   }
   
   function change_operator_state($user_id, $active){
+    if( !isset($_SESSION['rol']) || (isset($_SESSION['rol']) && $_SESSION['rol'] != "operario") ) return 0;
     $success = DAO_user::DAO_change_state($user_id, $active);
     return $success;
   }

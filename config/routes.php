@@ -11,12 +11,12 @@
     "board_status" => 3,
     "next_turn" => 4,
     "remaining_turns" => 5,
-    "login_and_redirect" => 6,
+    "login_and_redirect" => 6, /* is always redirecting don't return */
     "register_operator" => 7,
     "register_device" => 8,
     "get_operators" => 9,
     "device_message" => 10,
-    "change_operator_state" => 11,
+    "change_operator_state" => 11, /* is always redirecting don't return */
     "get_user" => 12,
   );
 
@@ -123,8 +123,8 @@
     
     if($id==11){
       $p = explode(',',$json);
-  header('Location: '."http://localhost:8888/ff/index.php");
-  return user_controller::change_operator_state($p[0], $p[1], $p[2]);
+      $success = user_controller::change_operator_state($p[0], $p[1]);
+      header('Location: '."http://localhost:8888/ff/index.php");
     }
     
     if($id==12){
