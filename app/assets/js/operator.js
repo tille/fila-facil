@@ -2,23 +2,59 @@ $(document).ready(function () {
   
   var mod = $("#mod_operator").text();
   get_turn(mod, set_turn);
+  get_turn(mod, set_next_turn);
+  
+  $("#call-next-user").click(function(){
+    $("#hide-confirmation-form").show();
+    $("#sanction-button").hide();
+    $("#call-next-user").hide();
+  });
+  
+  $("#confirmation-button").click(function(){
+    var confirmation_user = $("#confirmation-id").val();
+    var confirmation_pwd = $("#confirmation-pwd").val();
+    var new_uri = "http://localhost:8888/ff/services.php?q=next_turn&params={'user':"+confirmation_user+",'pwd':"+confirmation_pwd+",'mod':"+mod+"}";
+    
+    alert(new_uri);
+  });
   
   function set_turn( data ){
     data = data.replace(/"/g, "");
     $(".actual-turn-module").text("Turno actual: "+data);
-    
     get_user(mod, data, fill_info);
+  }
+  
+  function set_next_turn( data ){
+    data = data.replace(/"/g, "");
+    var next_turn = parseInt(data)+1;
+    $(".next-turn").html("<b>Turno: </b>"+next_turn);
+    get_user(mod, next_turn, fill_next_user_info);
+  }
+  
+  function fill_next_user_info( user ){
+    if(user!="Error: Empty response"){
+      $p = user.split(":");
+      $(".next-user").html("<b>"+$p[0]+"</b>");
+      $(".next-id").html("<b>Identificaci&oacute;n: &nbsp;</b>"+$p[1]);
+      $(".next-email").html("<b>e-mail: &nbsp;</b>"+$p[2]);
+      
+      if($p[3]=="1") $student = "Es Estudiante de EAFIT";
+      else $student = "No es Estudiante de EAFIT";
+      $(".next-student").html("<b>"+$student+"</b>");
+      $(".next-request").html("<b>Tramite:</b><br>mi seleccion de horario no se esta mostrando en la plataforma de Ulises, tambien quisiera saber si el certificado que pedi la semana pasada ya esta listo, y de paso el nombre de la monita que atiende en la taquilla 4.");
+    }
   }
   
   function fill_info( user ){
     $p = user.split(":");
     
-    $(".name-actual").html("<strong>Nombre:  </strong>"+$p[0]);
-    $(".email-actual").html("<strong>Email:  </strong>"+$p[1]);
-    $(".id-actual").html("<strong>Documento de identidad:  </strong>"+$p[2]);
+    $(".name-actual").html("<strong>Nombre: &nbsp;</strong>"+$p[0]);
+    $(".email-actual").html("<strong>Email: &nbsp;</strong>"+$p[1]);
+    $(".id-actual").html("<strong>Documento de identidad: &nbsp;</strong>"+$p[2]);
     
-    $p[3] = ($p[3]=="1")?"Si","No";
-    $(".student-actual").html("<strong>&iquest;Es estudiante de Eafit?</strong>"+$p[3]);
+    if($p[3]=="1") $student = "Si";
+    else $student = "No";
+    $(".student-actual").html("<strong>&iquest;Es estudiante de Eafit? &nbsp;</strong>"+$student);
     //$(".request-actual")
   }
   

@@ -66,9 +66,23 @@
               <strong>Tramite:</strong>&nbsp;&nbsp;Informacion acerca del tramite
             </div><br>
             
-            <button type="button" class="btn btn-danger" id="register-admin">El usuario no se presento</button>&nbsp;
-            <button type="button" class="btn btn-primary" id="register-admin">Siguiente</button>
+            <div id="hide-confirmation-form">
+              <h4>Confirma tus datos</h4><br>
+              <label for="inputComment" class="col-lg-3 control-label">Identificaci&oacute;n</label>
+              <input type="name" class="form-control field-confirmation-form" name="id-confirmation" id="confirmation-id" placeholder="Identificai&oacute;n">
+              <label for="inputComment" class="col-lg-3 control-label">Contrase&ntilde;a</label>
+              <input type="password" class="form-control field-confirmation-form" name="pwd-confirmation" id="confirmation-pwd" placeholder="Contrase&ntilde;a"><br>
+              <button type="button" class="btn btn-primary" id="confirmation-button">
+                Confirmar y Continuar
+              </button>
+            </div>
             
+            <button type="button" class="btn btn-danger" id="sanction-button">
+              El usuario no se presento
+            </button>&nbsp;
+            <button type="button" class="btn btn-primary" id="call-next-user">
+              Siguiente
+            </button>
           </div>
         </div>
         
@@ -77,12 +91,14 @@
             <div class="widget">
               <h3>Proximos usuarios a ser atendidos</h3>
               <ul>
-                <li><b>Fulanito Perez</b><br>
-                  <b>Turno:</b> 66<br>
-                  <b>Identification:</b> 1017347869<br>
-                  <b>Email:</b> pp@eafit.edu.co<br>
-                  Estudiante Eafitense<br><br>
-                  <b>Tramite:</b><br> mi seleccion de horario no se esta mostrando en la plataforma de Ulises, tambien quisiera saber si el certificado que pedi la semana pasada ya esta listo, y de paso el nombre de la monita que atiende en la taquilla 4.
+                <li>
+                  <div class="next-user"></div>
+                  <div class="next-turn"></div>
+                  <div class="next-id"></div>
+                  <div class="next-email"></div>
+                  <div class="next-student"></div><br>
+                  <div class="next-request"></div>
+                  <!-- <b>Tramite:</b><br> mi seleccion de horario no se esta mostrando en la plataforma de Ulises, tambien quisiera saber si el certificado que pedi la semana pasada ya esta listo, y de paso el nombre de la monita que atiende en la taquilla 4. -->
                 </li>
               </ul>
             </div><br>

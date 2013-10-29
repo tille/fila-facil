@@ -17,6 +17,16 @@ h1,h2,h3,h4,h5,h6{
   width: 270px;
 }
 
+.field-confirmation-form{
+  width: 240px;
+  height: 20px;
+  margin-bottom: 10px;
+}
+
+#hide-confirmation-form{
+  display: none;
+}
+
 p{
   margin:0;
   padding:0;
