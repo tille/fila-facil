@@ -43,7 +43,7 @@
             <form class="form-horizontal" role="form" action="./login.php" method="post">
               <fieldset>
                 
-                <legend>Logueate</legend><br>
+                <legend>Ingresar al sistema</legend><br>
                 
                 <div class="form-group">
                   <label for="inputName" class="col-lg-3 control-label">Identificaci&oacute;n</label>
@@ -61,8 +61,8 @@
                 
                 <div class="form-group">
                   <div class="col-lg-offset-3 col-lg-9">
-                    <button type="submit" class="btn btn-primary">Iniciar</button>
-                    <button type="submit" class="btn btn-default">Limpiar</button>
+                    <button type="submit" class="btn btn-primary">Ingresar</button>
+                    <button type="reset" class="btn btn-default">Limpiar</button>
                   </div>
                 </div>
               </fieldset>
@@ -76,10 +76,9 @@
             <fieldset>
               <legend>Informaci&oacute;n</legend>
               <address>
-                <strong>Quien se puede loguear?</strong><br><br>
-                Nuestro portal solo se encuentra habilitado para permitir el inicio de session
+                <strong>&iquest;Qui&eacute;n puede ingresar&#63;</strong><br></br>
+                Nuestro portal s&oacute;lo est&aacute; habilitado para permitir el inicio de sesi&oacute;n
                 para operarios y administradores.<br><br>
-                Recuerda que para iniciar session como operario un administrador debe haber habilitado tu cuenta.
               </address>
             </fieldset>
             
@@ -88,7 +87,7 @@
         
       </div>
     </div>
-  </div><br><br>
+  </div></br></br></br>
   <!-- contact ends -->
   
   <?php require_once "../template/footer.php" ?>

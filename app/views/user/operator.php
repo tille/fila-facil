@@ -37,37 +37,29 @@
           <div class="posts">
             
             <h3 style="margin-top: 13px; font-size: 34px;">
-              <?php echo $_SESSION['name']." ".$_SESSION['surname'] ?>
+			  <font style="text-transform: capitalize;">
+                <?php echo $_SESSION['name']." ".$_SESSION['surname'] ?>
+			  </font>
             <h3>
-            <h4 style="margin-top: -5px;" id="mod_operator"><?php echo $mod; ?></h4>
+			
+            <h4 style="margin-top: -5px;">
+			  <font style="text-transform: capitalize;">
+			    <?php echo $mod; ?>
+			  </font>
+			</h4>
             
             <div class="post-content">
             </div><hr>
             
             <h4 class="actual-turn-module">Turno actual: 65</h4>
             
-            <div class="info-module info-module-first name-actual">
-              <strong>Nombre:</strong>&nbsp;&nbsp;fapencio garcia
-            </div>
-            
-            <div class="info-module email-actual">
-              <strong>Email:</strong>&nbsp;&nbsp;fapencito@gmail.com
-            </div>
-            
-            <div class="info-module id-actual">
-              <strong>Documento de identidad:</strong>&nbsp;&nbsp;1017344878
-            </div>
-            
-            <div class="info-module student-actual">
-              <strong>&iquest;Es estudiante de Eafit?</strong>&nbsp;&nbsp;No
-            </div>
-            
-            <div class="info-module request-actual">
-              <strong>Tramite:</strong>&nbsp;&nbsp;Informacion acerca del tramite
-            </div><br>
-            
-            <button type="button" class="btn btn-danger" id="register-admin">El usuario no se presento</button>&nbsp;
-            <button type="button" class="btn btn-primary" id="register-admin">Siguiente</button>
+            <div class="info-module info-module-first"><strong>Nombre:</strong>  <font style="text-transform: capitalize;">fapencio restrepo</font></div>
+            <div class="info-module"><strong>e-mail:</strong>  fapencito@gmail.com</div>
+            <div class="info-module"><strong>Documento de identidad:</strong>  1017344878</div>
+            <div class="info-module"><strong>&iquest;Estudiante de EAFIT&#63;</strong>  No</div>
+            <div class="info-module"><strong>Tr&aacute;mite:</strong>  Informaci&oacute;n acerca del tr&aacute;mite</div><br>
+            <button type="button" class="btn btn-danger" id="register-admin">El usuario no se present&oacute;</button>&nbsp;
+            <button type="button" class="btn btn-primary" id="register-admin">Siguiente turno</button>
             
           </div>
         </div>
@@ -75,14 +67,14 @@
         <div class="col-md-5 col-sm-5 col-xs-5">
           <div class="sidebar well">
             <div class="widget">
-              <h3>Proximos usuarios a ser atendidos</h3>
+              <h3>Pr&oacute;ximos usuarios a ser atendidos</h3>
               <ul>
-                <li><b>Fulanito Perez</b><br>
+                <li><b><font style="text-transform: capitalize;">Fulanito jaramillo</font></b><br><br>
                   <b>Turno:</b> 66<br>
-                  <b>Identification:</b> 1017347869<br>
-                  <b>Email:</b> pp@eafit.edu.co<br>
-                  Estudiante Eafitense<br><br>
-                  <b>Tramite:</b><br> mi seleccion de horario no se esta mostrando en la plataforma de Ulises, tambien quisiera saber si el certificado que pedi la semana pasada ya esta listo, y de paso el nombre de la monita que atiende en la taquilla 4.
+                  <b>Identificaci&oacute;n:</b> 1017347869<br>
+                  <b>e-mail:</b> pp@eafit.edu.co<br>
+                  <b>&iquest;Estudiante de EAFIT&#63;</b> S&iacute;<br><br>
+                  <b>Tr&aacute;mite:</b><br> mi seleccion de horario no se esta mostrando en la plataforma de Ulises, tambien quisiera saber si el certificado que pedi la semana pasada ya esta listo, y de paso el nombre de la monita que atiende en la taquilla 4.
                 </li>
               </ul>
             </div><br>
