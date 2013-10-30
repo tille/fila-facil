@@ -10,8 +10,8 @@
   <title>FilaF&aacute;cil</title>
   <!-- Description, Keywords and Author -->
   <meta name="description" content="Login page to filafacil.com">
-  <meta name="keywords" content="filafacil,login,signin,signup">
-  <meta name="author" content="filafacil developers">
+  <meta name="keywords" content="filafácil,filafacil,login,signin,signup,turnos,móvil">
+  <meta name="author" content="FilaFácil developments">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
@@ -43,25 +43,25 @@
         <div class="row">
           <div class="col-md-6">
             <div class="logo">
-              <h1><a href="#">FilaF&aacute;cil <span class="tblue">.</span></a></h1>
+              <h1><a href="#">FilaF&aacute;cil</a></h1>
             </div>
           </div>
           <div class="navigation pull-right">
             <?php if(isset($_SESSION['id'])){ ?>
               <?php if( $_SESSION['rol'] == "admin" ){ ?>
-                <a href="app/views/user/admin.php">Mi cuenta</a>
+				<a href="app/views/user/admin.php"><i class="icon-user"></i> Perfil</a>
               <?php }else{ ?>
-                <a href="app/views/user/operator.php">Mi cuenta</a>
+				<a href="app/views/user/operator.php"><i class="icon-user"></i> Perfil</a>
               <?php } ?>
             <?php }else{ ?>
-              <a href="app/views/user/login.php">Inicio</a>
+              <!--<a href="#"><i class="icon-home"></i> Inicio</a>-->
             <?php } ?>
-            
-            <a href="about.html">Informaci&oacute;n</a>
+			
+            <a href="about.html"><i class="icon-info-sign"></i> Informaci&oacute;n</a>
             <?php if(isset($_SESSION['id'])){ ?>
-              <a href="app/views/user/logout.php">Cerrar session</a>
+              <a href="app/views/user/logout.php"><i class="icon-signout"></i> Salir</a>
             <?php }else{ ?>
-              <a href="app/views/user/login.php">Iniciar session</a>
+              <a href="app/views/user/login.php"><i class="icon-signin"></i> Iniciar sesi&oacute;n</a>
             <?php } ?>
           </div>
         </div>
@@ -75,17 +75,32 @@
         <div class="row">
           <div class="col-md-8">
             <div class="intro">
-              <h2>haz de tu espera un placer <span class="tblue">.</span></h2>
-              <p>Reproduce el video que creamos para ti y enterate de lo que filaf&aacute;cil puede hacer por ti. </p><br />
-              <a href="#" class="download">
-                <i class="icon-play"></i> Reproducir
+              <h2>Hacemos de tu espera un placer <span class="tblue">.</span></h2>
+              <p>Aprovecha al m&aacute;ximo tu tiempo, realiza diferentes actividades mientras esperas tu turno <span class="tblue">.</span></p><br />
+              <a href="http://www.youtube.com/watch?v=ZC3lpBti3mE" class="download" target="_blank">
+				Conoce tus beneficios  
+                <i class="icon-youtube-play"></i>
               </a>
+			  
+			  <a href="#" class="download">
+				Descargar 
+                <i class="icon-android tgreen"></i>
+              </a>
+			  
               
-              <div class="applinks">
-                <a href="#"><i class="icon-facebook"></i></a>
-                <a href="#"><i class="icon-youtube"></i></a>
-                <a href="#"><i class="icon-twitter"></i></a>
-              </div>
+              <!--<div class="applinks">
+                <a href="https://www.facebook.com/filafacil" target="_blank"><i class="icon-facebook"></i></a>
+                <a href="http://www.youtube.com/user/filafacil" target="_blank"><i class="icon-youtube"></i></a>
+                <a href="https://twitter.com/filafacil" target="_blank"><i class="icon-twitter"></i></a>
+              </div>-->
+			  <div class="sidebar">
+				<div class="widget" style="margin: 15px;">
+				  <a href="https://www.facebook.com/filafacil" class="facebook"><i class="icon-facebook"></i></a>
+				  <a href="https://twitter.com/filafacil" class="twitter"><i class="icon-twitter"></i></a>
+				  <a href="https://plus.google.com/101324843636113658328/posts" class="google"><i class="icon-google-plus"></i></a>
+				  <a href="http://www.youtube.com/user/filafacil" class="youtube"><i class="icon-youtube"></i></a>
+				</div>
+			  </div>
               
             </div>
           </div>
@@ -107,8 +122,8 @@
       <div class="row">
         <div class="col-md-12">
           <div class="feature-title text-center">
-            <h3>Caracteristicas</h3>
-            <p>Descarga nuestra aplicacion y reserva gratuitamente turnos desde tu movil.</p>
+            <h3>Se adapta a t&iacute;</h3>
+            <p>Sabemos lo ocupado que te mantienes, es por eso que nos adaptamos a t&iacute;, olv&iacute;date de las filas largas, las eternas esperas y la incomodidad del d&iacute;a a d&iacute;a.</p>
           </div>
         </div>
       </div>
@@ -116,33 +131,37 @@
       <hr>
       
       
+	  <div class="feature-title text-center">
+		<h3>Un sistema para todos</h3>
+		<p>Estamos presentes en:</p>
+      </div>
       <div class="row">
         <div class="col-md-3  col-xs-6">
-          <div class="feat">
-            <p><i class="icon-android"></i></p>
-            <h4>Entidades Bancarias</h4>
-            <p>Aliquam id nulla ac risus condimentum ornare.Lorem ipsum dolor sit amet.</p>
+          <div class="feature-title text-center">
+            <!--<p><i class="icon-android"></i></p>!-->
+            <p>Entidades bancarias</p>
+            <!--<p>Siempre hay presente tumultos </p>-->
           </div>
         </div>
         <div class="col-md-3 col-xs-6">
-          <div class="feat">
-            <p><i class="icon-apple"></i></p>
-            <h4>Centros medicos - EPS</h4>
-            <p>Suspendisse vitae mauris aliquet, blandit quam ut, sodales odio amet.</p>
+          <div class="feature-title text-center">
+            <!--<p><i class="icon-apple"></i></p>!-->
+            <p>Centros m&eacute;dicos</p>
+            <!--<p>Suspendisse vitae mauris aliquet, blandit quam ut, sodales odio amet.</p>-->
           </div>
         </div>
         <div class="col-md-3 col-xs-6">
-          <div class="feat">
-            <p><i class="icon-windows"></i></p>
-            <h4>Atenci&oacute;n Univerisitaria</h4>
-            <p>Mauris lobortis tortor vitae elit tincidunt, et hendrerit ante consectetur.</p>
+          <div class="feature-title text-center">
+            <!--<p><i class="icon-windows"></i></p>-->
+            <p>Atenci&oacute;n univerisitaria</p>
+            <!--<p>Mauris lobortis tortor vitae elit tincidunt, et hendrerit ante consectetur.</p>-->
           </div>
         </div>
         <div class="col-md-3 col-xs-6">
-          <div class="feat">
-            <p><i class="icon-linux"></i></p>
-            <h4>Notarias</h4>
-            <p> Proin venenatis eget risus ac hendrerit.Lorem ipsum dolor sit amet.</p>
+          <div class="feature-title text-center">
+            <!--<p><i class="icon-linux"></i></p>-->
+            <p>Entidades gubernamentales</p>
+            <!--<p> Proin venenatis eget risus ac hendrerit.Lorem ipsum dolor sit amet.</p>-->
           </div>
         </div>
       </div>
@@ -163,26 +182,26 @@
         </div>
         <div class="col-md-8">
           <div class="shotcontent">
-            <h3>Praesent Tincidunt <span class="text-muted"> Tellus Augue</span></h3>
-            <p class="shot-para">Dapibus vitae velit. Pellentesque vel venenatis leo, vel egestas velit.In ullamcorper dolor ut odio facilisis tempus. Duis id erat erat. </p> 
+            <h3><span class="text-muted">Cont&aacute;giate de <span class="text-muted tblue"> innovaci&oacute;n</span></span></h3>
+            <p class="shot-para">Con tan s&oacute;lo unos datos podr&aacute;s tener la comodidad al alcance de tus manos y pertenecer a la onda del ahorro del tiempo. </p>
             <hr>
             
             <div class="row">
               <div class="col-md-6 col-xs-6">
                 <div class="shot-content-body">
-                  <h4><i class="icon-cloud tblue"></i> Envelope</h4>
-                  <p> Cras tincidunt ligula orci, ac sodales urna tincidunt eu. Nullam lacinia placerat justo. </p>
+                  <h4><i class="icon-check tblue"></i>  Cambiar</h4>
+                  <p> Cambiar. </p>
                 </div>
               </div>
               <div class="col-md-6 col-xs-6">
                 <div class="shot-content-body">
-                  <h4><i class="icon-camera tblue"></i> Facebook</h4>
-                  <p> Praesent tincidunt tellus augue, a tempor massa iaculis non. Phasellus et mi ante. </p>
+                  <h4><i class="icon-mobile-phone tblue"></i> Cambiar</h4>
+                  <p> Cambiar </p>
                 </div>
               </div>
             </div>
             <hr>
-            <a href="#" class="download"><i class="icon-cloud-download"></i> Download</a>
+            <!--<a href="#" class="download"><i class="icon-cloud-download"></i> Download</a-->
           </div>
         </div>
         
@@ -194,26 +213,26 @@
       <div class="row">
         <div class="col-md-8">
           <div class="shotcontent">
-            <h3>Vivamus Sed <span class="text-muted">Fringilla Tellus Tellus</span></h3>
-            <p class="shot-para">Dapibus vitae velit. Pellentesque vel venenatis leo, vel egestas velit.In ullamcorper dolor ut odio facilisis tempus. Duis id erat erat. </p> 
+            <h3><span class="text-muted tblue">F&aacute;cil</span><span class="text-muted"> de usar, no te compliques</span></h3>
+            <p class="shot-para">Conocer cu&aacute;ntas personas est&aacute;n en la cola para ser atendidos es una gran ventaja a la hora de pedir un turno, pues puedes hacer un c&aacute;lculo r&aacute;pido y saber en c&uacute;anto tiempo ser&iacute;a tu turno. </p>
             <hr>
             
             <div class="row">
               <div class="col-md-6 col-xs-6">
                 <div class="shot-content-body">
-                  <h4><i class="icon-linux tblue"></i> Envelope</h4>
-                  <p> Cras tincidunt ligula orci, ac sodales urna tincidunt eu. Nullam lacinia placerat justo. </p>
+                  <h4><i class="icon-check tblue"></i>  Amplio</h4>
+                  <p> Ingresa a la secci&oacute;n que desees, echa un vistazo a los turnos en cola y reservar el tuyo. </p>
                 </div>
               </div>
               <div class="col-md-6 col-xs-6">
                 <div class="shot-content-body">
-                  <h4><i class="icon-apple tblue"></i> Facebook</h4>
-                  <p> Praesent tincidunt tellus augue, a tempor massa iaculis non. Phasellus et mi ante. </p>
+                  <h4><i class="icon-mobile-phone tblue"></i> Remoto</h4>
+                  <p> &iexcl;As&iacute; de f&aacute;cil&#33;, con tan solo presionar un bot&oacute;n estar&aacute;s en la cola de atenci&oacute;n, y lo mejor, &iexcl;desde cualquier lugar&#33; </p>
                 </div>
               </div>
             </div>
             <hr>
-            <a href="#" class="download"><i class="icon-cloud-download"></i> Download</a>
+            <!--<a href="#" class="download"><i class="icon-cloud-download"></i> Download</a>-->
           </div>
         </div>
         <div class="col-md-4">
@@ -234,26 +253,26 @@
         </div>
         <div class="col-md-8">
           <div class="shotcontent">
-            <h3>Morbi Blandi<span class="text-muted"> Sed Tincidunt.</span></h3>
-            <p class="shot-para">Dapibus vitae velit. Pellentesque vel venenatis leo, vel egestas velit.In ullamcorper dolor ut odio facilisis tempus. Duis id erat erat. </p> 
+            <h3><span class="text-muted">Se <span class="text-muted tblue">ajusta</span> a t&iacute;</span></h3>
+            <p class="shot-para">FilaF&aacute;cil se anticipa a tus necesidades. Olv&iacute;date del miedo de perder tu turno. </p> 
             <hr>
 
             <div class="row">
               <div class="col-md-6 col-xs-6">
                 <div class="shot-content-body">
-                  <h4><i class="icon-twitter tblue"></i> Envelope</h4>
-                  <p> Cras tincidunt ligula orci, ac sodales urna tincidunt eu. Nullam lacinia placerat justo. </p>
+                  <h4><i class="icon-bell tblue"></i> Personalizado</h4>
+                  <p> Ajusta la notificaci&oacute;n con la cantidad de turnos de anticipaci&oacute;n que desees. </p>
                 </div>
               </div>
               <div class="col-md-6 col-xs-6">
                 <div class="shot-content-body">
-                  <h4><i class="icon-google-plus tblue"></i> Facebook</h4>
-                  <p> Praesent tincidunt tellus augue, a tempor massa iaculis non. Phasellus et mi ante. </p>
+                  <h4><i class="icon-coffee tblue"></i> Social</h4>
+                  <p> Disfruta de tus actividades preferidas en el transcurso de tu espera. </p>
                 </div>
               </div>
             </div>
             <hr>
-            <a href="#" class="download"><i class="icon-cloud-download"></i> Download</a>
+            <!--<a href="#" class="download"><i class="icon-cloud-download"></i> Download</a>-->
           </div>
         </div>
       </div>
@@ -270,7 +289,7 @@
     <div class="container">
 
 
-      <div class="row">
+      <!--<div class="row">
         <div class="col-md-3  col-xs-6">
           <div class="footer-link">
             <h5>Phasellus</h5>
@@ -303,16 +322,16 @@
             <a href="#">Habitasse platea dictumst</a>
           </div>
         </div>
-      </div>
+      </div> 
 
 
 
       <div class="row">
         <div class="col-md-12">
 
-          <hr>
+          <hr>-->
           <div class="copy text-center">
-            &copy; 2013 <a href="#">Fasi</a> - Designed by <a href="http://responsivewebinc.com/bootstrap-themes">Bootstrap Themes</a>
+            &copy; 2013 - <a href="#">FilaF&aacute;cil developments</a><!-- - Designed by <a href="http://responsivewebinc.com/bootstrap-themes">Bootstrap Themes</a>-->
           </div>
         </div>
       </div>

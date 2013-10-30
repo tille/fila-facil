@@ -1,6 +1,6 @@
 $(document).ready(function () {
   
-  var mod = $("#mod_operator").text();
+  var mod = $(".mod-operator").val();
   get_turn(mod, set_turn);
   get_turn(mod, set_next_turn);
   
@@ -66,7 +66,6 @@ $(document).ready(function () {
   
   function get_turn(mod, callback){
     var board_uri="http://localhost:8888/ff/services.php?q=board_status";
-    
     $.ajax({
       type: "GET",
       url: board_uri,
@@ -79,7 +78,9 @@ $(document).ready(function () {
       for( var i=0; i<4; i++ ){
         var temp = modules[i].split(":");
         name = temp[0].substr(1,temp[0].length-2);
-        if(name==mod) callback( temp[1] );
+        if(name==mod){
+          callback( temp[1] );
+        }
       }
     });
   }

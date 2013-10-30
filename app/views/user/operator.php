@@ -37,9 +37,18 @@
           <div class="posts">
             
             <h3 style="margin-top: 13px; font-size: 34px;">
-              <?php echo $_SESSION['name']." ".$_SESSION['surname'] ?>
+              <font style="text-transform: capitalize;">
+                <?php echo $_SESSION['name']." ".$_SESSION['surname'] ?>
+              </font>
             <h3>
-            <h4 style="margin-top: -5px;" id="mod_operator"><?php echo $mod; ?></h4>
+            
+            <h4 style="margin-top: -5px;">
+              <font style="text-transform: capitalize;">
+                <?php echo $mod; ?>
+              </font>
+            </h4>
+            
+            <input type="name" class="mod-operator" style="display: none;" value="<?php echo $mod; ?>">
             
             <div class="post-content">
             </div><hr>
@@ -76,6 +85,7 @@
                 Confirmar y Continuar
               </button>
             </div>
+
             
             <button type="button" class="btn btn-danger" id="sanction-button">
               El usuario no se presento
@@ -89,8 +99,9 @@
         <div class="col-md-5 col-sm-5 col-xs-5">
           <div class="sidebar well">
             <div class="widget">
-              <h3>Proximos usuarios a ser atendidos</h3>
+              <h3>Pr&oacute;ximos usuarios a ser atendidos</h3>
               <ul>
+
                 <li>
                   <div class="next-user"></div>
                   <div class="next-turn"></div>
@@ -99,6 +110,7 @@
                   <div class="next-student"></div><br>
                   <div class="next-request"></div>
                   <!-- <b>Tramite:</b><br> mi seleccion de horario no se esta mostrando en la plataforma de Ulises, tambien quisiera saber si el certificado que pedi la semana pasada ya esta listo, y de paso el nombre de la monita que atiende en la taquilla 4. -->
+
                 </li>
               </ul>
             </div><br>

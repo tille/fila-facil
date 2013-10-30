@@ -87,10 +87,26 @@ hr{
   width:900px;
 }
 
+/* Agregación algunos colores */
 .tblue{
   color:#69b8e5;
 }
 
+.tbluefb{
+  color:#3B5999;
+}
+
+.tgreen{
+  color:#a4c739;
+}
+
+.taqua{
+  color:#00C4FF;
+}
+
+.tred{
+  color:#FE0000;
+}
 
 .top{
   background:#555 url('../images/back.jpg') repeat;
@@ -187,7 +203,7 @@ header .navigation a:hover{
   font-weight:bold;
   padding:0px 25px;
   border-radius:5px;
-  background:#39a5e2;
+  /*background:#a4c739;*/background:#39a5e2;
   line-height:50px;
   box-shadow: 0 2px 0 0 rgba(255,255,255,0.2) inset,0 2px 3px rgba(0,0,0,0.3);
   -webkit-transition: background 1s ease;
@@ -198,7 +214,7 @@ header .navigation a:hover{
 }
 
 .hero .intro a.download:hover{
-  background:#1c97dd;
+  /*background:#a4c739;*/background:#1c97dd;
   -webkit-transition: background 1s ease;
   -moz-transition: background 1s ease;
   -o-transition: background 1s ease;
@@ -505,6 +521,10 @@ header .navigation a:hover{
   background:#2d93cf;
 }
 
+.blog .posts .well a.youtube{
+  background:#D32325;
+}
+
 .blog .posts .well a:hover{
   background:#000;
   -webkit-transition: background 1s ease;
@@ -589,6 +609,10 @@ header .navigation a:hover{
 
 .sidebar .widget a.linkedin{
   background:#2d93cf;
+}
+
+.sidebar .widget a.youtube{
+  background:#D32325;
 }
 
 .sidebar .widget a:hover{
@@ -724,7 +748,7 @@ header .navigation a:hover{
   font-weight:bold;
   padding:0px 25px;
   border-radius:5px;
-  background:#39a5e2;
+  /*background:#a4c739;*/background:#39a5e2;
   line-height:50px;
   box-shadow: 0 2px 0 0 rgba(255,255,255,0.2) inset,0 2px 3px rgba(0,0,0,0.3);
   -webkit-transition: background 1s ease;
@@ -735,7 +759,7 @@ header .navigation a:hover{
 }
 
 .shots .shotcontent a.download:hover{
-  background:#1c97dd;
+  /*background:#a4c739;*/background:#1c97dd;
   -webkit-transition: background 1s ease;
   -moz-transition: background 1s ease;
   -o-transition: background 1s ease;

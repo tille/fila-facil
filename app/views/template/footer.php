@@ -2,7 +2,7 @@
 <footer>
   <div class="container">
     
-    <div class="row">
+    <!--<div class="row">
       <div class="col-md-3 col-xs-6">
         <div class="footer-link">
           <h5>Phasellus</h5>
@@ -39,10 +39,9 @@
     
     <div class="row">
       <div class="col-md-12">
-        <hr>
+        <hr>-->
         <div class="copy text-center">
-          &copy; 2013 <a href="#">Fasi</a> - Designed by 
-          <a href="http://responsivewebinc.com/bootstrap-themes">Bootstrap Themes</a>
+			&copy; 2013 - <a href="#">FilaF&aacute;cil developments</a><!-- - Designed by <a href="http://responsivewebinc.com/bootstrap-themes">Bootstrap Themes</a>-->
         </div>
       </div>
     </div>

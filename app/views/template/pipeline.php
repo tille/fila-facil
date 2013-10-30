@@ -2,8 +2,8 @@
 <title>FilaF&aacute;cil</title>
 <!-- Description, Keywords and Author -->
 <meta name="description" content="Login page to filafacil.com">
-<meta name="keywords" content="filafacil,login,signin,signup">
-<meta name="author" content="filafacil developers">
+<meta name="keywords" content="filafácil,filafacil,login,signin,signup,turnos,móvil">
+<meta name="author" content="FilaFácil developments">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>

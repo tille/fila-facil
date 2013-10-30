@@ -36,11 +36,11 @@
               
               <div class='alert alert-success alert-admin'>
                 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-                <b><center>El usuario ha sido registrado correctamente!</center></b>
+                <b><center>El usuario ha sido registrado correctamente</center></b>
               </div>
               <div class='alert alert-error manual-alert hidden-admin-error'>
                 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-                <b><center>El usuario no pudo ser registrado.<br> verifica la identificaci&oacute;n y/o dependencia</center></b>
+                <b><center>El usuario no pudo ser registrado,<br> verifica la identificaci&oacute;n y/o dependencia</center></b>
               </div>
               
               <?php require_once "form_admin.php" ?>
