@@ -13,9 +13,15 @@ $(document).ready(function () {
   $("#confirmation-button").click(function(){
     var confirmation_user = $("#confirmation-id").val();
     var confirmation_pwd = $("#confirmation-pwd").val();
-    var new_uri = "http://localhost:8888/ff/services.php?q=next_turn&params={'user':"+confirmation_user+",'pwd':"+confirmation_pwd+",'mod':"+mod+"}";
+    var new_uri = "http://localhost:8888/ff/services.php?q=next_turn&params={\"user\":"+confirmation_user+",\"pwd\":"+confirmation_pwd+",\"mod\": \""+mod+"\"}";
     
-    alert(new_uri);
+    $.ajax({
+      type: "GET",
+      url: new_uri,
+    }).done(function( next_turn) {
+      location.reload();
+    });
+  
   });
   
   function set_turn( data ){
