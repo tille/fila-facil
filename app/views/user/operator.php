@@ -53,26 +53,21 @@
             <div class="post-content">
             </div><hr>
             
-            <h4 class="actual-turn-module">Turno actual: 65</h4>
+            <h4 class="actual-turn-module"></h4>
             
             <div class="info-module info-module-first name-actual">
-              <strong>Nombre:</strong>&nbsp;&nbsp;fapencio garcia
             </div>
             
             <div class="info-module email-actual">
-              <strong>Email:</strong>&nbsp;&nbsp;fapencito@gmail.com
             </div>
             
             <div class="info-module id-actual">
-              <strong>Documento de identidad:</strong>&nbsp;&nbsp;1017344878
             </div>
             
             <div class="info-module student-actual">
-              <strong>&iquest;Es estudiante de Eafit?</strong>&nbsp;&nbsp;No
             </div>
             
             <div class="info-module request-actual">
-              <strong>Tramite:</strong>&nbsp;&nbsp;Informacion acerca del tramite
             </div><br>
             
             <div id="hide-confirmation-form">
@@ -113,7 +108,7 @@
 
                 </li>
               </ul>
-            </div><br>
+            </div>
             
           </div>
         </div>

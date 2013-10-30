@@ -26,15 +26,23 @@ $(document).ready(function () {
   
   function set_turn( data ){
     data = data.replace(/"/g, "");
-    $(".actual-turn-module").text("Turno actual: "+data);
-    get_user(mod, data, fill_info);
+    if(data!=-1){
+      $(".actual-turn-module").text("Turno actual: "+data);
+      get_user(mod, data, fill_info);
+    }else{
+      $(".actual-turn-module").text("No se han pedido turnos para esta dependencia.");
+    }
   }
   
   function set_next_turn( data ){
     data = data.replace(/"/g, "");
-    var next_turn = parseInt(data)+1;
-    $(".next-turn").html("<b>Turno: </b>"+next_turn);
-    get_user(mod, next_turn, fill_next_user_info);
+    if(data!=-1){
+      var next_turn = parseInt(data)+1;
+      $(".next-turn").html("<b>Turno: </b>"+next_turn);
+      get_user(mod, next_turn, fill_next_user_info);
+    }else{
+      $(".next-turn").html("<b>No hay turnos en cola</b>");
+    }
   }
   
   function fill_next_user_info( user ){
@@ -52,16 +60,18 @@ $(document).ready(function () {
   }
   
   function fill_info( user ){
-    $p = user.split(":");
-    
-    $(".name-actual").html("<strong>Nombre: &nbsp;</strong>"+$p[0]);
-    $(".email-actual").html("<strong>Email: &nbsp;</strong>"+$p[1]);
-    $(".id-actual").html("<strong>Documento de identidad: &nbsp;</strong>"+$p[2]);
-    
-    if($p[3]=="1") $student = "Si";
-    else $student = "No";
-    $(".student-actual").html("<strong>&iquest;Es estudiante de Eafit? &nbsp;</strong>"+$student);
-    //$(".request-actual")
+    if(user!="Error: Empty response"){
+      $p = user.split(":");
+
+      $(".name-actual").html("<strong>Nombre: &nbsp;</strong>"+$p[0]);
+      $(".email-actual").html("<strong>Email: &nbsp;</strong>"+$p[1]);
+      $(".id-actual").html("<strong>Documento de identidad: &nbsp;</strong>"+$p[2]);
+
+      if($p[3]=="1") $student = "Si";
+      else $student = "No";
+      $(".student-actual").html("<strong>&iquest;Es estudiante de Eafit? &nbsp;</strong>"+$student);
+      $(".request-actual").html("<strong>Tramite: &nbsp;</strong>La consulta del estudiante...");
+    }
   }
   
   function get_turn(mod, callback){
