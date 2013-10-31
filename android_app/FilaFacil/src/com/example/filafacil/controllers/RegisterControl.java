@@ -1,18 +1,9 @@
 package com.example.filafacil.controllers;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
+
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -33,6 +24,7 @@ public class RegisterControl {
 	
 	public static final String USER_REGISTERED = "1";
 	public static final String PARAMS = "services.php?q=register&params=";
+	public static final String PARAMS_REG_KEY = "services.php?q=register_device";
 	private HomeActivity homeActivity;
 	private String lastName;
 	private String name;
@@ -68,7 +60,7 @@ public class RegisterControl {
 	        jsonRegister.put(homeActivity.getResources()
 					.getString(R.string.param_password), password);
 	        jsonRegister.put(homeActivity.getResources()
-					.getString(R.string.param_eafit_student), eafitStudent);
+					.getString(R.string.param_eafit_student), eafitStudent?1:0);
 	        jsonRegister.put(homeActivity.getResources()
 					.getString(R.string.param_rol), homeActivity.getResources()
 					.getString(R.string.param_usuario));
@@ -85,6 +77,7 @@ public class RegisterControl {
 		catch (Exception ex) {
 			Log.d("Error", "Error: " + ex.getMessage());
 		}
+		Log.d("CONSOLA", "RegisterControl: Me registro con URL: " + url);
 		new AsyncTaskRunnable().execute(url);
 		return null;
 	}
@@ -95,7 +88,8 @@ public class RegisterControl {
 		ValuesManager values = new ValuesManager(c);
 		values.putString(ValuesManager.DEVICE_KEY_TAG, regId);
 		String identification = values.getIdentification();
-		String url = "http://10.0.2.2/fila-facil/services.php?q=register_device";
+		String url = c.getResources().getString(R.string.url);
+		url += PARAMS_REG_KEY;
 		url += "&params=";
 		JSONObject jSON = new JSONObject();
 		try {
@@ -112,6 +106,7 @@ public class RegisterControl {
 		catch (Exception ex) {
 			Log.d("Error", "Error: " + ex.getMessage());
 		}
+        Log.d("CONSOLA", "RegisterControl: Dispositivo con URL: " + url);
 		new AsyncTaskRunnable().execute(url);
 		return null;
 	}

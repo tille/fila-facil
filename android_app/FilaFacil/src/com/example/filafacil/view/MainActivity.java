@@ -126,9 +126,14 @@ public class MainActivity extends SherlockFragmentActivity {
         gcm.comprobar();
         gcm.registrar();
         
+        if (valores.getString(ValuesManager.DEVICE_KEY_TAG) == null) {
+        	
+        }
+        else {
         //Pido que me pusheen la información
         boardControl.post(this, valores.getString(ValuesManager.DEVICE_KEY_TAG),
         		"all");
+        }
         
         //Corro la parte de actualizar el board
         //boardControl.post(getThis());

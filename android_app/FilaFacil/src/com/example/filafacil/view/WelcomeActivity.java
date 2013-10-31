@@ -3,8 +3,10 @@ package com.example.filafacil.view;
 import java.util.Timer;
 import java.util.TimerTask;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Window;
+import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.example.filafacil.R;
@@ -21,6 +23,13 @@ public class WelcomeActivity extends SherlockActivity{
     	this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.welcome_activity);
         
+        String fontName = "LobsterTwo-Regular.otf";
+        
+        TextView nombre = (TextView) findViewById(R.id.welcome_app_name);
+        
+        Typeface tf = Typeface.createFromAsset(getAssets(), fontName);
+        
+        nombre.setTypeface(tf);
         //Si tengo que salirme porque cerré desde otra actividad
         if (getIntent().getBooleanExtra("EXIT", false)) {
         	System.out.println("Hola");

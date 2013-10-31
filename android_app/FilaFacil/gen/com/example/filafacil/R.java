@@ -916,8 +916,12 @@ containing a value of this type.
         public static final int abs__textfield_searchview_right_holo_dark=0x7f02006d;
         public static final int abs__textfield_searchview_right_holo_light=0x7f02006e;
         public static final int abs__toast_frame=0x7f02006f;
-        public static final int ic_launcher=0x7f020070;
-        public static final int img_logo=0x7f020071;
+        public static final int background=0x7f020070;
+        public static final int fondo1=0x7f020071;
+        public static final int fondo2=0x7f020072;
+        public static final int fondo3=0x7f020073;
+        public static final int ic_launcher=0x7f020074;
+        public static final int img_logo=0x7f020075;
     }
     public static final class id {
         public static final int abs__action_bar=0x7f040020;
@@ -959,7 +963,7 @@ containing a value of this type.
         public static final int abs__textButton=0x7f040013;
         public static final int abs__title=0x7f04001b;
         public static final int abs__up=0x7f04000b;
-        public static final int action_settings=0x7f040051;
+        public static final int action_settings=0x7f040052;
         public static final int apellido=0x7f040048;
         public static final int boton_login=0x7f040046;
         public static final int boton_pedir_adm=0x7f040036;
@@ -989,7 +993,7 @@ containing a value of this type.
         public static final int numero_turno_cart=0x7f04003d;
         public static final int numero_turno_cert=0x7f040041;
         public static final int pager=0x7f040047;
-        public static final int progressBar1=0x7f040050;
+        public static final int progressBar1=0x7f040051;
         public static final int showCustom=0x7f040008;
         public static final int showHome=0x7f040005;
         public static final int showTitle=0x7f040007;
@@ -1001,6 +1005,7 @@ containing a value of this type.
         public static final int turno_actual_cartera=0x7f04003b;
         public static final int turno_actual_certificados=0x7f04003f;
         public static final int useLogo=0x7f040004;
+        public static final int welcome_app_name=0x7f040050;
         public static final int wrap_content=0x7f040000;
     }
     public static final class integer {
