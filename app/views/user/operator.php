@@ -33,7 +33,7 @@
           <div class="row">
             <div class="col-md-8">
               <div class="intro">
-                <h2>Panel de operario <span class="tblue">.</span></h2>
+                <h2></h2>
               </div>
             </div>
           </div>
