@@ -21,7 +21,6 @@ import android.util.Log;
 
 public class BoardControl {
 	
-	//public static final String URL = "filafacil.herokuapp.com/";
 	public static final String PARAMS_ACTUAL = "services.php?q=board_status";
 	public static final String PARAMS_QUEUE = "services.php?q=remaining_turns";
 	public static final String PARAMS_PUSH = "services.php?q=device_message";
@@ -119,40 +118,6 @@ public class BoardControl {
 		}
 		
 		protected void onPostExecute(Integer bytes) {
-			/*try {
-				JSONObject respJSON = new JSONObject(answer);
-				
-				String key0 = mainActivity.getResources()
-						.getString(R.string.admisiones);
-				String key1 = mainActivity.getResources()
-						.getString(R.string.cartera);
-				String key2 = mainActivity.getResources()
-						.getString(R.string.caja);
-				String key3 = mainActivity.getResources()
-						.getString(R.string.certificados);
-				
-				String nAdmisiones = String.valueOf(respJSON
-						.getLong(key0.toLowerCase()));
-				String nCartera = String.valueOf(respJSON
-						.getLong(key1.toLowerCase()));
-				String nCaja = String.valueOf(respJSON
-						.getLong(key2.toLowerCase()));
-				String nCertificados = String.valueOf(respJSON
-						.getLong(key3.toLowerCase()));
-				
-				mainActivity.getValores().putTurno(QUEUE_KEY + key0.toLowerCase(),
-						nAdmisiones);
-				mainActivity.getValores().putTurno(QUEUE_KEY + key1.toLowerCase(),
-						nCartera);
-				mainActivity.getValores().putTurno(QUEUE_KEY + key2.toLowerCase(),
-						nCaja);
-				mainActivity.getValores().putTurno(QUEUE_KEY + key3.toLowerCase(),
-						nCertificados);
-				
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}*/
 			processAnswerRemaining(answer);
 		}
 	}

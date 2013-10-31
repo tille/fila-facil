@@ -27,7 +27,7 @@
     <string name="mensaje_alerta_conexion">Conéctese a la red e inténtelo nuevamente</string>
     <string name="boton_alerta_conexion">Cerrar</string>
     <string name="turno_reservado">Se ha reservado el turno</string>
-    <string name="url">http://10.0.2.2/fila-facil/</string>
+    <string name="url">http://filafacilbeta.comoj.com/</string>
     <string name="login">Identificación</string>
     <string name="register">Registro</string>
     <string name="login_boton">Identificarse</string>
