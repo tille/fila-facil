@@ -10,13 +10,15 @@
   }
   
   if( !isset($_SESSION['rol']) || (isset($_SESSION['rol']) && $_SESSION['rol'] == "admin") ){
-    header('Location: '."http://localhost:8888/ff/index.php");
+    header('Location: '."http://filafacil.herokuapp.com/index.php");
   }
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
+  <!-- Title here -->
+  <title>Panel de operario</title>
   <?php require_once "../template/pipeline.php" ?>
 </head>
 
@@ -25,6 +27,19 @@
   <!-- Top Starts -->
   <div class="top">
     <?php require_once "../template/header.php"; ?>
+    <!-- Hero starts -->
+    <div class="hero">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="intro">
+                <h2>Panel de operario <span class="tblue">.</span></h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Hero ends -->
   </div>
   <!-- Top Ends -->
   
@@ -41,7 +56,7 @@
                 <?php echo $_SESSION['name']." ".$_SESSION['surname'] ?>
               </font>
             <h3>
-            
+      
             <h4 style="margin-top: -5px;">
               <font style="text-transform: capitalize;">
                 <?php echo $mod; ?>
@@ -49,7 +64,7 @@
             </h4>
             
             <input type="name" class="mod-operator" style="display: none;" value="<?php echo $mod; ?>">
-            
+
             <div class="post-content">
             </div><hr>
             
@@ -77,16 +92,16 @@
               <label for="inputComment" class="col-lg-3 control-label">Contrase&ntilde;a</label>
               <input type="password" class="form-control field-confirmation-form" name="pwd-confirmation" id="confirmation-pwd" placeholder="Contrase&ntilde;a"><br>
               <button type="button" class="btn btn-primary" id="confirmation-button">
-                Confirmar y Continuar
+                Confirmar y continuar
               </button>
             </div>
 
             
             <button type="button" class="btn btn-danger" id="sanction-button">
-              El usuario no se presento
+              El usuario no se present&oacute;
             </button>&nbsp;
             <button type="button" class="btn btn-primary" id="call-next-user">
-              Siguiente
+              Siguiente turno
             </button>
           </div>
         </div>
@@ -96,7 +111,6 @@
             <div class="widget">
               <h3>Pr&oacute;ximos usuarios a ser atendidos</h3>
               <ul>
-
                 <li>
                   <div class="next-user"></div>
                   <div class="next-turn"></div>
@@ -104,8 +118,6 @@
                   <div class="next-email"></div>
                   <div class="next-student"></div><br>
                   <div class="next-request"></div>
-                  <!-- <b>Tramite:</b><br> mi seleccion de horario no se esta mostrando en la plataforma de Ulises, tambien quisiera saber si el certificado que pedi la semana pasada ya esta listo, y de paso el nombre de la monita que atiende en la taquilla 4. -->
-
                 </li>
               </ul>
             </div>
@@ -120,5 +132,5 @@
   <?php require_once "../template/footer.php" ?>
   <script src="../../assets/js/operator.js"></script>
   
-</body>	
+</body> 
 </html>

@@ -41,7 +41,7 @@
       <div class="col-md-12">
         <hr>-->
         <div class="copy text-center">
-			&copy; 2013 - <a href="#">FilaF&aacute;cil developments</a><!-- - Designed by <a href="http://responsivewebinc.com/bootstrap-themes">Bootstrap Themes</a>-->
+			&copy; 2013 - <a href="../../../index.php">FilaF&aacute;cil developments</a><!-- - Designed by <a href="http://responsivewebinc.com/bootstrap-themes">Bootstrap Themes</a>-->
         </div>
       </div>
     </div>

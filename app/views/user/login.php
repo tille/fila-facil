@@ -6,6 +6,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <!-- Title here -->
+  <title>Ingreso</title>
   <?php require_once "../template/pipeline.php" ?>
 </head>
 
@@ -14,6 +16,19 @@
   <!-- Top Starts -->
   <div class="top">
     <?php require_once "../template/header.php" ?>
+    <!-- Hero starts -->
+    <div class="hero">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="intro">
+                <h2>Ingreso <span class="tblue">.</span></h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Hero ends -->
   </div>
   <!-- Top Ends -->
   
@@ -32,7 +47,7 @@
         }else if( isset($_REQUEST["cc"]) && isset($_REQUEST["pwd"]) ){
           $user_id = $_REQUEST["cc"];
           $pwd = $_REQUEST["pwd"];
-          $url = "http://localhost:8888/ff/services.php?q=login_and_redirect&params=".$user_id.",".$pwd;
+          $url = "http://filafacil.herokuapp.com/services.php?q=login_and_redirect&params=".$user_id.",".$pwd;
           header('Location: '.$url);
         }
       ?>

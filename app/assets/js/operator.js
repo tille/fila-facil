@@ -9,11 +9,11 @@ $(document).ready(function () {
     $("#sanction-button").hide();
     $("#call-next-user").hide();
   });
-  
+
   $("#confirmation-button").click(function(){
     var confirmation_user = $("#confirmation-id").val();
     var confirmation_pwd = $("#confirmation-pwd").val();
-    var new_uri = "http://localhost:8888/ff/services.php?q=next_turn&params={\"user\":"+confirmation_user+",\"pwd\":"+confirmation_pwd+",\"mod\": \""+mod+"\"}";
+    var new_uri = "http://filafacil.herokuapp.com/services.php?q=next_turn&params={\"user\":"+confirmation_user+",\"pwd\":"+confirmation_pwd+",\"mod\": \""+mod+"\"}";
     
     $.ajax({
       type: "GET",
@@ -23,7 +23,7 @@ $(document).ready(function () {
     });
   
   });
-  
+
   function set_turn( data ){
     data = data.replace(/"/g, "");
     if(data!=-1){
@@ -33,7 +33,7 @@ $(document).ready(function () {
       $(".actual-turn-module").text("No se han pedido turnos para esta dependencia.");
     }
   }
-  
+
   function set_next_turn( data ){
     data = data.replace(/"/g, "");
     if(data!=-1){
@@ -44,7 +44,7 @@ $(document).ready(function () {
       $(".next-turn").html("<b>No hay turnos en cola</b>");
     }
   }
-  
+
   function fill_next_user_info( user ){
     if(user!="Error: Empty response"){
       $p = user.split(":");
@@ -75,7 +75,7 @@ $(document).ready(function () {
   }
   
   function get_turn(mod, callback){
-    var board_uri="http://localhost:8888/ff/services.php?q=board_status";
+    var board_uri="http://filafacil.herokuapp.com/services.php?q=board_status";
     $.ajax({
       type: "GET",
       url: board_uri,
@@ -96,7 +96,7 @@ $(document).ready(function () {
   }
   
   function get_user(mod, turn, callback){
-    var uri="http://localhost:8888/ff/services.php?q=get_user&params="+turn+","+mod;
+    var uri="http://filafacil.herokuapp.com/services.php?q=get_user&params="+turn+","+mod;
     
     $.ajax({
       type: "GET",

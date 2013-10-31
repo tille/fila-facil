@@ -17,7 +17,7 @@ $(document).ready(function () {
     var pwd = $("#form-admin-pwd").val();
     var mod = $("#form-admin-module").val();
     
-    var uri = "http://localhost:8888/ff/services.php?q=register_operator&params="+id+","+name+","+surn+","+email+","+pwd+","+mod;
+    var uri = "http://filafacil.herokuapp.com/services.php?q=register_operator&params="+id+","+name+","+surn+","+email+","+pwd+","+mod;
     
     $.ajax({
       type: "GET",

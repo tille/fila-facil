@@ -51,15 +51,15 @@ class user_controller {
       user_controller::fill_sessions($p1, $p2, $p3, $p4, $p7, $p8);
       
       if($_SESSION['rol'] == "admin"){
-        header('Location: '."http://localhost:8888/ff/app/views/user/admin.php");
+        header('Location: '."http://filafacil.herokuapp.com/app/views/user/admin.php");
       }else if($_SESSION['rol'] == "operario"){
         $success = user_controller::change_operator_state($p1,1);
-        header('Location: '."http://localhost:8888/ff/app/views/user/operator.php");
+        header('Location: '."http://filafacil.herokuapp.com/app/views/user/operator.php");
       }else{
-        header('Location: '."http://localhost:8888/ff/app/views/user/login.php?q=login-invalid");
+        header('Location: '."http://filafacil.herokuapp.com/app/views/user/login.php?q=login-invalid");
       }
     }else{
-      header('Location: '."http://localhost:8888/ff/app/views/user/login.php?q=login-invalid");
+      header('Location: '."http://filafacil.herokuapp.com/app/views/user/login.php?q=login-invalid");
     }
   }
   

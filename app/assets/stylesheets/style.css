@@ -13,6 +13,144 @@ h1,h2,h3,h4,h5,h6{
 
 }
 
+/* Cosas que agregué */
+
+.tbluefb{
+  color:#3B5999;
+}
+
+.tgreen{
+  color:#a4c739;
+}
+
+.taqua{
+  color:#00C4FF;
+}
+
+.tred{
+  color:#FE0000;
+}
+
+.hero .intro a.download-alt{
+  color:#fff;
+  display:inline-block;
+  text-decoration:none;
+  font-size:17px;
+  font-weight:bold;
+  padding:0px 25px;
+  border-radius:5px;
+  background:#a4c739;
+  line-height:50px;
+  box-shadow: 0 2px 0 0 rgba(255,255,255,0.2) inset,0 2px 3px rgba(0,0,0,0.3);
+  -webkit-transition: background 1s ease;
+  -moz-transition: background 1s ease;
+  -o-transition: background 1s ease;
+  -ms-transition: background 1s ease;
+  transition: background 1s ease;
+}
+
+.hero .intro a.download-alt:hover{
+  background:#91B71D;
+  -webkit-transition: background 1s ease;
+  -moz-transition: background 1s ease;
+  -o-transition: background 1s ease;
+  -ms-transition: background 1s ease;
+  transition: background 1s ease;
+}
+
+.videogallery {
+  width:100%;
+  zoom:1;
+}
+.videogallery span{ display:block; }
+
+.videogallery a{
+  color:#fff;
+  font-size:17px;
+  font-weight:bold;
+  padding:0px 25px;
+  border-radius:5px;
+  background:#39a5e2;
+  line-height:50px;
+  box-shadow: 0 2px 0 0 rgba(255,255,255,0.2) inset,0 2px 3px rgba(0,0,0,0.3);
+  -webkit-transition: background 1s ease;
+  -moz-transition: background 1s ease;
+  -o-transition: background 1s ease;
+  -ms-transition: background 1s ease;
+  transition: background 1s ease;
+  /*Original*/
+  /*display:-moz-inline-stack;*/
+  display:inline-block;
+  /*zoom:1;*/
+  /*display:inline;
+  position:relative;
+  vertical-align:top;*/
+  margin-bottom: 3px;
+  /*width:240px;*/
+  /*font-family:Trebuchet,Tahoma,Arial,sans-serif;*/
+  /*font-size:11px;*/
+  /*font-weight:normal;*/
+  text-decoration:none;
+  /*text-align:center;*/
+  /*opacity:0.87;*/
+}
+
+.videogallery .videolb{display:none}
+
+.videogallery a img{
+  display:block;
+  border:none;
+  margin:0;
+}
+
+.videogallery a:hover{
+  /*opacity:1;*/
+  background:#1384C6;
+  -webkit-transition: background 1s ease;
+  -moz-transition: background 1s ease;
+  -o-transition: background 1s ease;
+  -ms-transition: background 1s ease;
+  transition: background 1s ease;
+}
+
+#voverlay {
+  
+  /* growing background image */
+  background-image:url(../images/white.png);
+  
+  /* dimensions after the growing animation finishes  */
+  width:640px;
+  height:480px;
+  
+  /* initially overlay is hidden */
+  display:none;
+  
+  /* some padding to layout nested elements nicely  */
+  padding:0px;
+}
+
+/* default close button positioned on upper right corner */
+#voverlay .close {
+  background-image:url(../images/close.png);
+  position:absolute;
+  right:5px;
+  top:5px;
+  cursor:pointer;
+  height:35px;
+  width:35px;
+}
+
+#voverlay .vcontainer{
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;  
+  background:url(../images/loading.gif) no-repeat 50% 50%;
+}
+
+
+/* Empieza lo default */
+
 .field-admin-form{
   width: 270px;
 }
@@ -23,8 +161,8 @@ h1,h2,h3,h4,h5,h6{
   margin-bottom: 10px;
 }
 
-#hide-confirmation-form{
-  display: none;
+#hide-confirmation-form {
+  display:none;
 }
 
 p{
@@ -90,22 +228,6 @@ hr{
 /* Agregación algunos colores */
 .tblue{
   color:#69b8e5;
-}
-
-.tbluefb{
-  color:#3B5999;
-}
-
-.tgreen{
-  color:#a4c739;
-}
-
-.taqua{
-  color:#00C4FF;
-}
-
-.tred{
-  color:#FE0000;
 }
 
 .top{
@@ -203,7 +325,7 @@ header .navigation a:hover{
   font-weight:bold;
   padding:0px 25px;
   border-radius:5px;
-  /*background:#a4c739;*/background:#39a5e2;
+  background:#39a5e2;
   line-height:50px;
   box-shadow: 0 2px 0 0 rgba(255,255,255,0.2) inset,0 2px 3px rgba(0,0,0,0.3);
   -webkit-transition: background 1s ease;
@@ -214,7 +336,7 @@ header .navigation a:hover{
 }
 
 .hero .intro a.download:hover{
-  /*background:#a4c739;*/background:#1c97dd;
+  background:#1384C6;
   -webkit-transition: background 1s ease;
   -moz-transition: background 1s ease;
   -o-transition: background 1s ease;

@@ -1,5 +1,3 @@
-<!-- Title here -->
-<title>FilaF&aacute;cil</title>
 <!-- Description, Keywords and Author -->
 <meta name="description" content="Login page to filafacil.com">
 <meta name="keywords" content="filafácil,filafacil,login,signin,signup,turnos,móvil">
@@ -20,4 +18,4 @@
 <link href="../../assets/stylesheets/style.css" rel="stylesheet">
 
 <!-- Favicon -->
-<link rel="shortcut icon" href="#">
+<link rel="shortcut icon" href="../../../favicon.ico"/>

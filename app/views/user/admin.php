@@ -3,13 +3,15 @@
   session_start();
   
   if( !isset($_SESSION['rol']) || (isset($_SESSION['rol']) && $_SESSION['rol'] == "operario") ){
-    header('Location: '."http://localhost:8888/ff/index.php");
+    header('Location: '."http://filafacil.herokuapp.com/index.php");
   }
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
+  <!-- Title here -->
+  <title>Panel de administraci&oacute;n</title>
   <?php require_once "../template/pipeline.php" ?>
   <!-- Refresh every 1.30 minutes -->
   <meta http-equiv="refresh" content="90"> 
@@ -20,6 +22,19 @@
   <!-- Top Starts -->
   <div class="top">
     <?php require_once "../template/header.php" ?>
+    <!-- Hero starts -->
+    <div class="hero">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="intro">
+                <h2>Panel de administraci&oacute;n <span class="tblue">.</span></h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Hero ends -->
   </div>
   <!-- Top Ends -->
   
@@ -50,7 +65,7 @@
           </div>
         </div>
         
-        <!-- http://localhost:8888/ff/services.php?q=get_operators -->
+        <!-- http://filafacil.herokuapp.com/services.php?q=get_operators -->
         <div class="col-md-5 col-sm-5 col-xs-5">
           <div class="sidebar well">
             <div class="widget">

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  var uri = "http://localhost:8888/ff/services.php?q=get_operators";
+  var uri = "http://filafacil.herokuapp.com/services.php?q=get_operators";
   
   $.ajax({
     type: "GET",
@@ -38,7 +38,7 @@ $(document).ready(function () {
   });
   
   function get_turn(mod, name_p, callback){
-    var board_uri="http://localhost:8888/ff/services.php?q=board_status";
+    var board_uri="http://filafacil.herokuapp.com/services.php?q=board_status";
     
     $.ajax({
       type: "GET",

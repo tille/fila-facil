@@ -8,8 +8,15 @@
         </div>
       </div>
       <div class="navigation pull-right">
-		<a href="../../../index.php"><i class="icon-home"></i> Inicio</a>
-        <a href="../../../index.php"><i class="icon-info-sign"></i> Informaci&oacute;n</a>
+        <a href="../../../index.php"><i class="icon-home"></i> Inicio</a>
+        <?php if(isset($_SESSION['id'])){ ?>
+          <?php if( $_SESSION['rol'] == "admin" ){ ?>
+            <a href="admin.php"><i class="icon-desktop"></i> Panel</a>
+          <?php }else{ ?>
+            <a href="operator.php"><i class="icon-desktop"></i> Panel</a>
+          <?php } ?>
+        <?php }?>
+        <a href="about.php"><i class="icon-info-sign"></i> Nosotros</a>
         <?php if(isset($_SESSION['id'])){ ?>
           <a href="logout.php"><i class="icon-signout"></i> Salir</a>
         <?php }else{ ?>
@@ -20,17 +27,3 @@
   </div>
 </header>
 <!-- Header Ends -->
-
-<!-- Hero starts -->
-<div class="hero inner-page">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="intro">
-          <br><br><br>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Hero ends -->
