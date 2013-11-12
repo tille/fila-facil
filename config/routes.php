@@ -18,6 +18,7 @@
     "device_message" => 10,
     "change_operator_state" => 11, /* is always redirecting don't return */
     "get_user" => 12,
+    "delete_turn" => 13,
   );
 
   // NOTA: recordar validar en cada servicio cuando no le llegan la cantidad de parametros
@@ -27,12 +28,11 @@
     if($id==0){ 
       $json = stripslashes($json);
       $params = json_decode($json);
-
       $user = $params->{'user'};
       $pwd  = md5( $params->{'pwd'} );
       $mod = $params->{'mod'};
-      
-      return turn_controller::get_turn($user,$pwd,$mod);
+      $info = $params->{'info'};
+      return turn_controller::get_turn($user,$pwd,$mod,$info);
     }
     
     // NOTA: validar que atraves de este servicio no se puedan agregar operarios ni administradores
@@ -132,6 +132,17 @@
       return turn_controller::get_user_by_turn($params[0], $params[1]);
     }
     
+    if($id==13){
+      $json = stripslashes($json); 
+      $params = json_decode($json);
+      $user_id = $params->{'identification'};
+      $password = $params->{'password'};
+      $turn = $params->{'turn'};
+      $mod = $params->{'module'};
+      $password_md5 = md5($password);
+      return turn_controller::delete_turn($user_id, $password_md5, $turn, $mod);
+    }
+
     return "";
   }
    ?>

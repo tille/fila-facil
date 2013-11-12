@@ -1,6 +1,7 @@
 <?php
   include 'app/models/turn.php';
   include 'db/DAO/DAO_turn.php';
+
   
   class turn_controller {
     
@@ -12,6 +13,7 @@
       if($user_id == -1) return -1;
       
       $actual = DAO_turn::DAO_read_actual_turn($mod);
+      if($actual!=0)$insert = turn_controller::insert_history_turn($actual, $mod);
       $deleted = DAO_turn::DAO_delete_expected_turn($mod, $actual);
       if( $actual+1 > DAO_turn::DAO_read($mod) ){
         
@@ -26,6 +28,8 @@
         $result = DAO_turn::DAO_update_actual_turn($mod,$actual+1);
         
         // devices board notification
+        $read = DAO_turn::DAO_read_expected_turn($actual+1, $mod);
+        if($read==0)$result = "Cancelado";
         $actual = turn_controller::get_board();
         $remaining = turn_controller::remaining_turns();
         gcm_controller::send_mobile_message($actual, 'actual');
@@ -34,7 +38,30 @@
         return $result;
       }
     }
+
+    function insert_history_turn($turn, $mod){
+      $read = DAO_turn::DAO_read_expected_turn($turn, $mod);
+      if($read==0)return "no se agrego";
+      $mod = $read['module'];
+      $expected_turn = $read['expected_turn'];
+      $user_id = $read['user_id'];
+      $info = $read['Info_Process'];
+      $actual_date = date('Y-m-d');
+      $final_time = turn_controller::get_time();
+      $start_time_array = DAO_turn::DAO_read_start_time($mod);
+      $start_time = $start_time_array['start_time'];
+      $update_start_time = DAO_turn::DAO_update_start_time($final_time, $mod);
+      $insert = DAO_turn::DAO_insert_final_turn($user_id, $expected_turn, $mod, $info, $start_time, $final_time, $actual_date);
+      
+      return $read;
+    }
     
+    function get_time(){
+      date_default_timezone_set("America/Bogota" ) ; 
+      $final_time = date('H:i',time() - 3600*date('I')); 
+      return $final_time;
+    }
+
     function get_board() {
       $modules = array('admisiones','caja','cartera','certificados');
       $board = array('admisiones' => 0, 'caja' => 0, 'cartera' => 0, 'certificados' => 0);
@@ -67,7 +94,7 @@
       return $user;
     }
     
-    function get_turn( $user, $pwd, $mod ){
+    function get_turn($user, $pwd, $mod, $info){
       if($mod != "admisiones" && $mod != "caja" && $mod != "cartera" && $mod != "certificados" ) return "";
       $existence_of_request_turn = DAO_turn::DAO_existence_turn($user, $mod);
       
@@ -76,15 +103,24 @@
       $json_valid_user = stripslashes($json_valid_user);
       $valid_user = json_decode($json_valid_user);
       $user_id = $valid_user->{'identification'};
-      
       if( $existence_of_request_turn == 0 && $user_id != -1 ){
-        $response = DAO_turn::DAO_new_expected_turn( $mod, $user_id );
+        $response = DAO_turn::DAO_new_expected_turn( $mod, $user_id, $info );
         $queue = turn_controller::remaining_turns();
         gcm_controller::send_mobile_message($queue, 'remaining');
         return $response;
       }
       
       return -1;
+    }
+
+    function delete_turn($identification, $pwd, $turn, $mod){
+      if($mod != "admisiones" && $mod != "caja" && $mod != "cartera" && $mod != "certificados" ) return '-1';
+      $json_user_exists = DAO_user::DAO_read_login($identification, $pwd);
+      $user_exists = json_decode($json_user_exists);
+      $user_id = $user_exists->{'identification'};
+      if($user_id == '-1')return '-1';
+      $cancel_turn = DAO_turn::DAO_cancel_expected_turn($identification, $mod, $turn);
+      return $cancel_turn;
     }
   }
 ?>

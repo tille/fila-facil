@@ -1,0 +1,1 @@
+ALTER TABLE  `history_turn` CHANGE  `final_timer`  `final_time` TIME NOT NULL ;

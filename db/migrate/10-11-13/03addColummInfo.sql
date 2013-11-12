@@ -1,0 +1,1 @@
+ALTER TABLE  `history_turn` ADD  `info` VARCHAR( 100 ) NOT NULL AFTER  `module` ;

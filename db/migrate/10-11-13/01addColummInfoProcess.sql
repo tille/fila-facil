@@ -1,0 +1,1 @@
+ALTER TABLE  `expected_turn` ADD  `Info_Process` varchar(100)

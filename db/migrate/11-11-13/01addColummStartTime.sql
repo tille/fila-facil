@@ -1,0 +1,1 @@
+ALTER TABLE  `turn` ADD  `start_time` TIME NOT NULL ;
