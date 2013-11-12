@@ -154,5 +154,20 @@ class DAO_turn {
     $arr_res = mysql_query($sql);
     mysql_close($con);
   }
+
+  function get_info_procedures($mod){
+    $con = connect();
+    $sql = "SELECT info FROM info_procedure WHERE module='$mod'";
+    $arr_res = mysql_query($sql) or die(mysql_error());
+    if( mysql_num_rows($arr_res) == 0 ) return "Otros";
+    $fila = mysql_fetch_row($arr_res);
+    $i = $fila[0];
+    while ($fila = mysql_fetch_row($arr_res)) {
+     $i .= ','.$fila[0];
+    }
+    $i .= ','."Otros";
+    disconnect($con);
+    return $i;
+  }  
 }
 ?>

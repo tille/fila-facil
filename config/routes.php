@@ -19,6 +19,7 @@
     "change_operator_state" => 11, /* is always redirecting don't return */
     "get_user" => 12,
     "delete_turn" => 13,
+    "get_info_procedures" =>14,
   );
 
   // NOTA: recordar validar en cada servicio cuando no le llegan la cantidad de parametros
@@ -141,6 +142,10 @@
       $mod = $params->{'module'};
       $password_md5 = md5($password);
       return turn_controller::delete_turn($user_id, $password_md5, $turn, $mod);
+    }
+
+    if($id==14){
+      return turn_controller::get_info_procedures();
     }
 
     return "";
