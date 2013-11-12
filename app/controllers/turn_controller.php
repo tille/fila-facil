@@ -15,6 +15,7 @@
       $actual = DAO_turn::DAO_read_actual_turn($mod);
       if($actual!=0)$insert = turn_controller::insert_history_turn($actual, $mod);
       $deleted = DAO_turn::DAO_delete_expected_turn($mod, $actual);
+
       if( $actual+1 > DAO_turn::DAO_read($mod) ){
         
         // devices board notification
@@ -25,12 +26,16 @@
         
         return -1;
       }else{
-        $result = DAO_turn::DAO_update_actual_turn($mod,$actual+1);
-        
-        // devices board notification
         $read = DAO_turn::DAO_read_expected_turn($actual+1, $mod);
-        if($read==0)$result = "Cancelado";
+        $cancelados = 2;
+        while ($read == 0) {
+          $read = DAO_turn::DAO_read_expected_turn($actual+$cancelados, $mod);
+          $cancelados++;
+        }
+        $result = DAO_turn::DAO_update_actual_turn($mod,$actual+$cancelados-1);
         $actual = turn_controller::get_board();
+
+        // devices board notification
         $remaining = turn_controller::remaining_turns();
         gcm_controller::send_mobile_message($actual, 'actual');
         gcm_controller::send_mobile_message($remaining, 'remaining');
@@ -97,7 +102,6 @@
     function get_turn($user, $pwd, $mod, $info){
       if($mod != "admisiones" && $mod != "caja" && $mod != "cartera" && $mod != "certificados" ) return "";
       $existence_of_request_turn = DAO_turn::DAO_existence_turn($user, $mod);
-      
       // NOTA: reducir estas 4 lineas que estan feas
       $json_valid_user = user_controller::login($user, $pwd);
       $json_valid_user = stripslashes($json_valid_user);
@@ -120,6 +124,10 @@
       $user_id = $user_exists->{'identification'};
       if($user_id == '-1')return '-1';
       $cancel_turn = DAO_turn::DAO_cancel_expected_turn($identification, $mod, $turn);
+      if ($cancel_turn == 1) {
+        $queue = turn_controller::remaining_turns();
+        gcm_controller::send_mobile_message($queue, 'remaining');
+      }
       return $cancel_turn;
     }
   }
