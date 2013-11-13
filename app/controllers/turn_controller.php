@@ -16,8 +16,7 @@
       if($actual!=0)$insert = turn_controller::insert_history_turn($actual, $mod);
       $deleted = DAO_turn::DAO_delete_expected_turn($mod, $actual);
 
-      if( $actual+1 > DAO_turn::DAO_read($mod) ){
-        
+      if($actual+1 > DAO_turn::DAO_read($mod)){
         // devices board notification
         $actual = turn_controller::get_board();
         $remaining = $remaining = turn_controller::remaining_turns();
@@ -25,7 +24,8 @@
         gcm_controller::send_mobile_message($remaining, 'remaining');
         
         return -1;
-      }else{
+      }
+      else {
         $read = DAO_turn::DAO_read_expected_turn($actual+1, $mod);
         $cancelados = 2;
         while ($read == 0) {
@@ -33,9 +33,8 @@
           $cancelados++;
         }
         $result = DAO_turn::DAO_update_actual_turn($mod,$actual+$cancelados-1);
-        $actual = turn_controller::get_board();
-
         // devices board notification
+        $actual = turn_controller::get_board();
         $remaining = turn_controller::remaining_turns();
         gcm_controller::send_mobile_message($actual, 'actual');
         gcm_controller::send_mobile_message($remaining, 'remaining');
@@ -71,11 +70,13 @@
       $modules = array('admisiones','caja','cartera','certificados');
       $board = array('admisiones' => 0, 'caja' => 0, 'cartera' => 0, 'certificados' => 0);
       
-      for ( $i=0 ; $i<4 ; $i++){
+      for ($i=0 ; $i<4 ; $i++){
         $actual = DAO_turn::DAO_read_actual_turn($modules[$i]);
         $queue = DAO_turn::DAO_count_module_queue($modules[$i]);
         $last_request = DAO_turn::DAO_read($modules[$i]);
-        if( $queue == 0 or $actual == 0 or $last_request-$queue == $actual ) $board[$modules[$i]] = -1;
+
+        //if( $queue == 0 or $actual == 0 or $last_request-$queue == $actual) $board[$modules[$i]] = -1;
+        if( $queue == 0 or $actual == 0 or $last_request + 1 == $actual) $board[$modules[$i]] = -1;
         else $board[$modules[$i]] = $actual;
       }
       
