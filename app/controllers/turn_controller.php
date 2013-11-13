@@ -133,7 +133,6 @@
     }
 
     function get_info_procedures(){
-      //echo "Llego a controller";
       $json_user = array('admisiones'=>"",'caja'=>"",'cartera'=>"",'certificados'=>"");
       $modules = array(
         0 => "admisiones",
@@ -143,7 +142,7 @@
       );
       for($i=0; $i<4; $i++){
         $result = DAO_turn::get_info_procedures($modules[$i]);
-        $json_user[$modules[$i]]=$result;
+        $json_user[$modules[$i]] = utf8_encode($result);
       }
       $json_user = json_encode($json_user);
       return $json_user;
