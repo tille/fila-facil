@@ -21,6 +21,7 @@
     "delete_turn" => 13,
     "get_info_procedures" =>14,
     "next_turn_only_user" =>15,
+    "user_absence" =>16,
   );
 
   // NOTA: recordar validar en cada servicio cuando no le llegan la cantidad de parametros
@@ -149,17 +150,16 @@
       return turn_controller::get_info_procedures();
     }
 
-    // NOTA: severo machetazo, pensar en alguna manera de hacerlo mejor
-    if($id==15){
-      $json = stripslashes($json);
-      $params = json_decode($json);
-
-      $user = $params->{'user'};
-      $mod = $params->{'mod'};
-
-      return turn_controller::next_turn_temp($mod);
+    // NOTA: pensar en alguna manera de hacerlo mejor con validaciones de user y pwd
+    if($id==15){      
+      return turn_controller::next_turn_temp($json);
     }
-
+    
+    if($id==16){
+      return user_controller::absence_of_user($json);
+    }
+    // End validaciones necesarias
+    
     return "";
   }
    ?>

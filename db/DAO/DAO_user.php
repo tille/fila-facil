@@ -13,6 +13,14 @@ class DAO_user{
     return $result;
   }
   
+  function DAO_absence_of_user($identification){
+    $con = connect();
+    $sql = "UPDATE users SET absence = absence + 1 WHERE identification = '$identification'";
+    $result = mysql_query($sql) or die(mysql_error());
+    disconnect($con);
+    return $result;
+  }
+  
   function DAO_set_device($identification, $gcm_regid) {
     $con = connect();
     $sql = "UPDATE users SET gcm_key = '$gcm_regid' WHERE identification = '$identification'";

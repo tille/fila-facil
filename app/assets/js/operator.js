@@ -5,9 +5,7 @@ $(document).ready(function () {
   get_turn(mod, set_next_turn);
   
   $("#confirmation-button").click(function(){
-    var confirmation_user = $("#confirmation-id").val();
-    var confirmation_pwd = $("#confirmation-pwd").val();
-    var new_uri = "http://localhost:8888/ff/services.php?q=next_turn_only_user&params={\"mod\": \""+mod+"\"}";
+    var new_uri = "http://localhost:8888/ff/services.php?q=next_turn_only_user&params="+mod;
     
     $.ajax({
       type: "GET",
@@ -17,6 +15,26 @@ $(document).ready(function () {
     });
   
   });
+  
+  $("#sanction-button").click(function(){
+    var usr = $(".user-actual-module").text();
+    var uri="http://localhost:8888/ff/services.php?q=user_absence&params="+usr;
+    
+    $.ajax({
+      type: "GET",
+      url: uri,
+    }).done(function( success ) {
+      cb( success );
+    });
+  });
+
+  function cb( success ){
+    if( success == "1" ){
+      $( "#confirmation-button" ).trigger( "click" );
+    }else{
+      alert("Ocurrio un error, favor contacte al administrador.");
+    }
+  }
 
   function set_turn( data ){
     data = data.replace(/"/g, "");
@@ -62,6 +80,7 @@ $(document).ready(function () {
       $(".name-actual").html("<strong>Nombre: &nbsp;</strong>"+$p[0]);
       $(".email-actual").html("<strong>Email: &nbsp;</strong>"+$p[1]);
       $(".id-actual").html("<strong>Documento de identidad: &nbsp;</strong>"+$p[2]);
+      $(".user-actual-module").html($p[2]);
 
       if($p[3]=="1") $student = "Si";
       else $student = "No";

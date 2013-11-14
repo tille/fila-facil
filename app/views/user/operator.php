@@ -79,6 +79,9 @@
             <div class="info-module id-actual">
             </div>
             
+            <div style="display: none;" class="user-actual-module">
+            </div>
+            
             <div class="info-module student-actual">
             </div>
             

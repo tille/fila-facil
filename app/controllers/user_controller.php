@@ -81,6 +81,11 @@ class user_controller {
     return ($success=="1" && $success_active =="1");
   }
   
+  function absence_of_user($user_id){
+    $succces = DAO_user::DAO_absence_of_user($user_id);
+    return $succces;
+  }
+  
   function get_operators(){
     $operators_active = DAO_user::DAO_read_active_operators("active");
     $operators_inactive = DAO_user::DAO_read_active_operators("inactive");
