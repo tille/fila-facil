@@ -18,7 +18,6 @@ $(document).ready(function () {
   
   $("#sanction-button").click(function(){
     var mod = $(".mod-operator").val();
-    alert(mod);
     var usr = $(".user-actual-module").text();
     var uri="http://localhost:8888/ff/services.php?q=user_absence&params="+usr+","+mod;
     
@@ -46,6 +45,7 @@ $(document).ready(function () {
       get_user(mod, data, fill_info);
     }else{
       $(".actual-turn-module").text("No se han pedido turnos para esta dependencia.");
+      $("#sanction-button").hide();
     }
   }
 
@@ -70,7 +70,9 @@ $(document).ready(function () {
       if($p[3]=="1") $student = "Es Estudiante de EAFIT";
       else $student = "No es Estudiante de EAFIT";
       $(".next-student").html("<b>"+$student+"</b>");
-      $(".next-request").html("<b>Tramite:</b><br>"+$p[4]);      
+      $(".next-request").html("<b>Tramite:</b><br>"+$p[4]);
+    }else{
+      $(".next-turn").html("<b>No hay turnos en cola</b>");
     }
   }
   
@@ -87,6 +89,9 @@ $(document).ready(function () {
       else $student = "No";
       $(".student-actual").html("<strong>&iquest;Es estudiante de Eafit? &nbsp;</strong>"+$student);
       $(".request-actual").html("<strong>Tramite: &nbsp;</strong>"+$p[4]);
+    }else{
+      $(".actual-turn-module").text("No se han pedido turnos para esta dependencia.");
+      $("#sanction-button").hide();
     }
   }
   

@@ -1,47 +1,34 @@
 <!-- Footer starts -->
-<footer>
+
+<footer style="margin-top: 0px;">
   <div class="container">
     
-    <!--<div class="row">
+    <div class="row">
+      <br><br><br><br><br>
+
       <div class="col-md-3 col-xs-6">
         <div class="footer-link">
-          <h5>Phasellus</h5>
-          <a href="#">Nullam pharetra nec</a><br>
-          <a href="#">Vulputate vitae</a><br>
-          <a href="#">Phasellus</a>
         </div>
       </div>
       <div class="col-md-3 col-xs-6">
         <div class="footer-link">
-          <h5>Pulvinar</h5>
-          <a href="#">Aliquam nec</a><br>
-          <a href="#">Nam pulvinar massa</a><br>
-          <a href="#">Maecenas fringilla nec</a>
         </div>
       </div>
       <div class="col-md-3 col-xs-6">
         <div class="footer-link">
-          <h5>Commodo</h5>
-          <a href="#">Consectetur adipiscing elit</a><br>
-          <a href="#">Commodo a fermentum vel</a><br>
-          <a href="#">Eleifend neque</a>
         </div>
       </div>
       <div class="col-md-3 col-xs-6">
         <div class="footer-link">
-          <h5>Start</h5>
-          <a href="#">Pellentesque</a><br>
-          <a href="#">Startups</a><br>
-          <a href="#">Habitasse platea dictumst</a>
         </div>
       </div>
     </div>
     
     <div class="row">
       <div class="col-md-12">
-        <hr>-->
+        <hr>
         <div class="copy text-center">
-			&copy; 2013 - <a href="../../../index.php">FilaF&aacute;cil developments</a><!-- - Designed by <a href="http://responsivewebinc.com/bootstrap-themes">Bootstrap Themes</a>-->
+			&copy; 2013 - <a href="../../../index.php">FilaF&aacute;cil developments - Universidad EAFIT</a><!-- - Designed by <a href="http://responsivewebinc.com/bootstrap-themes">Bootstrap Themes</a>-->
         </div>
       </div>
     </div>
