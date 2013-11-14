@@ -85,22 +85,11 @@
             <div class="info-module request-actual">
             </div><br>
             
-            <div id="hide-confirmation-form">
-              <h4>Confirma tus datos</h4><br>
-              <label for="inputComment" class="col-lg-3 control-label">Identificaci&oacute;n</label>
-              <input type="name" class="form-control field-confirmation-form" name="id-confirmation" id="confirmation-id" placeholder="Identificai&oacute;n">
-              <label for="inputComment" class="col-lg-3 control-label">Contrase&ntilde;a</label>
-              <input type="password" class="form-control field-confirmation-form" name="pwd-confirmation" id="confirmation-pwd" placeholder="Contrase&ntilde;a"><br>
-              <button type="button" class="btn btn-primary" id="confirmation-button">
-                Confirmar y continuar
-              </button>
-            </div>
-
             
             <button type="button" class="btn btn-danger" id="sanction-button">
               El usuario no se present&oacute;
             </button>&nbsp;
-            <button type="button" class="btn btn-primary" id="call-next-user">
+            <button type="button" class="btn btn-primary" id="confirmation-button">
               Siguiente turno
             </button>
           </div>

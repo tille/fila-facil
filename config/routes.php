@@ -20,6 +20,7 @@
     "get_user" => 12,
     "delete_turn" => 13,
     "get_info_procedures" =>14,
+    "next_turn_only_user" =>15,
   );
 
   // NOTA: recordar validar en cada servicio cuando no le llegan la cantidad de parametros
@@ -146,6 +147,17 @@
 
     if($id==14){
       return turn_controller::get_info_procedures();
+    }
+
+    // NOTA: severo machetazo, pensar en alguna manera de hacerlo mejor
+    if($id==15){
+      $json = stripslashes($json);
+      $params = json_decode($json);
+
+      $user = $params->{'user'};
+      $mod = $params->{'mod'};
+
+      return turn_controller::next_turn_temp($mod);
     }
 
     return "";

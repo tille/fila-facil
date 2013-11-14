@@ -4,16 +4,10 @@ $(document).ready(function () {
   get_turn(mod, set_turn);
   get_turn(mod, set_next_turn);
   
-  $("#call-next-user").click(function(){
-    $("#hide-confirmation-form").show();
-    $("#sanction-button").hide();
-    $("#call-next-user").hide();
-  });
-
   $("#confirmation-button").click(function(){
     var confirmation_user = $("#confirmation-id").val();
     var confirmation_pwd = $("#confirmation-pwd").val();
-    var new_uri = "http://localhost:8888/ff/services.php?q=next_turn&params={\"user\":"+confirmation_user+",\"pwd\":"+confirmation_pwd+",\"mod\": \""+mod+"\"}";
+    var new_uri = "http://localhost:8888/ff/services.php?q=next_turn_only_user&params={\"mod\": \""+mod+"\"}";
     
     $.ajax({
       type: "GET",
@@ -49,13 +43,15 @@ $(document).ready(function () {
     if(user!="Error: Empty response"){
       $p = user.split(":");
       $(".next-user").html("<b>"+$p[0]+"</b>");
-      $(".next-id").html("<b>Identificaci&oacute;n: &nbsp;</b>"+$p[1]);
-      $(".next-email").html("<b>e-mail: &nbsp;</b>"+$p[2]);
+      $(".next-id").html("<b>Identificaci&oacute;n: &nbsp;</b>"+$p[2]);
+      $(".next-email").html("<b>e-mail: &nbsp;</b>"+$p[1]);
       
       if($p[3]=="1") $student = "Es Estudiante de EAFIT";
       else $student = "No es Estudiante de EAFIT";
       $(".next-student").html("<b>"+$student+"</b>");
-      $(".next-request").html("<b>Tramite:</b><br>mi seleccion de horario no se esta mostrando en la plataforma de Ulises, tambien quisiera saber si el certificado que pedi la semana pasada ya esta listo, y de paso el nombre de la monita que atiende en la taquilla 4.");
+      $(".next-request").html("<b>Tramite:</b><br>"+$p[4]);
+      
+      $
     }
   }
   
@@ -70,7 +66,7 @@ $(document).ready(function () {
       if($p[3]=="1") $student = "Si";
       else $student = "No";
       $(".student-actual").html("<strong>&iquest;Es estudiante de Eafit? &nbsp;</strong>"+$student);
-      $(".request-actual").html("<strong>Tramite: &nbsp;</strong>La consulta del estudiante...");
+      $(".request-actual").html("<strong>Tramite: &nbsp;</strong>"+$p[4]);
     }
   }
   

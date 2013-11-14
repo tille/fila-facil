@@ -5,6 +5,42 @@
   
   class turn_controller {
     
+    // ------------- NOTA: cosa fea (no mirar)
+      function next_turn_temp($mod){
+        
+        $actual = DAO_turn::DAO_read_actual_turn($mod);
+        if($actual!=0)$insert = turn_controller::insert_history_turn($actual, $mod);
+        $deleted = DAO_turn::DAO_delete_expected_turn($mod, $actual);
+
+        if($actual+1 > DAO_turn::DAO_read($mod)){
+          // devices board notification
+          $actual = turn_controller::get_board();
+          $remaining = $remaining = turn_controller::remaining_turns();
+          gcm_controller::send_mobile_message($actual, 'actual');
+          gcm_controller::send_mobile_message($remaining, 'remaining');
+
+          return -1;
+        }
+        else {
+          $read = DAO_turn::DAO_read_expected_turn($actual+1, $mod);
+          $cancelados = 2;
+          while ($read == 0) {
+            $read = DAO_turn::DAO_read_expected_turn($actual+$cancelados, $mod);
+            $cancelados++;
+          }
+          $result = DAO_turn::DAO_update_actual_turn($mod,$actual+$cancelados-1);
+          // devices board notification
+          $actual = turn_controller::get_board();
+          $remaining = turn_controller::remaining_turns();
+          gcm_controller::send_mobile_message($actual, 'actual');
+          gcm_controller::send_mobile_message($remaining, 'remaining');
+
+          return $result;
+        }
+      }
+    // ----------------- END
+    
+    
     function next_turn($user, $pwd, $mod){
       $json_valid_user = user_controller::login($user, $pwd);
       $json_valid_user = stripslashes($json_valid_user);
