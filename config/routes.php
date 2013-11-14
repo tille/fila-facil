@@ -156,7 +156,10 @@
     }
     
     if($id==16){
-      return user_controller::absence_of_user($json);
+      $params = explode(',',$json);
+      $user_id = $params[0];
+      $mod = $params[1];
+      return user_controller::absence_of_user($user_id);
     }
     // End validaciones necesarias
     

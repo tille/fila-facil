@@ -17,8 +17,10 @@ $(document).ready(function () {
   });
   
   $("#sanction-button").click(function(){
+    var mod = $(".mod-operator").val();
+    alert(mod);
     var usr = $(".user-actual-module").text();
-    var uri="http://localhost:8888/ff/services.php?q=user_absence&params="+usr;
+    var uri="http://localhost:8888/ff/services.php?q=user_absence&params="+usr+","+mod;
     
     $.ajax({
       type: "GET",
@@ -32,7 +34,8 @@ $(document).ready(function () {
     if( success == "1" ){
       $( "#confirmation-button" ).trigger( "click" );
     }else{
-      alert("Ocurrio un error, favor contacte al administrador.");
+      
+      alert(sucess+" Ocurrio un error, favor contacte al administrador.");
     }
   }
 
@@ -67,9 +70,7 @@ $(document).ready(function () {
       if($p[3]=="1") $student = "Es Estudiante de EAFIT";
       else $student = "No es Estudiante de EAFIT";
       $(".next-student").html("<b>"+$student+"</b>");
-      $(".next-request").html("<b>Tramite:</b><br>"+$p[4]);
-      
-      $
+      $(".next-request").html("<b>Tramite:</b><br>"+$p[4]);      
     }
   }
   
