@@ -159,6 +159,7 @@
       $params = explode(',',$json);
       $user_id = $params[0];
       $mod = $params[1];
+      gcm_controller::send_specific_mobile_absence($user_id, $mod);
       return user_controller::absence_of_user($user_id);
     }
     // End validaciones necesarias

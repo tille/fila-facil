@@ -24,6 +24,12 @@ class gcm_controller {
     }
     return "";
   }
+
+  function send_specific_mobile_absence($user, $module) {
+    $regId = DAO_gcm::DAO_get_device_by_user($user);
+    $message = array('absence' => $module);
+    return gcm_controller::send_notification(array($regId), $message);
+  }
   
   function send_notification($registatoin_ids, $message) {
     $url = 'https://android.googleapis.com/gcm/send';

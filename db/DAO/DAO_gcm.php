@@ -17,6 +17,16 @@ class DAO_gcm{
     disconnect($con);
     return $result;
   }
+
+  function DAO_get_device_by_user($user) {
+    $con = connect();
+    $sql = "SELECT gcm_key FROM users WHERE identification = '$user'";
+    $arr_res = mysql_query($sql) or die(mysql_error());
+    if (mysql_num_rows($arr_res) == 0) return "";
+    $result = mysql_fetch_array($arr_res);
+    disconnect($con);
+    return $result[0];
+  }
 }
 
 ?>
