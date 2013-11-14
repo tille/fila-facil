@@ -125,7 +125,7 @@
     if($id==11){
       $p = explode(',',$json);
       $success = user_controller::change_operator_state($p[0], $p[1]);
-      header('Location: '."http://filafacil.herokuapp.com/index.php");
+      header('Location: '."http://localhost:8888/ff/index.php");
     }
     
     if($id==12){

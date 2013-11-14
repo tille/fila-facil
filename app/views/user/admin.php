@@ -3,7 +3,7 @@
   session_start();
   
   if( !isset($_SESSION['rol']) || (isset($_SESSION['rol']) && $_SESSION['rol'] == "operario") ){
-    header('Location: '."http://filafacil.herokuapp.com/index.php");
+    header('Location: '."http://localhost:8888/ff/index.php");
   }
 ?>
 
@@ -65,7 +65,7 @@
           </div>
         </div>
         
-        <!-- http://filafacil.herokuapp.com/services.php?q=get_operators -->
+        <!-- http://localhost:8888/ff/services.php?q=get_operators -->
         <div class="col-md-5 col-sm-5 col-xs-5">
           <div class="sidebar well">
             <div class="widget">

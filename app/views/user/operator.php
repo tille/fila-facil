@@ -10,7 +10,7 @@
   }
   
   if( !isset($_SESSION['rol']) || (isset($_SESSION['rol']) && $_SESSION['rol'] == "admin") ){
-    header('Location: '."http://filafacil.herokuapp.com/index.php");
+    header('Location: '."http://localhost:8888/ff/index.php");
   }
 ?>
 

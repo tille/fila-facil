@@ -47,7 +47,7 @@
         }else if( isset($_REQUEST["cc"]) && isset($_REQUEST["pwd"]) ){
           $user_id = $_REQUEST["cc"];
           $pwd = $_REQUEST["pwd"];
-          $url = "http://filafacil.herokuapp.com/services.php?q=login_and_redirect&params=".$user_id.",".$pwd;
+          $url = "http://localhost:8888/ff/services.php?q=login_and_redirect&params=".$user_id.",".$pwd;
           header('Location: '.$url);
         }
       ?>
